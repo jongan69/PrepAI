@@ -245,17 +245,17 @@ erDiagram
         boolean isDeleted
     }
     
-    User ||--o{ HealthProfile
-    User ||--o{ Workout
-    User ||--o{ Meal
-    User ||--o{ MealItem
-    User ||--o{ ProgressLog
-    User ||--o{ WeightEntry
-    User ||--o{ WaterIntake
-    User ||--o{ SleepEntry
-    User ||--o{ Goal
-    Workout ||--o{ Exercise
-    Meal ||--o{ MealItem
+    User ||--o{ HealthProfile : "has"
+    User ||--o{ Workout : "creates"
+    User ||--o{ Meal : "logs"
+    User ||--o{ MealItem : "consumes"
+    User ||--o{ ProgressLog : "tracks"
+    User ||--o{ WeightEntry : "records"
+    User ||--o{ WaterIntake : "drinks"
+    User ||--o{ SleepEntry : "sleeps"
+    User ||--o{ Goal : "sets"
+    Workout ||--o{ Exercise : "contains"
+    Meal ||--o{ MealItem : "includes"
 ```
 ```
 
