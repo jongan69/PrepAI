@@ -20,7 +20,7 @@ module.exports = {
         description: 'Development server',
       },
       {
-        url: 'https://jongan69-prepai.expo.app',
+        url: 'https://your-production-domain.com',
         description: 'Production server',
       },
     ],

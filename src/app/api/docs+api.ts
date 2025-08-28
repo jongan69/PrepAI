@@ -1,6 +1,3 @@
-import swaggerJsdoc from 'swagger-jsdoc';
-import swaggerConfig from '../../../swagger-config.js';
-
 /**
  * @swagger
  * /api/docs:
@@ -18,10 +15,7 @@ import swaggerConfig from '../../../swagger-config.js';
  */
 export function GET(request: Request) {
   try {
-    // Generate the Swagger specification
-    const specs = swaggerJsdoc(swaggerConfig);
-
-    // Create HTML content for Swagger UI
+    // Static Swagger UI HTML that works in production
     const html = `
 <!DOCTYPE html>
 <html lang="en">
@@ -43,6 +37,12 @@ export function GET(request: Request) {
             margin:0;
             background: #fafafa;
         }
+        .swagger-ui .topbar {
+            background-color: #2c3e50;
+        }
+        .swagger-ui .topbar .download-url-wrapper .select-label {
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -52,7 +52,7 @@ export function GET(request: Request) {
     <script>
         window.onload = function() {
             const ui = SwaggerUIBundle({
-                spec: ${JSON.stringify(specs)},
+                url: '/api/swagger.json',
                 dom_id: '#swagger-ui',
                 deepLinking: true,
                 presets: [
@@ -62,7 +62,12 @@ export function GET(request: Request) {
                 plugins: [
                     SwaggerUIBundle.plugins.DownloadUrl
                 ],
-                layout: "StandaloneLayout"
+                layout: "StandaloneLayout",
+                validatorUrl: null,
+                docExpansion: 'list',
+                filter: true,
+                showRequestHeaders: true,
+                tryItOutEnabled: true
             });
         };
     </script>
@@ -73,15 +78,15 @@ export function GET(request: Request) {
       status: 200,
       headers: {
         'Content-Type': 'text/html',
-        'Cache-Control': 'no-cache',
+        'Cache-Control': 'public, max-age=3600',
       },
     });
   } catch (error) {
-    console.error('Error generating Swagger documentation:', error);
+    console.error('Error serving documentation:', error);
     return Response.json(
       {
-        error: 'Failed to generate documentation',
-        message: 'An error occurred while generating the API documentation',
+        error: 'Failed to serve documentation',
+        message: 'An error occurred while serving the API documentation',
       },
       { status: 500 }
     );

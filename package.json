@@ -30,8 +30,7 @@
     "doc-fix": "bunx expo install --check",
     "migrate": "bunx prisma migrate dev",
     "accelerate": "bunx prisma generate --no-engine",
-    "swagger:generate": "node scripts/generate-swagger.js",
-    "swagger:serve": "bunx swagger-ui-express swagger.json"
+    "swagger:generate": "node scripts/generate-swagger.js"
   },
   "dependencies": {
     "@clerk/clerk-expo": "^2.14.25",
@@ -89,8 +88,7 @@
     "redux-devtools-expo-dev-plugin": "^0.2.1",
     "semver": "^7.7.2",
     "sql.js": "^1.13.0",
-    "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.0"
+    "swagger-jsdoc": "^6.2.8"
   },
   "devDependencies": {
     "@babel/core": "^7.28.3",

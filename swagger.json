@@ -19,7 +19,7 @@
       "description": "Development server"
     },
     {
-      "url": "https://jongan69-prepai.expo.app",
+      "url": "https://your-production-domain.com",
       "description": "Production server"
     }
   ],
@@ -1498,6 +1498,27 @@
                       "example": "Unknown error"
                     }
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/swagger.json": {
+      "get": {
+        "summary": "Get Swagger JSON specification",
+        "description": "Returns the OpenAPI 3.0 specification for all API endpoints",
+        "tags": [
+          "Documentation"
+        ],
+        "responses": {
+          "200": {
+            "description": "OpenAPI 3.0 specification",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
                 }
               }
             }

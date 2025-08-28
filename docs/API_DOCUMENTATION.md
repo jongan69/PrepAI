@@ -8,17 +8,9 @@ The PrepAI API uses Swagger/OpenAPI 3.0 for documentation. The documentation is 
 
 ## Quick Start
 
-### 1. Install Dependencies
+### 1. Generate Documentation
 
-The Swagger dependencies are already included in `package.json`:
-
-```bash
-bun install
-```
-
-### 2. Generate Documentation
-
-Generate the Swagger documentation:
+Generate the Swagger documentation from your API routes:
 
 ```bash
 bun run swagger:generate
@@ -28,9 +20,10 @@ This will:
 - Parse all API routes in `src/app/api/**/*.ts`
 - Extract JSDoc comments with `@swagger` annotations
 - Generate a `swagger.json` file
+- Create a TypeScript specification file for the API route
 - Display a summary of documented endpoints
 
-### 3. View Documentation
+### 2. View Documentation
 
 Start your development server:
 
@@ -39,6 +32,8 @@ bun run dev:web
 ```
 
 Then visit: `http://localhost:8081/api/docs`
+
+The documentation will use the generated specification and works in both development and production environments.
 
 ## API Documentation Structure
 
@@ -125,10 +120,22 @@ The Swagger configuration is in `swagger-config.js`:
 - **Schemas**: Common response schemas
 - **File Patterns**: Which files to scan for documentation
 
+## Generated Files
+
+The generation script creates:
+
+- **`swagger.json`** - JSON specification file
+- **`src/app/api/swagger-spec.ts`** - TypeScript specification for the API route
+- **API Route Integration** - The `/api/swagger.json` endpoint uses the generated specification
+
 ## Available Scripts
 
-- `bun run swagger:generate` - Generate Swagger documentation
-- `bun run swagger:serve` - Serve documentation using swagger-ui-express (standalone)
+- `bun run swagger:generate` - Generate Swagger documentation from API routes
+
+## Available Endpoints
+
+- `GET /api/docs` - Swagger UI documentation interface
+- `GET /api/swagger.json` - OpenAPI 3.0 specification (JSON format)
 
 ## Best Practices
 
@@ -183,7 +190,7 @@ Consider adding a pre-commit hook to automatically regenerate documentation:
 ```bash
 #!/bin/sh
 bun run swagger:generate
-git add swagger.json
+git add swagger.json src/app/api/swagger-spec.ts
 ```
 
 ### CI/CD Integration
@@ -200,11 +207,21 @@ Add documentation generation to your CI/CD pipeline:
     path: swagger.json
 ```
 
+### Deployment
+
+The documentation works seamlessly with all Expo Router deployment options:
+- EAS Hosting
+- Vercel
+- Netlify
+- Custom servers
+
+The generated specification is served by the API routes, ensuring it's always available in production.
+
 ## Advanced Features
 
 ### Custom Styling
 
-The Swagger UI can be customized by modifying the HTML template in `src/app/api/docs+api.ts`.
+The Swagger UI can be customized by modifying the HTML template in `src/app/api/docs+api.ts`. The specification is generated from your API routes and JSDoc comments.
 
 ### Authentication
 
@@ -216,10 +233,11 @@ The documentation includes Bearer token authentication. To test authenticated en
 
 ### Export Options
 
-The generated `swagger.json` file can be:
+The generated `swagger.json` endpoint can be:
 - Imported into other API documentation tools
 - Used with code generation tools
 - Shared with external developers
+- Accessed directly via `/api/swagger.json`
 - Version controlled for API changes
 
 ## Support
