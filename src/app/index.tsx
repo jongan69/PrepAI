@@ -122,10 +122,10 @@ const LandingPage = () => {
           {/* Hero Content */}
           <View className="flex-1 items-center justify-center px-2 md:px-6">
             <View className="mx-auto w-full max-w-sm text-center md:max-w-4xl">
-              <ThemedText className="mb-6 text-xl font-bold leading-tight text-white md:text-5xl">
+              <ThemedText className="mb-6 text-6xl font-bold leading-tight text-white">
                 Transform Your Fitness Journey with AI
               </ThemedText>
-              <ThemedText className="mb-8 text-sm leading-relaxed text-white opacity-90 md:text-xl">
+              <ThemedText className="mb-8 text-base leading-relaxed text-white opacity-90 md:text-xl md:max-w-3xl">
                 PrepAI combines artificial intelligence with personalized nutrition and workout planning to help you
                 achieve your health goals faster and more effectively.
               </ThemedText>
