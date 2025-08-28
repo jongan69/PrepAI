@@ -1,20 +1,4 @@
-// API Configuration
-const CONFIG = {
-  KROGER: {
-    CLIENT_ID: process.env.KROGER_CLIENT_ID || 'demo_client_id',
-    CLIENT_SECRET: process.env.KROGER_CLIENT_SECRET || 'demo_client_secret',
-  },
-  EDAMAM: {
-    APP_ID: process.env.EDAMAM_APP_ID,
-    APP_KEY: process.env.EDAMAM_APP_KEY,
-  },
-  AIML: {
-    BASE_URL: process.env.AIML_BASE_URL || 'https://api.aimlapi.com',
-    API_KEY: process.env.AIMLAPI_KEY,
-    MODEL: process.env.AIML_MODEL || 'openai/gpt-4o',
-  },
-  DEFAULT_LOCATION: '01400441',
-};
+import { CONFIG } from '@/lib/api-utils';
 
 // Input sanitization utilities
 class InputSanitizer {

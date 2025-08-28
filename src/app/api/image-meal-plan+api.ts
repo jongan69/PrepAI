@@ -1,11 +1,4 @@
-// API Configuration
-const CONFIG = {
-  AIML: {
-    BASE_URL: process.env.AIML_BASE_URL || 'https://api.aimlapi.com',
-    API_KEY: process.env.AIMLAPI_KEY,
-    MODEL: process.env.AIML_MODEL || 'openai/gpt-4o',
-  },
-};
+import { CONFIG } from '@/lib/api-utils';
 
 // Type definitions
 interface ExtractedIngredient {

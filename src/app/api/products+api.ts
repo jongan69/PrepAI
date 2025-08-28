@@ -1,10 +1,4 @@
-// API Configuration
-const CONFIG = {
-  KROGER: {
-    CLIENT_ID: process.env.KROGER_CLIENT_ID || 'demo_client_id',
-    CLIENT_SECRET: process.env.KROGER_CLIENT_SECRET || 'demo_client_secret',
-  },
-};
+import { CONFIG } from '@/lib/api-utils';
 
 // Input sanitization utilities
 class InputSanitizer {

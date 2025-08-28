@@ -1,10 +1,4 @@
-// API Configuration
-const CONFIG = {
-  EDAMAM: {
-    APP_ID: process.env.EDAMAM_APP_ID,
-    APP_KEY: process.env.EDAMAM_APP_KEY,
-  },
-};
+import { CONFIG } from '@/lib/api-utils';
 
 // Input sanitization utilities
 class InputSanitizer {

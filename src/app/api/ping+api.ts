@@ -1,4 +1,4 @@
-import { CONFIG, RateLimiter, getClientIP, createSuccessResponse } from '../../lib/api-utils';
+import { CONFIG, RateLimiter, getClientIP, createSuccessResponse } from '@/lib/api-utils';
 
 export function GET(request: Request) {
   const clientIP = getClientIP(request);
