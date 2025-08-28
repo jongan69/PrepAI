@@ -80,17 +80,18 @@ const LandingPage = () => {
         {/* Hero Section */}
         <View className="relative min-h-screen">
           {/* Navigation */}
-          <View className="flex-row items-center justify-between p-6 pt-12">
+          <View className="flex-row items-center justify-between p-4 pt-8 md:p-6 md:pt-12">
             <View className="flex-row items-center">
               <Icon
                 name="Zap"
-                size={32}
+                size={28}
                 color="white"
+                className="md:w-8"
               />
-              <ThemedText className="ml-2 text-2xl font-bold text-white">PrepAI</ThemedText>
+              <ThemedText className="ml-2 text-xl font-bold text-white md:text-2xl">PrepAI</ThemedText>
             </View>
 
-            <View className="flex-row items-center space-x-4">
+            <View className="hidden flex-row items-center space-x-4 md:flex">
               <TouchableOpacity>
                 <ThemedText className="text-base text-white">Features</ThemedText>
               </TouchableOpacity>
@@ -107,31 +108,40 @@ const LandingPage = () => {
                 textClassName="text-black"
               />
             </View>
+
+            {/* Mobile menu button */}
+            <TouchableOpacity className="md:hidden">
+              <Icon
+                name="Menu"
+                size={24}
+                color="white"
+              />
+            </TouchableOpacity>
           </View>
 
           {/* Hero Content */}
-          <View className="flex-1 items-center justify-center px-6">
-            <View className="mx-auto max-w-4xl text-center">
-              <ThemedText className="mb-6 text-5xl font-bold leading-tight text-white">
+          <View className="flex-1 items-center justify-center px-2 md:px-6">
+            <View className="mx-auto w-full max-w-sm text-center md:max-w-4xl">
+              <ThemedText className="mb-6 text-xl font-bold leading-tight text-white md:text-5xl">
                 Transform Your Fitness Journey with AI
               </ThemedText>
-              <ThemedText className="mb-8 text-xl leading-relaxed text-white opacity-90">
+              <ThemedText className="mb-8 text-sm leading-relaxed text-white opacity-90 md:text-xl">
                 PrepAI combines artificial intelligence with personalized nutrition and workout planning to help you
                 achieve your health goals faster and more effectively.
               </ThemedText>
 
-              <View className="mb-12 flex-row justify-center space-x-4">
+              <View className="mb-12 flex-col justify-center space-y-3 md:flex-row md:space-x-4 md:space-y-0">
                 <Button
                   title="Start Free Trial"
                   size="large"
-                  className="border-white bg-white"
+                  className="border-white bg-white w-full md:w-auto"
                   textClassName="text-black font-semibold"
                 />
                 <Button
                   title="Watch Demo"
                   variant="outline"
                   size="large"
-                  className="border-white"
+                  className="border-white w-full md:w-auto"
                   textClassName="text-white"
                   iconStart="Play"
                 />
@@ -141,7 +151,7 @@ const LandingPage = () => {
               <View className="relative">
                 <Image
                   source={require('@/assets/img/banner.png')}
-                  className="h-96 w-full rounded-2xl"
+                  className="h-64 w-full rounded-2xl md:h-96"
                   resizeMode="cover"
                 />
                 <View className="absolute inset-0 rounded-2xl bg-black bg-opacity-20" />
@@ -151,9 +161,9 @@ const LandingPage = () => {
         </View>
 
         {/* Stats Section */}
-        <View className="px-6 py-16">
+        <View className="px-4 py-16 md:px-6">
           <View className="mx-auto max-w-6xl">
-            <View className="grid grid-cols-2 gap-8 md:grid-cols-4">
+            <View className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-8">
               {stats.map((stat, index) => (
                 <View
                   key={index}
@@ -167,16 +177,16 @@ const LandingPage = () => {
         </View>
 
         {/* Features Section */}
-        <View className="px-6 py-20">
+        <View className="px-4 py-20 md:px-6">
           <View className="mx-auto max-w-6xl">
             <View className="mb-16 text-center">
-              <ThemedText className="mb-4 text-4xl font-bold text-white">Why Choose PrepAI?</ThemedText>
-              <ThemedText className="mx-auto max-w-2xl text-xl text-white opacity-70">
+              <ThemedText className="mb-4 text-3xl font-bold text-white md:text-4xl">Why Choose PrepAI?</ThemedText>
+              <ThemedText className="mx-auto max-w-2xl text-lg text-white opacity-70 md:text-xl">
                 Our AI-powered platform provides everything you need for a successful fitness journey
               </ThemedText>
             </View>
 
-            <View className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+            <View className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
               {features.map((feature, index) => (
                 <View
                   key={index}
@@ -197,11 +207,13 @@ const LandingPage = () => {
         </View>
 
         {/* How It Works Section */}
-        <View className="px-6 py-20">
+        <View className="px-4 py-20 md:px-6">
           <View className="mx-auto max-w-6xl">
             <View className="mb-16 text-center">
-              <ThemedText className="mb-4 text-4xl font-bold text-white">How It Works</ThemedText>
-              <ThemedText className="text-xl text-white opacity-70">Get started in just 3 simple steps</ThemedText>
+              <ThemedText className="mb-4 text-3xl font-bold text-white md:text-4xl">How It Works</ThemedText>
+              <ThemedText className="text-lg text-white opacity-70 md:text-xl">
+                Get started in just 3 simple steps
+              </ThemedText>
             </View>
 
             <View className="grid grid-cols-1 gap-8 md:grid-cols-3">
@@ -249,16 +261,16 @@ const LandingPage = () => {
         </View>
 
         {/* Testimonials Section */}
-        <View className="px-6 py-20">
+        <View className="px-4 py-20 md:px-6">
           <View className="mx-auto max-w-6xl">
             <View className="mb-16 text-center">
-              <ThemedText className="mb-4 text-4xl font-bold text-white">What Our Users Say</ThemedText>
-              <ThemedText className="text-xl text-white opacity-70">
+              <ThemedText className="mb-4 text-3xl font-bold text-white md:text-4xl">What Our Users Say</ThemedText>
+              <ThemedText className="text-lg text-white opacity-70 md:text-xl">
                 Join thousands of satisfied users who transformed their lives with PrepAI
               </ThemedText>
             </View>
 
-            <View className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            <View className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
               {testimonials.map((testimonial, index) => (
                 <View
                   key={index}
@@ -295,41 +307,41 @@ const LandingPage = () => {
         </View>
 
         {/* CTA Section */}
-        <View className="bg-highlight px-6 py-20">
+        <View className="bg-highlight px-4 py-20 md:px-6">
           <View className="mx-auto max-w-4xl text-center">
-            <ThemedText className="mb-6 text-4xl font-bold text-white">
+            <ThemedText className="mb-6 text-3xl font-bold text-white md:text-4xl">
               Ready to Transform Your Fitness Journey?
             </ThemedText>
-            <ThemedText className="mb-8 text-xl text-white opacity-90">
+            <ThemedText className="mb-8 text-lg text-white opacity-90 md:text-xl">
               Join thousands of users who have already achieved their health goals with PrepAI
             </ThemedText>
 
-            <View className="mb-8 flex-row justify-center space-x-4">
+            <View className="mb-8 flex-col justify-center space-y-4 md:flex-row md:space-x-4 md:space-y-0">
               <Button
                 title="Start Free Trial"
                 size="large"
-                className="border-invert bg-invert"
-                textClassName="text-highlight font-semibold"
+                className="border-white bg-white"
+                textClassName="text-black font-semibold"
               />
               <Button
                 title="Learn More"
                 variant="outline"
                 size="large"
-                className="border-invert"
-                textClassName="text-invert"
+                className="border-white"
+                textClassName="text-white"
               />
             </View>
 
-            <ThemedText className="text-invert opacity-70">
+            <ThemedText className="text-white opacity-70">
               No credit card required • 14-day free trial • Cancel anytime
             </ThemedText>
           </View>
         </View>
 
         {/* Footer */}
-        <View className="border-t border-white border-opacity-20 px-6 py-12">
+        <View className="border-t border-white border-opacity-20 px-4 py-12 md:px-6">
           <View className="mx-auto max-w-6xl">
-            <View className="grid grid-cols-1 gap-8 md:grid-cols-4">
+            <View className="grid grid-cols-1 gap-6 md:grid-cols-4 md:gap-8">
               <View>
                 <View className="mb-4 flex-row items-center">
                   <Icon
@@ -384,8 +396,8 @@ const LandingPage = () => {
               </View>
             </View>
 
-            <View className="mt-8 flex-row items-center justify-between border-t border-white border-opacity-20 pt-8">
-              <ThemedText className="text-white opacity-70">
+            <View className="mt-8 flex-col items-center justify-between space-y-4 border-t border-white border-opacity-20 pt-8 md:flex-row md:space-y-0">
+              <ThemedText className="text-center text-white opacity-70 md:text-left">
                 © {new Date().getFullYear()} PrepAI. All rights reserved.
               </ThemedText>
               <View className="flex-row space-x-4">
