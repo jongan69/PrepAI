@@ -25,12 +25,7 @@ async function getAuthenticatedUser(request: Request) {
 }
 
 // Authorization helper to ensure user owns the data
-async function validateUserOwnership(
-  tableName: string,
-  recordData: any,
-  operation: string,
-  request: Request
-) {
+async function validateUserOwnership(tableName: string, recordData: any, operation: string, request: Request) {
   const authenticatedUserId = await getAuthenticatedUser(request);
 
   // Check if the record belongs to the authenticated user
@@ -50,9 +45,7 @@ async function handleCreateOperation(operation: SyncOperation, request: Request)
   console.log(`🔄 Sync API - handleCreateOperation for ${table_name}:`, record_data);
 
   if (!record_data) {
-    console.warn(
-      `❌ Sync API - No record data for CREATE operation on ${table_name}:${operation.record_id}`
-    );
+    console.warn(`❌ Sync API - No record data for CREATE operation on ${table_name}:${operation.record_id}`);
     return;
   }
 
@@ -67,9 +60,7 @@ async function handleCreateOperation(operation: SyncOperation, request: Request)
         // For user creation, ensure the user is creating their own record
         const authenticatedUserId = await getAuthenticatedUser(request);
         if (record_data.id !== authenticatedUserId && record_data.clerkId !== authenticatedUserId) {
-          throw new Error(
-            `Unauthorized: User ${authenticatedUserId} cannot create user record for ${record_data.id}`
-          );
+          throw new Error(`Unauthorized: User ${authenticatedUserId} cannot create user record for ${record_data.id}`);
         }
 
         console.log(`🔄 Sync API - Creating/updating user:`, record_data);
@@ -105,10 +96,8 @@ async function handleCreateOperation(operation: SyncOperation, request: Request)
           });
         } else {
           // Check if user data needs to be updated
-          const needsUpdate = 
-            user.name !== record_data.name ||
-            user.email !== record_data.email;
-          
+          const needsUpdate = user.name !== record_data.name || user.email !== record_data.email;
+
           if (needsUpdate) {
             console.log(`🔄 Sync API - Updating user data for: ${record_data.userId}`);
             await prisma.user.update({
@@ -280,9 +269,7 @@ async function handleUpdateOperation(operation: SyncOperation, request: Request)
   console.log(`🔄 Sync API - handleUpdateOperation for ${table_name}:`, record_data);
 
   if (!record_data) {
-    console.warn(
-      `❌ Sync API - No record data for UPDATE operation on ${table_name}:${operation.record_id}`
-    );
+    console.warn(`❌ Sync API - No record data for UPDATE operation on ${table_name}:${operation.record_id}`);
     return;
   }
 
@@ -297,9 +284,7 @@ async function handleUpdateOperation(operation: SyncOperation, request: Request)
         // For user updates, ensure the user is updating their own record
         const authenticatedUserId = await getAuthenticatedUser(request);
         if (record_data.id !== authenticatedUserId && record_data.clerkId !== authenticatedUserId) {
-          throw new Error(
-            `Unauthorized: User ${authenticatedUserId} cannot update user record for ${record_data.id}`
-          );
+          throw new Error(`Unauthorized: User ${authenticatedUserId} cannot update user record for ${record_data.id}`);
         }
 
         await prisma.user.update({
