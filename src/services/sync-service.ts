@@ -27,13 +27,8 @@ class SyncService {
   }
 
   async syncNow() {
-    const {
-      getUnsyncedOperations,
-      setIsSyncing,
-      setLastSyncTime,
-      markOperationSynced,
-      markOperationFailed,
-    } = useSyncStore.getState();
+    const { getUnsyncedOperations, setIsSyncing, setLastSyncTime, markOperationSynced, markOperationFailed } =
+      useSyncStore.getState();
 
     const unsyncedOperations = getUnsyncedOperations();
 

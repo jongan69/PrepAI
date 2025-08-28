@@ -246,8 +246,7 @@ export const useDataStore = create<DataState>()(
 
         addSyncOperation('CREATE', 'health_profiles', profileData.id, profileData);
       } catch (error) {
-        const errorMessage =
-          error instanceof Error ? error.message : 'Failed to create health profile';
+        const errorMessage = error instanceof Error ? error.message : 'Failed to create health profile';
         set((state) => ({ errors: { ...state.errors, healthProfile: errorMessage } }));
         throw error;
       } finally {
@@ -273,8 +272,7 @@ export const useDataStore = create<DataState>()(
 
         addSyncOperation('UPDATE', 'health_profiles', profileId, updates);
       } catch (error) {
-        const errorMessage =
-          error instanceof Error ? error.message : 'Failed to update health profile';
+        const errorMessage = error instanceof Error ? error.message : 'Failed to update health profile';
         set((state) => ({ errors: { ...state.errors, healthProfile: errorMessage } }));
         throw error;
       } finally {
@@ -310,9 +308,7 @@ export const useDataStore = create<DataState>()(
 
         await database.updateWorkout(workoutId, updates);
         set((state) => ({
-          workouts: state.workouts.map((workout) =>
-            workout.id === workoutId ? { ...workout, ...updates } : workout
-          ),
+          workouts: state.workouts.map((workout) => (workout.id === workoutId ? { ...workout, ...updates } : workout)),
         }));
 
         addSyncOperation('UPDATE', 'workouts', workoutId, updates);
@@ -461,9 +457,7 @@ export const useDataStore = create<DataState>()(
       try {
         await database.updateMealItem?.(mealItemId, updates);
         set((state) => ({
-          mealItems: state.mealItems.map((item) =>
-            item.id === mealItemId ? { ...item, ...updates } : item
-          ),
+          mealItems: state.mealItems.map((item) => (item.id === mealItemId ? { ...item, ...updates } : item)),
         }));
 
         addSyncOperation('UPDATE', 'meal_items', mealItemId, updates);
@@ -513,15 +507,12 @@ export const useDataStore = create<DataState>()(
 
         await database.updateWeightEntry?.(entryId, updates);
         set((state) => ({
-          weightEntries: state.weightEntries.map((entry) =>
-            entry.id === entryId ? { ...entry, ...updates } : entry
-          ),
+          weightEntries: state.weightEntries.map((entry) => (entry.id === entryId ? { ...entry, ...updates } : entry)),
         }));
 
         addSyncOperation('UPDATE', 'weight_entries', entryId, updates);
       } catch (error) {
-        const errorMessage =
-          error instanceof Error ? error.message : 'Failed to update weight entry';
+        const errorMessage = error instanceof Error ? error.message : 'Failed to update weight entry';
         set((state) => ({ errors: { ...state.errors, weightEntries: errorMessage } }));
         throw error;
       } finally {
@@ -541,8 +532,7 @@ export const useDataStore = create<DataState>()(
 
         addSyncOperation('DELETE', 'weight_entries', entryId);
       } catch (error) {
-        const errorMessage =
-          error instanceof Error ? error.message : 'Failed to delete weight entry';
+        const errorMessage = error instanceof Error ? error.message : 'Failed to delete weight entry';
         set((state) => ({ errors: { ...state.errors, weightEntries: errorMessage } }));
         throw error;
       } finally {
@@ -578,15 +568,12 @@ export const useDataStore = create<DataState>()(
 
         await database.updateWaterIntake?.(intakeId, updates);
         set((state) => ({
-          waterIntake: state.waterIntake.map((intake) =>
-            intake.id === intakeId ? { ...intake, ...updates } : intake
-          ),
+          waterIntake: state.waterIntake.map((intake) => (intake.id === intakeId ? { ...intake, ...updates } : intake)),
         }));
 
         addSyncOperation('UPDATE', 'water_intake', intakeId, updates);
       } catch (error) {
-        const errorMessage =
-          error instanceof Error ? error.message : 'Failed to update water intake';
+        const errorMessage = error instanceof Error ? error.message : 'Failed to update water intake';
         set((state) => ({ errors: { ...state.errors, waterIntake: errorMessage } }));
         throw error;
       } finally {
@@ -606,8 +593,7 @@ export const useDataStore = create<DataState>()(
 
         addSyncOperation('DELETE', 'water_intake', intakeId);
       } catch (error) {
-        const errorMessage =
-          error instanceof Error ? error.message : 'Failed to delete water intake';
+        const errorMessage = error instanceof Error ? error.message : 'Failed to delete water intake';
         set((state) => ({ errors: { ...state.errors, waterIntake: errorMessage } }));
         throw error;
       } finally {
@@ -643,15 +629,12 @@ export const useDataStore = create<DataState>()(
 
         await database.updateSleepEntry?.(entryId, updates);
         set((state) => ({
-          sleepEntries: state.sleepEntries.map((entry) =>
-            entry.id === entryId ? { ...entry, ...updates } : entry
-          ),
+          sleepEntries: state.sleepEntries.map((entry) => (entry.id === entryId ? { ...entry, ...updates } : entry)),
         }));
 
         addSyncOperation('UPDATE', 'sleep_entries', entryId, updates);
       } catch (error) {
-        const errorMessage =
-          error instanceof Error ? error.message : 'Failed to update sleep entry';
+        const errorMessage = error instanceof Error ? error.message : 'Failed to update sleep entry';
         set((state) => ({ errors: { ...state.errors, sleepEntries: errorMessage } }));
         throw error;
       } finally {
@@ -671,8 +654,7 @@ export const useDataStore = create<DataState>()(
 
         addSyncOperation('DELETE', 'sleep_entries', entryId);
       } catch (error) {
-        const errorMessage =
-          error instanceof Error ? error.message : 'Failed to delete sleep entry';
+        const errorMessage = error instanceof Error ? error.message : 'Failed to delete sleep entry';
         set((state) => ({ errors: { ...state.errors, sleepEntries: errorMessage } }));
         throw error;
       } finally {
@@ -708,15 +690,12 @@ export const useDataStore = create<DataState>()(
 
         await database.updateProgressLog?.(logId, updates);
         set((state) => ({
-          progressLogs: state.progressLogs.map((log) =>
-            log.id === logId ? { ...log, ...updates } : log
-          ),
+          progressLogs: state.progressLogs.map((log) => (log.id === logId ? { ...log, ...updates } : log)),
         }));
 
         addSyncOperation('UPDATE', 'progress_logs', logId, updates);
       } catch (error) {
-        const errorMessage =
-          error instanceof Error ? error.message : 'Failed to update progress log';
+        const errorMessage = error instanceof Error ? error.message : 'Failed to update progress log';
         set((state) => ({ errors: { ...state.errors, progressLogs: errorMessage } }));
         throw error;
       } finally {
@@ -736,8 +715,7 @@ export const useDataStore = create<DataState>()(
 
         addSyncOperation('DELETE', 'progress_logs', logId);
       } catch (error) {
-        const errorMessage =
-          error instanceof Error ? error.message : 'Failed to delete progress log';
+        const errorMessage = error instanceof Error ? error.message : 'Failed to delete progress log';
         set((state) => ({ errors: { ...state.errors, progressLogs: errorMessage } }));
         throw error;
       } finally {
@@ -880,8 +858,7 @@ export const useDataStore = create<DataState>()(
         const weightEntries = await database.getWeightEntries(userId);
         set({ weightEntries });
       } catch (error) {
-        const errorMessage =
-          error instanceof Error ? error.message : 'Failed to fetch weight entries';
+        const errorMessage = error instanceof Error ? error.message : 'Failed to fetch weight entries';
         set((state) => ({ errors: { ...state.errors, weightEntries: errorMessage } }));
       } finally {
         set((state) => ({ isLoading: { ...state.isLoading, weightEntries: false } }));
@@ -893,14 +870,10 @@ export const useDataStore = create<DataState>()(
         set((state) => ({ isLoading: { ...state.isLoading, waterIntake: true } }));
         set((state) => ({ errors: { ...state.errors, waterIntake: null } }));
 
-        const waterIntake = await database.getWaterIntake(
-          userId,
-          date || new Date().toISOString().split('T')[0]
-        );
+        const waterIntake = await database.getWaterIntake(userId, date || new Date().toISOString().split('T')[0]);
         set({ waterIntake });
       } catch (error) {
-        const errorMessage =
-          error instanceof Error ? error.message : 'Failed to fetch water intake';
+        const errorMessage = error instanceof Error ? error.message : 'Failed to fetch water intake';
         set((state) => ({ errors: { ...state.errors, waterIntake: errorMessage } }));
       } finally {
         set((state) => ({ isLoading: { ...state.isLoading, waterIntake: false } }));
@@ -916,8 +889,7 @@ export const useDataStore = create<DataState>()(
         // For now, we'll use an empty array
         set({ sleepEntries: [] });
       } catch (error) {
-        const errorMessage =
-          error instanceof Error ? error.message : 'Failed to fetch sleep entries';
+        const errorMessage = error instanceof Error ? error.message : 'Failed to fetch sleep entries';
         set((state) => ({ errors: { ...state.errors, sleepEntries: errorMessage } }));
       } finally {
         set((state) => ({ isLoading: { ...state.isLoading, sleepEntries: false } }));
@@ -932,8 +904,7 @@ export const useDataStore = create<DataState>()(
         const progressLogs = await database.getProgressLogs(userId);
         set({ progressLogs });
       } catch (error) {
-        const errorMessage =
-          error instanceof Error ? error.message : 'Failed to fetch progress logs';
+        const errorMessage = error instanceof Error ? error.message : 'Failed to fetch progress logs';
         set((state) => ({ errors: { ...state.errors, progressLogs: errorMessage } }));
       } finally {
         set((state) => ({ isLoading: { ...state.isLoading, progressLogs: false } }));

@@ -1,69 +1,71 @@
 {
-    "expo": {
-      "newArchEnabled": true,
-      "name": "PrepAI",
-      "slug": "prepai",
-      "version": "1.0.0",
-      "runtimeVersion": "1.0.0",
-      "scheme": "prepai",
-      "experiments": {
-        "tsconfigPaths": true,
-        "typedRoutes": true
-      },
-      "plugins": [
-        [
-          "expo-splash-screen",
-          {
-            "image": "./src/assets/images/adaptive-icon.png",
-            "imageWidth": 200,
-            "resizeMode": "cover",
-            "backgroundColor": "#000"
-          }
-        ],
-        "expo-router",
-        "expo-sqlite",
-        "expo-font",
-        "expo-secure-store",
-        "expo-asset",
-        "expo-background-task"
+  "expo": {
+    "newArchEnabled": true,
+    "name": "PrepAI",
+    "slug": "prepai",
+    "version": "1.0.0",
+    "runtimeVersion": "1.0.0",
+    "scheme": "prepai",
+    "experiments": {
+      "tsconfigPaths": true,
+      "typedRoutes": true
+    },
+    "plugins": [
+      [
+        "expo-splash-screen",
+        {
+          "image": "./src/assets/images/adaptive-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "cover",
+          "backgroundColor": "#000"
+        }
       ],
-      "orientation": "portrait",
-      "icon": "./src/assets/icon.png",
-      "userInterfaceStyle": "light",
-      "splash": {
-        "image": "./src/assets/splash.png",
-        "resizeMode": "contain",
+      "expo-router",
+      "expo-sqlite",
+      "expo-font",
+      "expo-secure-store",
+      "expo-asset",
+      "expo-background-task"
+    ],
+    "orientation": "portrait",
+    "icon": "./src/assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./src/assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "web": {
+      "bundler": "metro",
+      "output": "server",
+      "favicon": "./src/assets/favicon.png"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.jongan69.prepai",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "edgeToEdgeEnabled": true,
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "assetBundlePatterns": [
-        "**/*"
-      ],
-      "web": {
-        "bundler": "metro",
-        "output": "server",
-        "favicon": "./src/assets/favicon.png"
-      },
-      "ios": {
-        "supportsTablet": true,
-        "bundleIdentifier": "com.jongan69.prepai"
-      },
-      "android": {
-        "edgeToEdgeEnabled": true,
-        "adaptiveIcon": {
-          "foregroundImage": "./src/assets/adaptive-icon.png",
-          "backgroundColor": "#ffffff"
-        },
-        "softwareKeyboardLayoutMode": "pan",
-        "package": "com.jongan69.prepai"
-      },
-      "extra": {
-        "eas": {
-          "projectId": "30d0bb01-8e31-4a5f-8de4-549fd39256b9"
-        }
-      },
-      "updates": {
-        "url": "https://u.expo.dev/30d0bb01-8e31-4a5f-8de4-549fd39256b9"
+      "softwareKeyboardLayoutMode": "pan",
+      "package": "com.jongan69.prepai"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "30d0bb01-8e31-4a5f-8de4-549fd39256b9"
       }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/30d0bb01-8e31-4a5f-8de4-549fd39256b9"
     }
   }
-  
+}

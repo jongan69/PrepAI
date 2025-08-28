@@ -67,106 +67,104 @@ try {
         isSyncing: false,
         syncEnabled: true,
 
-      // Actions
-      addOperation: (operation) => {
-        const newOperation: SyncOperation = {
-          ...operation,
-          id: `${operation.tableName}_${operation.recordId}_${Date.now()}`,
-          synced: false,
-          syncAttempts: 0,
-        };
-
-        console.log(`🔄 SyncStore - adding operation:`, newOperation);
-
-        set((state) => {
-          const newState = {
-            operations: [...state.operations, newOperation],
+        // Actions
+        addOperation: (operation) => {
+          const newOperation: SyncOperation = {
+            ...operation,
+            id: `${operation.tableName}_${operation.recordId}_${Date.now()}`,
+            synced: false,
+            syncAttempts: 0,
           };
-          console.log(`🔄 SyncStore - new state operations count:`, newState.operations.length);
-          return newState;
-        });
 
-        console.log(
-          `🔄 SyncStore - added ${operation.operation} operation for ${operation.tableName}:${operation.recordId}`
-        );
-      },
+          console.log(`🔄 SyncStore - adding operation:`, newOperation);
 
-      markOperationSynced: (operationId) => {
-        set((state) => ({
-          operations: state.operations.map((op) =>
-            op.id === operationId
-              ? { ...op, synced: true, lastSyncAttempt: new Date().toISOString() }
-              : op
-          ),
-        }));
-      },
+          set((state) => {
+            const newState = {
+              operations: [...state.operations, newOperation],
+            };
+            console.log(`🔄 SyncStore - new state operations count:`, newState.operations.length);
+            return newState;
+          });
 
-      markOperationFailed: (operationId, error) => {
-        set((state) => ({
-          operations: state.operations.map((op) =>
-            op.id === operationId
-              ? {
-                  ...op,
-                  syncAttempts: op.syncAttempts + 1,
-                  lastSyncAttempt: new Date().toISOString(),
-                  error,
-                }
-              : op
-          ),
-        }));
-      },
+          console.log(
+            `🔄 SyncStore - added ${operation.operation} operation for ${operation.tableName}:${operation.recordId}`
+          );
+        },
 
-      clearSyncedOperations: () => {
-        set((state) => ({
-          operations: state.operations.filter((op) => !op.synced),
-        }));
-      },
+        markOperationSynced: (operationId) => {
+          set((state) => ({
+            operations: state.operations.map((op) =>
+              op.id === operationId ? { ...op, synced: true, lastSyncAttempt: new Date().toISOString() } : op
+            ),
+          }));
+        },
 
-      setLastSyncTime: (timestamp) => {
-        set({ lastSyncTime: timestamp });
-      },
+        markOperationFailed: (operationId, error) => {
+          set((state) => ({
+            operations: state.operations.map((op) =>
+              op.id === operationId
+                ? {
+                    ...op,
+                    syncAttempts: op.syncAttempts + 1,
+                    lastSyncAttempt: new Date().toISOString(),
+                    error,
+                  }
+                : op
+            ),
+          }));
+        },
 
-      setIsSyncing: (syncing) => {
-        set({ isSyncing: syncing });
-      },
+        clearSyncedOperations: () => {
+          set((state) => ({
+            operations: state.operations.filter((op) => !op.synced),
+          }));
+        },
 
-      setSyncEnabled: (enabled) => {
-        set({ syncEnabled: enabled });
-      },
+        setLastSyncTime: (timestamp) => {
+          set({ lastSyncTime: timestamp });
+        },
 
-      // Computed values
-      getUnsyncedOperations: () => {
-        return get().operations.filter((op) => !op.synced);
-      },
+        setIsSyncing: (syncing) => {
+          set({ isSyncing: syncing });
+        },
 
-      getSyncStats: () => {
-        const { operations } = get();
-        const total = operations.length;
-        const synced = operations.filter((op) => op.synced).length;
-        const unsynced = operations.filter((op) => !op.synced && !op.error).length;
-        const failed = operations.filter((op) => op.error).length;
-        const syncPercentage = total > 0 ? Math.round((synced / total) * 100) : 100;
+        setSyncEnabled: (enabled) => {
+          set({ syncEnabled: enabled });
+        },
 
-        return {
-          total,
-          synced,
-          unsynced,
-          failed,
-          syncPercentage,
-        };
-      },
-    }),
-    {
-      name: 'sync-store',
-      storage: createJSONStorage(() => Storage),
-      partialize: (state) => ({
-        operations: state.operations,
-        lastSyncTime: state.lastSyncTime,
-        syncEnabled: state.syncEnabled,
+        // Computed values
+        getUnsyncedOperations: () => {
+          return get().operations.filter((op) => !op.synced);
+        },
+
+        getSyncStats: () => {
+          const { operations } = get();
+          const total = operations.length;
+          const synced = operations.filter((op) => op.synced).length;
+          const unsynced = operations.filter((op) => !op.synced && !op.error).length;
+          const failed = operations.filter((op) => op.error).length;
+          const syncPercentage = total > 0 ? Math.round((synced / total) * 100) : 100;
+
+          return {
+            total,
+            synced,
+            unsynced,
+            failed,
+            syncPercentage,
+          };
+        },
       }),
-    }
-  )
-);
+      {
+        name: 'sync-store',
+        storage: createJSONStorage(() => Storage),
+        partialize: (state) => ({
+          operations: state.operations,
+          lastSyncTime: state.lastSyncTime,
+          syncEnabled: state.syncEnabled,
+        }),
+      }
+    )
+  );
 } catch (error) {
   console.error('Failed to create sync store:', error);
   // Fallback store
