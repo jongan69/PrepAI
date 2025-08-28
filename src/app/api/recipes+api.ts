@@ -1,5 +1,90 @@
 import { CONFIG } from '@/lib/api-utils';
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Recipe:
+ *       type: object
+ *       properties:
+ *         label:
+ *           type: string
+ *           description: Recipe name
+ *           example: "Chicken Salad with Mixed Greens"
+ *         ingredients:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               food:
+ *                 type: string
+ *                 description: Ingredient name
+ *               quantity:
+ *                 type: number
+ *                 description: Ingredient quantity
+ *               measure:
+ *                 type: string
+ *                 description: Unit of measurement
+ *         ingredientLines:
+ *           type: array
+ *           items:
+ *             type: string
+ *           description: Step-by-step instructions
+ *         totalTime:
+ *           type: integer
+ *           description: Total cooking time in minutes
+ *         calories:
+ *           type: integer
+ *           description: Total calories per serving
+ *         totalNutrients:
+ *           type: object
+ *           properties:
+ *             PROCNT:
+ *               type: object
+ *               properties:
+ *                 quantity:
+ *                   type: number
+ *                   description: Protein content in grams
+ *             CHOCDF:
+ *               type: object
+ *               properties:
+ *                 quantity:
+ *                   type: number
+ *                   description: Carbohydrate content in grams
+ *             FAT:
+ *               type: object
+ *               properties:
+ *                 quantity:
+ *                   type: number
+ *                   description: Fat content in grams
+ *             FIBTG:
+ *               type: object
+ *               properties:
+ *                 quantity:
+ *                   type: number
+ *                   description: Fiber content in grams
+ *     RecipeSearchResponse:
+ *       type: object
+ *       properties:
+ *         recipes:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/Recipe'
+ *         nextPage:
+ *           type: string
+ *           nullable: true
+ *           description: URL for next page of results
+ *         totalHits:
+ *           type: integer
+ *           description: Total number of recipes found
+ *         from:
+ *           type: integer
+ *           description: Starting index of current page
+ *         to:
+ *           type: integer
+ *           description: Ending index of current page
+ */
+
 // Input sanitization utilities
 class InputSanitizer {
   static sanitizeString(input: string, maxLength: number = 100): string {
@@ -311,6 +396,100 @@ class EdamamService {
 
 const edamamService = new EdamamService();
 
+/**
+ * @swagger
+ * /api/recipes:
+ *   get:
+ *     summary: Search for recipes
+ *     description: Search for recipes using the Edamam API with various filters and parameters
+ *     tags: [Recipes]
+ *     parameters:
+ *       - in: query
+ *         name: query
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Search query for recipes
+ *         example: "chicken salad"
+ *       - in: query
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: User ID for tracking and personalization
+ *         example: "user123"
+ *       - in: query
+ *         name: diet
+ *         schema:
+ *           type: string
+ *         description: Diet type filter
+ *         example: "balanced"
+ *       - in: query
+ *         name: health
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: string
+ *         description: Health labels (allergies, dietary restrictions)
+ *         example: ["dairy-free", "gluten-free"]
+ *       - in: query
+ *         name: cuisineType
+ *         schema:
+ *           type: string
+ *         description: Cuisine type filter
+ *         example: "American"
+ *       - in: query
+ *         name: mealType
+ *         schema:
+ *           type: string
+ *         description: Meal type filter
+ *         example: "lunch"
+ *       - in: query
+ *         name: dishType
+ *         schema:
+ *           type: string
+ *         description: Dish type filter
+ *         example: "main course"
+ *       - in: query
+ *         name: from
+ *         schema:
+ *           type: integer
+ *           default: 0
+ *         description: Starting index for pagination
+ *       - in: query
+ *         name: to
+ *         schema:
+ *           type: integer
+ *           default: 20
+ *         description: Ending index for pagination
+ *     responses:
+ *       200:
+ *         description: Recipes found successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/RecipeSearchResponse'
+ *       400:
+ *         description: Bad request - missing required parameters
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Query parameter is required"
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Unknown error"
+ */
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);

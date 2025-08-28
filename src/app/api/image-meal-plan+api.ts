@@ -1,5 +1,52 @@
 import { CONFIG } from '@/lib/api-utils';
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     ExtractedIngredient:
+ *       type: object
+ *       properties:
+ *         name:
+ *           type: string
+ *           description: Ingredient name
+ *           example: "tomato"
+ *         confidence:
+ *           type: number
+ *           minimum: 0
+ *           maximum: 1
+ *           description: Confidence score (0-1)
+ *           example: 0.9
+ *         quantity:
+ *           type: number
+ *           description: Detected quantity
+ *           example: 2
+ *         unit:
+ *           type: string
+ *           description: Unit of measurement
+ *           example: "pieces"
+ *         notes:
+ *           type: string
+ *           description: Additional notes about the ingredient
+ *           example: "Extracted from image"
+ *     ImageAnalysisResponse:
+ *       type: object
+ *       properties:
+ *         success:
+ *           type: boolean
+ *           description: Whether the analysis was successful
+ *           example: true
+ *         ingredients:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/ExtractedIngredient'
+ *           description: List of extracted ingredients
+ *         message:
+ *           type: string
+ *           description: Success message
+ *           example: "Found 5 ingredients in the image"
+ */
+
 // Type definitions
 interface ExtractedIngredient {
   name: string;
@@ -127,6 +174,57 @@ class ImageAnalysisService {
 
 const imageAnalysisService = new ImageAnalysisService();
 
+/**
+ * @swagger
+ * /api/image-meal-plan:
+ *   post:
+ *     summary: Extract ingredients from food images
+ *     description: Use AI vision to identify food ingredients in uploaded images
+ *     tags: [Image Analysis]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - image
+ *             properties:
+ *               image:
+ *                 type: string
+ *                 format: binary
+ *                 description: Food image file (JPEG, PNG, etc.)
+ *     responses:
+ *       200:
+ *         description: Ingredients extracted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ImageAnalysisResponse'
+ *       400:
+ *         description: Bad request - invalid file
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "No image file provided"
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Failed to extract ingredients from image"
+ *                 details:
+ *                   type: string
+ *                   example: "AIML API credentials not configured"
+ */
 export async function POST(request: Request) {
   try {
     const formData = await request.formData();

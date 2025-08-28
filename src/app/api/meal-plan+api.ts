@@ -1,5 +1,165 @@
 import { CONFIG } from '@/lib/api-utils';
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Recipe:
+ *       type: object
+ *       properties:
+ *         name:
+ *           type: string
+ *           description: Recipe name
+ *         description:
+ *           type: string
+ *           description: Recipe description
+ *         ingredients:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: Ingredient name
+ *               amount:
+ *                 type: number
+ *                 description: Ingredient amount
+ *               unit:
+ *                 type: string
+ *                 description: Unit of measurement
+ *         instructions:
+ *           type: array
+ *           items:
+ *             type: string
+ *           description: Step-by-step cooking instructions
+ *         prepTime:
+ *           type: integer
+ *           description: Preparation time in minutes
+ *         cookTime:
+ *           type: integer
+ *           description: Cooking time in minutes
+ *         servings:
+ *           type: integer
+ *           description: Number of servings
+ *         nutrition:
+ *           type: object
+ *           properties:
+ *             calories:
+ *               type: integer
+ *               description: Total calories per serving
+ *             protein:
+ *               type: number
+ *               description: Protein content in grams
+ *             carbs:
+ *               type: number
+ *               description: Carbohydrate content in grams
+ *             fat:
+ *               type: number
+ *               description: Fat content in grams
+ *             fiber:
+ *               type: number
+ *               description: Fiber content in grams
+ *         tags:
+ *           type: array
+ *           items:
+ *             type: string
+ *           description: Recipe tags/categories
+ *         source:
+ *           type: string
+ *           description: Recipe source
+ *         originalUrl:
+ *           type: string
+ *           description: Original recipe URL
+ *         imageUrl:
+ *           type: string
+ *           description: Recipe image URL
+ *         healthLabels:
+ *           type: array
+ *           items:
+ *             type: string
+ *           description: Health-related labels
+ *         cautions:
+ *           type: array
+ *           items:
+ *             type: string
+ *           description: Allergy warnings
+ *     MealPlan:
+ *       type: object
+ *       properties:
+ *         day:
+ *           type: string
+ *           description: Day of the week
+ *         totalCost:
+ *           type: number
+ *           description: Total estimated cost
+ *         recipes:
+ *           type: object
+ *           additionalProperties:
+ *             $ref: '#/components/schemas/Recipe'
+ *           description: Recipes for different meal types
+ *     ShoppingItem:
+ *       type: object
+ *       properties:
+ *         name:
+ *           type: string
+ *           description: Item name
+ *         amount:
+ *           type: number
+ *           description: Quantity needed
+ *         unit:
+ *           type: string
+ *           description: Unit of measurement
+ *         category:
+ *           type: string
+ *           description: Shopping category
+ *         estimatedPrice:
+ *           type: number
+ *           description: Estimated price
+ *         notes:
+ *           type: string
+ *           description: Additional notes
+ *         krogerProduct:
+ *           type: object
+ *           description: Associated Kroger product data
+ *     ShoppingList:
+ *       type: object
+ *       properties:
+ *         totalCost:
+ *           type: number
+ *           description: Total estimated cost
+ *         shoppingList:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/ShoppingItem'
+ *         prepSchedule:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               day:
+ *                 type: string
+ *                 description: Day of the week
+ *               tasks:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     description:
+ *                       type: string
+ *                       description: Task description
+ *                     timeRequired:
+ *                       type: integer
+ *                       description: Time required in minutes
+ *                     recipes:
+ *                       type: array
+ *                       items:
+ *                         type: string
+ *                       description: Related recipes
+ *         pricingNote:
+ *           type: string
+ *           description: Pricing information note
+ */
+
 // Input sanitization utilities
 class InputSanitizer {
   static sanitizeString(input: string, maxLength: number = 100): string {
@@ -561,6 +721,91 @@ class MealPlanningService {
 
 const mealPlanningService = new MealPlanningService();
 
+/**
+ * @swagger
+ * /api/meal-plan:
+ *   post:
+ *     summary: Generate meal plans and shopping lists
+ *     description: Generate meal plans for a specific day or create shopping lists based on meal plans
+ *     tags: [Meal Planning]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - action
+ *             properties:
+ *               action:
+ *                 type: string
+ *                 enum: [generateDay, generateShoppingList]
+ *                 description: The action to perform
+ *                 example: "generateDay"
+ *               day:
+ *                 type: string
+ *                 description: Day of the week for meal planning
+ *                 example: "Monday"
+ *               budget:
+ *                 type: number
+ *                 description: Budget in dollars
+ *                 example: 25
+ *               dietaryPreferences:
+ *                 type: object
+ *                 description: Dietary restrictions and preferences
+ *                 example: {"vegetarian": true, "gluten-free": false}
+ *               ingredients:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                 description: Available ingredients
+ *                 example: ["chicken", "rice", "vegetables"]
+ *               mealPlan:
+ *                 type: object
+ *                 description: Existing meal plan for shopping list generation
+ *               availableIngredients:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                 description: Ingredients already available
+ *                 example: ["salt", "pepper", "olive oil"]
+ *               locationId:
+ *                 type: string
+ *                 description: Kroger location ID for pricing
+ *                 example: "01400943"
+ *     responses:
+ *       200:
+ *         description: Meal plan or shopping list generated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               oneOf:
+ *                 - $ref: '#/components/schemas/MealPlan'
+ *                 - $ref: '#/components/schemas/ShoppingList'
+ *       400:
+ *         description: Bad request - invalid action
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Invalid action. Use 'generateDay' or 'generateShoppingList'"
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Failed to process meal plan request"
+ *                 details:
+ *                   type: string
+ *                   example: "Unknown error"
+ */
 export async function POST(request: Request) {
   try {
     const body = await request.json();

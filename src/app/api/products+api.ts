@@ -1,5 +1,79 @@
 import { CONFIG } from '@/lib/api-utils';
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Product:
+ *       type: object
+ *       properties:
+ *         productId:
+ *           type: string
+ *           description: Unique product identifier
+ *         name:
+ *           type: string
+ *           description: Product name
+ *         brand:
+ *           type: string
+ *           description: Product brand
+ *         price:
+ *           type: object
+ *           properties:
+ *             regular:
+ *               type: number
+ *               description: Regular price
+ *             promo:
+ *               type: number
+ *               description: Promotional price if available
+ *         images:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               url:
+ *                 type: string
+ *                 description: Image URL
+ *               size:
+ *                 type: string
+ *                 description: Image size
+ *         nutrition:
+ *           type: object
+ *           description: Nutritional information
+ *         aisleLocations:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               bayNumber:
+ *                 type: string
+ *                 description: Bay number in store
+ *               description:
+ *                 type: string
+ *                 description: Location description
+ *     ProductSearchResponse:
+ *       type: object
+ *       properties:
+ *         data:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/Product'
+ *         meta:
+ *           type: object
+ *           properties:
+ *             pagination:
+ *               type: object
+ *               properties:
+ *                 start:
+ *                   type: integer
+ *                   description: Starting index
+ *                 limit:
+ *                   type: integer
+ *                   description: Number of items per page
+ *                 total:
+ *                   type: integer
+ *                   description: Total number of products
+ */
+
 // Input sanitization utilities
 class InputSanitizer {
   static sanitizeString(input: string, maxLength: number = 100): string {
@@ -59,6 +133,66 @@ class TokenManager {
 
 const tokenManager = new TokenManager();
 
+/**
+ * @swagger
+ * /api/products:
+ *   get:
+ *     summary: Search for products
+ *     description: Search for products using the Kroger Product API
+ *     tags: [Products]
+ *     parameters:
+ *       - in: query
+ *         name: term
+ *         schema:
+ *           type: string
+ *           default: "milk"
+ *         description: Search term for products
+ *         example: "organic milk"
+ *       - in: query
+ *         name: locationId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Kroger location ID
+ *         example: "01400943"
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           default: 20
+ *         description: Maximum number of products to return
+ *         example: 10
+ *     responses:
+ *       200:
+ *         description: Products found successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ProductSearchResponse'
+ *       400:
+ *         description: Bad request - missing required parameters
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "locationId parameter is required"
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Failed to fetch Kroger products"
+ *                 details:
+ *                   type: string
+ *                   example: "Unable to authenticate with Kroger Product API"
+ */
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);

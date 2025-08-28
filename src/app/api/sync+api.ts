@@ -2,6 +2,87 @@ import { withAccelerate } from '@prisma/extension-accelerate';
 
 import { PrismaClient } from '../../../prisma/generated/client';
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     SyncOperation:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: Unique operation identifier
+ *         operation:
+ *           type: string
+ *           enum: [CREATE, UPDATE, DELETE]
+ *           description: Type of sync operation
+ *         table_name:
+ *           type: string
+ *           description: Database table name
+ *         record_id:
+ *           type: string
+ *           description: Record identifier
+ *         record_data:
+ *           type: object
+ *           description: Record data for the operation
+ *         timestamp:
+ *           type: string
+ *           format: date-time
+ *           description: Operation timestamp
+ *     SyncResponse:
+ *       type: object
+ *       properties:
+ *         success:
+ *           type: boolean
+ *           description: Whether the sync was successful
+ *         processed:
+ *           type: integer
+ *           description: Number of operations processed
+ *         total:
+ *           type: integer
+ *           description: Total number of operations
+ *         errors:
+ *           type: array
+ *           items:
+ *             type: object
+ *           description: List of errors if any
+ *     SyncStatus:
+ *       type: object
+ *       properties:
+ *         lastSyncTime:
+ *           type: string
+ *           format: date-time
+ *           nullable: true
+ *           description: Last successful sync timestamp
+ *         status:
+ *           type: string
+ *           description: Current sync status
+ *           example: "ready"
+ *     SyncData:
+ *       type: object
+ *       properties:
+ *         healthProfiles:
+ *           type: array
+ *           items:
+ *             type: object
+ *           description: Health profile data
+ *         workouts:
+ *           type: array
+ *           items:
+ *             type: object
+ *           description: Workout data with exercises
+ *         meals:
+ *           type: array
+ *           items:
+ *             type: object
+ *           description: Meal data
+ *         progressLogs:
+ *           type: array
+ *           items:
+ *             type: object
+ *           description: Progress log data
+ */
+
 const prisma = new PrismaClient().$extends(withAccelerate());
 
 interface SyncOperation {
@@ -592,6 +673,70 @@ async function handleDeleteOperation(operation: SyncOperation, request: Request)
   }
 }
 
+/**
+ * @swagger
+ * /api/sync:
+ *   post:
+ *     summary: Sync data operations
+ *     description: Process multiple data operations (CREATE, UPDATE, DELETE) for synchronization
+ *     tags: [Sync]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - operations
+ *             properties:
+ *               operations:
+ *                 type: array
+ *                 items:
+ *                   $ref: '#/components/schemas/SyncOperation'
+ *                 description: Array of sync operations to process
+ *     responses:
+ *       200:
+ *         description: Sync operations processed successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SyncResponse'
+ *       400:
+ *         description: Bad request - invalid operations data
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Invalid operations data"
+ *       401:
+ *         description: Unauthorized - user not authenticated
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Unauthorized: User not authenticated"
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Sync failed"
+ *                 details:
+ *                   type: string
+ *                   example: "Unknown error"
+ */
 // Main sync handler
 export async function POST(request: Request) {
   try {
@@ -671,6 +816,74 @@ export async function POST(request: Request) {
   }
 }
 
+/**
+ * @swagger
+ * /api/sync:
+ *   get:
+ *     summary: Get sync status or fetch data
+ *     description: Retrieve sync status or fetch user data for synchronization
+ *     tags: [Sync]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: action
+ *         required: true
+ *         schema:
+ *           type: string
+ *           enum: [status, fetch]
+ *         description: Action to perform
+ *         example: "status"
+ *       - in: query
+ *         name: since
+ *         schema:
+ *           type: string
+ *           format: date-time
+ *         description: ISO date string for fetching data since this time (only for fetch action)
+ *         example: "2024-01-01T00:00:00.000Z"
+ *     responses:
+ *       200:
+ *         description: Sync status or data retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               oneOf:
+ *                 - $ref: '#/components/schemas/SyncStatus'
+ *                 - $ref: '#/components/schemas/SyncData'
+ *       400:
+ *         description: Bad request - invalid action
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Invalid action"
+ *       401:
+ *         description: Unauthorized - user not authenticated
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Unauthorized: User not authenticated"
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Failed to get sync status"
+ *                 details:
+ *                   type: string
+ *                   example: "Unknown error"
+ */
 // GET handler for sync status and data retrieval
 export async function GET(request: Request) {
   try {

@@ -1,5 +1,72 @@
 import { CONFIG, RateLimiter, getClientIP, createSuccessResponse } from '@/lib/api-utils';
 
+/**
+ * @swagger
+ * /api/ping:
+ *   get:
+ *     summary: Health check endpoint
+ *     description: Returns server status and service availability information
+ *     tags: [Health]
+ *     responses:
+ *       200:
+ *         description: Server is healthy and running
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: "ok"
+ *                 timestamp:
+ *                   type: string
+ *                   format: date-time
+ *                   example: "2024-01-15T10:30:00.000Z"
+ *                 message:
+ *                   type: string
+ *                   example: "Server is running"
+ *                 version:
+ *                   type: string
+ *                   example: "1.0.0"
+ *                 services:
+ *                   type: object
+ *                   properties:
+ *                     kroger:
+ *                       type: boolean
+ *                       description: Kroger API service status
+ *                     edamam:
+ *                       type: boolean
+ *                       description: Edamam API service status
+ *                     aiml:
+ *                       type: boolean
+ *                       description: AI/ML service status
+ *                 rateLimit:
+ *                   type: object
+ *                   properties:
+ *                     remaining:
+ *                       type: integer
+ *                       description: Remaining requests allowed
+ *                     resetTime:
+ *                       type: string
+ *                       format: date-time
+ *                       description: When the rate limit resets
+ *       429:
+ *         description: Rate limit exceeded
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Rate limit exceeded"
+ *                 message:
+ *                   type: string
+ *                   example: "Too many requests. Please try again later."
+ *                 retryAfter:
+ *                   type: string
+ *                   example: "15 minutes"
+ */
 export function GET(request: Request) {
   const clientIP = getClientIP(request);
 

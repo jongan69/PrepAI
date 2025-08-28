@@ -29,7 +29,9 @@
     "ios:dev": "expo run:ios --device",
     "doc-fix": "bunx expo install --check",
     "migrate": "bunx prisma migrate dev",
-    "accelerate": "bunx prisma generate --no-engine"
+    "accelerate": "bunx prisma generate --no-engine",
+    "swagger:generate": "node scripts/generate-swagger.js",
+    "swagger:serve": "bunx swagger-ui-express swagger.json"
   },
   "dependencies": {
     "@clerk/clerk-expo": "^2.14.25",
@@ -40,6 +42,7 @@
     "@react-navigation/drawer": "^7.3.9",
     "@reduxjs/toolkit": "^2.8.2",
     "@shopify/flash-list": "1.7.6",
+    "@types/swagger-jsdoc": "^6.0.4",
     "eslint-config-prettier": "^9.1.2",
     "eslint-plugin-prettier": "^5.5.4",
     "expo": "53.0.22",
@@ -85,7 +88,9 @@
     "redux": "^5.0.1",
     "redux-devtools-expo-dev-plugin": "^0.2.1",
     "semver": "^7.7.2",
-    "sql.js": "^1.13.0"
+    "sql.js": "^1.13.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.28.3",
@@ -108,7 +113,7 @@
       "reactNativeDirectoryCheck": {
         "exclude": [
           "@prisma/extension-accelerate",
-          "eslint-config-prettier", 
+          "eslint-config-prettier",
           "eslint-plugin-prettier",
           "idb",
           "prettier",
