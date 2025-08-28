@@ -37,4 +37,4 @@ This app uses Clerk for authentication. To set up Clerk:
 - **Email Validation**: Proper email validation with user-friendly error messages
 - **Error Handling**: Comprehensive error handling for various Clerk error codes
 - **Loading States**: Loading indicators during password reset process
-- **Navigation**: Proper navigation flow back to login screen after password reset# PrepAI
+- **Navigation**: Proper navigation flow back to login screen after password reset

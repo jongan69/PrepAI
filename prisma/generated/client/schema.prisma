@@ -1,0 +1,231 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+/// Users come from Clerk, but we mirror them locally
+model User {
+  id        String   @id @default(cuid()) // local UUID
+  clerkId   String   @unique // Clerk auth userId
+  name      String?
+  email     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  healthProfiles HealthProfile[]
+  workouts       Workout[]
+  meals          Meal[]
+  mealItems      MealItem[]
+  progressLogs   ProgressLog[]
+  weightEntries  WeightEntry[]
+  waterIntake    WaterIntake[]
+  sleepEntries   SleepEntry[]
+  goals          Goal[]
+}
+
+/// Health profile holds user settings and preferences
+model HealthProfile {
+  id             String    @id @default(cuid())
+  userId         String
+  user           User      @relation(fields: [userId], references: [id])
+  height         Float? // Height value (always stored in cm)
+  weight         Float? // Weight value (always stored in kg)
+  age            Int?
+  gender         String? // 'Male' | 'Female'
+  birthday       DateTime?
+  targetWeight   Float? // Target weight (always stored in kg)
+  targetCalories Int?      @default(2000)
+  targetWaterL   Float?    @default(2.0)
+  activityLevel  String? // 'sedentary' | 'light' | 'moderate' | 'active' | 'very_active'
+  fitnessGoal    String? // 'lose_weight' | 'gain_weight' | 'maintain' | 'build_muscle' | 'improve_fitness'
+  heightUnit     String?   @default("cm") // 'cm' | 'in'
+  weightUnit     String?   @default("kg") // 'kg' | 'lb'
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  syncedAt  DateTime?
+  isDeleted Boolean   @default(false)
+}
+
+/// Workouts with categories and types
+model Workout {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  title       String
+  category    String // 'strength' | 'cardio' | 'yoga' | 'pilates' | 'functional' | 'flexibility'
+  durationMin Int?
+  calories    Int?
+  date        DateTime
+  notes       String?
+  isCompleted Boolean  @default(false)
+  totalTime   Int? // Total time in seconds
+  restTime    Int? // Total rest time in seconds
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  syncedAt  DateTime?
+  isDeleted Boolean   @default(false)
+
+  exercises Exercise[]
+}
+
+/// Exercises per workout with detailed tracking
+model Exercise {
+  id          String  @id @default(cuid())
+  workoutId   String
+  workout     Workout @relation(fields: [workoutId], references: [id])
+  name        String
+  sets        Int?
+  reps        Int?
+  weightKg    Float?
+  duration    Int? // Duration in seconds
+  distance    Float? // Distance in meters
+  restTime    Int? // Rest time in seconds
+  order       Int     @default(0) // Exercise order in workout
+  isCompleted Boolean @default(false)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  syncedAt  DateTime?
+  isDeleted Boolean   @default(false)
+}
+
+/// Meals with meal types
+model Meal {
+  id       String   @id @default(cuid())
+  userId   String
+  user     User     @relation(fields: [userId], references: [id])
+  name     String
+  mealType String // 'breakfast' | 'lunch' | 'dinner' | 'snack'
+  calories Int?
+  protein  Float?
+  carbs    Float?
+  fat      Float?
+  date     DateTime
+  notes    String?
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  syncedAt  DateTime?
+  isDeleted Boolean   @default(false)
+
+  mealItems MealItem[]
+}
+
+/// Individual food items within meals
+model MealItem {
+  id              String  @id @default(cuid())
+  mealId          String
+  meal            Meal    @relation(fields: [mealId], references: [id])
+  userId          String
+  user            User    @relation(fields: [userId], references: [id])
+  name            String
+  calories        Int?
+  protein         Float?
+  carbs           Float?
+  fat             Float?
+  quantity        Float? // Quantity in grams or units
+  unit            String? // Unit of measurement
+  isHighInProtein Boolean @default(false)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  syncedAt  DateTime?
+  isDeleted Boolean   @default(false)
+}
+
+/// Daily progress logs (hydration, sleep, mood, weight tracking)
+model ProgressLog {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+  date          DateTime
+  waterL        Float?
+  sleepHrs      Float?
+  mood          String? // 'poor' | 'fair' | 'good' | 'excellent'
+  weightKg      Float?
+  steps         Int?
+  activeMinutes Int?
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  syncedAt  DateTime?
+  isDeleted Boolean   @default(false)
+}
+
+/// Individual weight entries with photos and notes
+model WeightEntry {
+  id                String   @id @default(cuid())
+  userId            String
+  user              User     @relation(fields: [userId], references: [id])
+  weightKg          Float
+  date              DateTime
+  photo             String? // URL or path to photo
+  notes             String?
+  bodyFatPercentage Float?
+  muscleMassKg      Float?
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  syncedAt  DateTime?
+  isDeleted Boolean   @default(false)
+}
+
+/// Individual water intake entries
+model WaterIntake {
+  id       String   @id @default(cuid())
+  userId   String
+  user     User     @relation(fields: [userId], references: [id])
+  amountMl Int // Amount in milliliters
+  date     DateTime
+  time     DateTime // Specific time of intake
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  syncedAt  DateTime?
+  isDeleted Boolean   @default(false)
+}
+
+/// Individual sleep entries with quality tracking
+model SleepEntry {
+  id       String    @id @default(cuid())
+  userId   String
+  user     User      @relation(fields: [userId], references: [id])
+  hours    Float
+  quality  String // 'poor' | 'fair' | 'good' | 'excellent'
+  date     DateTime
+  bedtime  DateTime?
+  wakeTime DateTime?
+  notes    String?
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  syncedAt  DateTime?
+  isDeleted Boolean   @default(false)
+}
+
+/// User goals and targets
+model Goal {
+  id        String    @id @default(cuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  type      String // 'weight' | 'calories' | 'workouts' | 'water' | 'sleep' | 'steps' | 'strength'
+  target    Float
+  current   Float     @default(0)
+  unit      String // 'kg' | 'calories' | 'workouts' | 'liters' | 'hours' | 'steps' | 'kg'
+  startDate DateTime
+  endDate   DateTime?
+  isActive  Boolean   @default(true)
+  notes     String?
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  syncedAt  DateTime?
+  isDeleted Boolean   @default(false)
+}
