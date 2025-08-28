@@ -3,1717 +3,1771 @@
 // Do not edit manually
 
 export const swaggerSpec = {
-  openapi: '3.0.0',
-  info: {
-    title: 'PrepAI API Documentation',
-    version: '1.0.0',
-    description: 'API documentation for PrepAI - A comprehensive meal planning and nutrition tracking application',
-    contact: {
-      name: 'PrepAI Development Team',
-      email: 'support@prepai.com',
+  "openapi": "3.0.0",
+  "info": {
+    "title": "PrepAI API Documentation",
+    "version": "1.0.0",
+    "description": "API documentation for PrepAI - A comprehensive meal planning and nutrition tracking application",
+    "contact": {
+      "name": "PrepAI Development Team",
+      "email": "support@prepai.com"
     },
-    license: {
-      name: 'MIT',
-      url: 'https://opensource.org/licenses/MIT',
-    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
   },
-  servers: [
+  "servers": [
     {
-      url: 'http://localhost:8081',
-      description: 'Development server',
+      "url": "http://localhost:8081",
+      "description": "Development server"
     },
     {
-      url: 'https://your-production-domain.com',
-      description: 'Production server',
-    },
+      "url": "https://jongan69-prepai.expo.app",
+      "description": "Production server"
+    }
   ],
-  components: {
-    securitySchemes: {
-      bearerAuth: {
-        type: 'http',
-        scheme: 'bearer',
-        bearerFormat: 'JWT',
-      },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
     },
-    schemas: {
-      Error: {
-        type: 'object',
-        properties: {
-          error: {
-            type: 'string',
-            description: 'Error type',
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error type"
           },
-          message: {
-            type: 'string',
-            description: 'Error message',
+          "message": {
+            "type": "string",
+            "description": "Error message"
           },
-          statusCode: {
-            type: 'integer',
-            description: 'HTTP status code',
-          },
-        },
+          "statusCode": {
+            "type": "integer",
+            "description": "HTTP status code"
+          }
+        }
       },
-      SuccessResponse: {
-        type: 'object',
-        properties: {
-          success: {
-            type: 'boolean',
-            description: 'Success status',
+      "SuccessResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Success status"
           },
-          data: {
-            type: 'object',
-            description: 'Response data',
+          "data": {
+            "type": "object",
+            "description": "Response data"
           },
-          message: {
-            type: 'string',
-            description: 'Success message',
-          },
-        },
+          "message": {
+            "type": "string",
+            "description": "Success message"
+          }
+        }
       },
-      ServiceStatus: {
-        type: 'object',
-        properties: {
-          status: {
-            type: 'string',
-            enum: ['configured', 'not_configured'],
-            description: 'Service configuration status',
+      "ServiceStatus": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "configured",
+              "not_configured"
+            ],
+            "description": "Service configuration status"
           },
-          message: {
-            type: 'string',
-            description: 'Human-readable status message',
-          },
-        },
+          "message": {
+            "type": "string",
+            "description": "Human-readable status message"
+          }
+        }
       },
-      HealthStatus: {
-        type: 'object',
-        properties: {
-          status: {
-            type: 'string',
-            example: 'ok',
+      "HealthStatus": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "ok"
           },
-          timestamp: {
-            type: 'string',
-            format: 'date-time',
-            example: '2024-01-15T10:30:00.000Z',
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-01-15T10:30:00.000Z"
           },
-          services: {
-            type: 'object',
-            properties: {
-              kroger: {
-                $ref: '#/components/schemas/ServiceStatus',
+          "services": {
+            "type": "object",
+            "properties": {
+              "kroger": {
+                "$ref": "#/components/schemas/ServiceStatus"
               },
-              edamam: {
-                $ref: '#/components/schemas/ServiceStatus',
+              "edamam": {
+                "$ref": "#/components/schemas/ServiceStatus"
               },
-              aiml: {
-                $ref: '#/components/schemas/ServiceStatus',
-              },
+              "aiml": {
+                "$ref": "#/components/schemas/ServiceStatus"
+              }
+            }
+          },
+          "endpoints": {
+            "type": "array",
+            "items": {
+              "type": "string"
             },
-          },
-          endpoints: {
-            type: 'array',
-            items: {
-              type: 'string',
-            },
-            description: 'List of available API endpoints',
-          },
-        },
+            "description": "List of available API endpoints"
+          }
+        }
       },
-      ExtractedIngredient: {
-        type: 'object',
-        properties: {
-          name: {
-            type: 'string',
-            description: 'Ingredient name',
-            example: 'tomato',
+      "ExtractedIngredient": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Ingredient name",
+            "example": "tomato"
           },
-          confidence: {
-            type: 'number',
-            minimum: 0,
-            maximum: 1,
-            description: 'Confidence score (0-1)',
-            example: 0.9,
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Confidence score (0-1)",
+            "example": 0.9
           },
-          quantity: {
-            type: 'number',
-            description: 'Detected quantity',
-            example: 2,
+          "quantity": {
+            "type": "number",
+            "description": "Detected quantity",
+            "example": 2
           },
-          unit: {
-            type: 'string',
-            description: 'Unit of measurement',
-            example: 'pieces',
+          "unit": {
+            "type": "string",
+            "description": "Unit of measurement",
+            "example": "pieces"
           },
-          notes: {
-            type: 'string',
-            description: 'Additional notes about the ingredient',
-            example: 'Extracted from image',
-          },
-        },
+          "notes": {
+            "type": "string",
+            "description": "Additional notes about the ingredient",
+            "example": "Extracted from image"
+          }
+        }
       },
-      ImageAnalysisResponse: {
-        type: 'object',
-        properties: {
-          success: {
-            type: 'boolean',
-            description: 'Whether the analysis was successful',
-            example: true,
+      "ImageAnalysisResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Whether the analysis was successful",
+            "example": true
           },
-          ingredients: {
-            type: 'array',
-            items: {
-              $ref: '#/components/schemas/ExtractedIngredient',
+          "ingredients": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExtractedIngredient"
             },
-            description: 'List of extracted ingredients',
+            "description": "List of extracted ingredients"
           },
-          message: {
-            type: 'string',
-            description: 'Success message',
-            example: 'Found 5 ingredients in the image',
-          },
-        },
+          "message": {
+            "type": "string",
+            "description": "Success message",
+            "example": "Found 5 ingredients in the image"
+          }
+        }
       },
-      Location: {
-        type: 'object',
-        properties: {
-          locationId: {
-            type: 'string',
-            description: 'Unique location identifier',
+      "Location": {
+        "type": "object",
+        "properties": {
+          "locationId": {
+            "type": "string",
+            "description": "Unique location identifier"
           },
-          name: {
-            type: 'string',
-            description: 'Store name',
+          "name": {
+            "type": "string",
+            "description": "Store name"
           },
-          chain: {
-            type: 'string',
-            description: 'Store chain name',
+          "chain": {
+            "type": "string",
+            "description": "Store chain name"
           },
-          address: {
-            type: 'object',
-            properties: {
-              addressLine1: {
-                type: 'string',
-                description: 'Street address',
+          "address": {
+            "type": "object",
+            "properties": {
+              "addressLine1": {
+                "type": "string",
+                "description": "Street address"
               },
-              city: {
-                type: 'string',
-                description: 'City name',
+              "city": {
+                "type": "string",
+                "description": "City name"
               },
-              state: {
-                type: 'string',
-                description: 'State abbreviation',
+              "state": {
+                "type": "string",
+                "description": "State abbreviation"
               },
-              zipCode: {
-                type: 'string',
-                description: 'ZIP code',
-              },
-            },
+              "zipCode": {
+                "type": "string",
+                "description": "ZIP code"
+              }
+            }
           },
-          coordinates: {
-            type: 'object',
-            properties: {
-              latitude: {
-                type: 'number',
-                description: 'Latitude coordinate',
+          "coordinates": {
+            "type": "object",
+            "properties": {
+              "latitude": {
+                "type": "number",
+                "description": "Latitude coordinate"
               },
-              longitude: {
-                type: 'number',
-                description: 'Longitude coordinate',
-              },
-            },
+              "longitude": {
+                "type": "number",
+                "description": "Longitude coordinate"
+              }
+            }
           },
-          phone: {
-            type: 'string',
-            description: 'Store phone number',
+          "phone": {
+            "type": "string",
+            "description": "Store phone number"
           },
-          hours: {
-            type: 'array',
-            items: {
-              type: 'object',
-              properties: {
-                dayOfWeek: {
-                  type: 'string',
-                  description: 'Day of the week',
+          "hours": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "dayOfWeek": {
+                  "type": "string",
+                  "description": "Day of the week"
                 },
-                openTime: {
-                  type: 'string',
-                  description: 'Opening time',
+                "openTime": {
+                  "type": "string",
+                  "description": "Opening time"
                 },
-                closeTime: {
-                  type: 'string',
-                  description: 'Closing time',
-                },
-              },
-            },
-          },
-        },
+                "closeTime": {
+                  "type": "string",
+                  "description": "Closing time"
+                }
+              }
+            }
+          }
+        }
       },
-      LocationSearchResponse: {
-        type: 'object',
-        properties: {
-          data: {
-            type: 'array',
-            items: {
-              $ref: '#/components/schemas/Location',
-            },
+      "LocationSearchResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Location"
+            }
           },
-          meta: {
-            type: 'object',
-            properties: {
-              pagination: {
-                type: 'object',
-                properties: {
-                  start: {
-                    type: 'integer',
-                    description: 'Starting index',
+          "meta": {
+            "type": "object",
+            "properties": {
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "start": {
+                    "type": "integer",
+                    "description": "Starting index"
                   },
-                  limit: {
-                    type: 'integer',
-                    description: 'Number of items per page',
+                  "limit": {
+                    "type": "integer",
+                    "description": "Number of items per page"
                   },
-                  total: {
-                    type: 'integer',
-                    description: 'Total number of locations',
-                  },
-                },
-              },
-            },
-          },
-        },
+                  "total": {
+                    "type": "integer",
+                    "description": "Total number of locations"
+                  }
+                }
+              }
+            }
+          }
+        }
       },
-      Recipe: {
-        type: 'object',
-        properties: {
-          name: {
-            type: 'string',
-            description: 'Recipe name',
+      "Recipe": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Recipe name"
           },
-          description: {
-            type: 'string',
-            description: 'Recipe description',
+          "description": {
+            "type": "string",
+            "description": "Recipe description"
           },
-          ingredients: {
-            type: 'array',
-            items: {
-              type: 'object',
-              properties: {
-                name: {
-                  type: 'string',
-                  description: 'Ingredient name',
+          "ingredients": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Ingredient name"
                 },
-                amount: {
-                  type: 'number',
-                  description: 'Ingredient amount',
+                "amount": {
+                  "type": "number",
+                  "description": "Ingredient amount"
                 },
-                unit: {
-                  type: 'string',
-                  description: 'Unit of measurement',
+                "unit": {
+                  "type": "string",
+                  "description": "Unit of measurement"
                 },
-                food: {
-                  type: 'string',
-                  description: 'Ingredient name',
+                "food": {
+                  "type": "string",
+                  "description": "Ingredient name"
                 },
-                quantity: {
-                  type: 'number',
-                  description: 'Ingredient quantity',
+                "quantity": {
+                  "type": "number",
+                  "description": "Ingredient quantity"
                 },
-                measure: {
-                  type: 'string',
-                  description: 'Unit of measurement',
-                },
-              },
+                "measure": {
+                  "type": "string",
+                  "description": "Unit of measurement"
+                }
+              }
+            }
+          },
+          "instructions": {
+            "type": "array",
+            "items": {
+              "type": "string"
             },
+            "description": "Step-by-step cooking instructions"
           },
-          instructions: {
-            type: 'array',
-            items: {
-              type: 'string',
+          "prepTime": {
+            "type": "integer",
+            "description": "Preparation time in minutes"
+          },
+          "cookTime": {
+            "type": "integer",
+            "description": "Cooking time in minutes"
+          },
+          "servings": {
+            "type": "integer",
+            "description": "Number of servings"
+          },
+          "nutrition": {
+            "type": "object",
+            "properties": {
+              "calories": {
+                "type": "integer",
+                "description": "Total calories per serving"
+              },
+              "protein": {
+                "type": "number",
+                "description": "Protein content in grams"
+              },
+              "carbs": {
+                "type": "number",
+                "description": "Carbohydrate content in grams"
+              },
+              "fat": {
+                "type": "number",
+                "description": "Fat content in grams"
+              },
+              "fiber": {
+                "type": "number",
+                "description": "Fiber content in grams"
+              }
+            }
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
             },
-            description: 'Step-by-step cooking instructions',
+            "description": "Recipe tags/categories"
           },
-          prepTime: {
-            type: 'integer',
-            description: 'Preparation time in minutes',
+          "source": {
+            "type": "string",
+            "description": "Recipe source"
           },
-          cookTime: {
-            type: 'integer',
-            description: 'Cooking time in minutes',
+          "originalUrl": {
+            "type": "string",
+            "description": "Original recipe URL"
           },
-          servings: {
-            type: 'integer',
-            description: 'Number of servings',
+          "imageUrl": {
+            "type": "string",
+            "description": "Recipe image URL"
           },
-          nutrition: {
-            type: 'object',
-            properties: {
-              calories: {
-                type: 'integer',
-                description: 'Total calories per serving',
-              },
-              protein: {
-                type: 'number',
-                description: 'Protein content in grams',
-              },
-              carbs: {
-                type: 'number',
-                description: 'Carbohydrate content in grams',
-              },
-              fat: {
-                type: 'number',
-                description: 'Fat content in grams',
-              },
-              fiber: {
-                type: 'number',
-                description: 'Fiber content in grams',
-              },
+          "healthLabels": {
+            "type": "array",
+            "items": {
+              "type": "string"
             },
+            "description": "Health-related labels"
           },
-          tags: {
-            type: 'array',
-            items: {
-              type: 'string',
+          "cautions": {
+            "type": "array",
+            "items": {
+              "type": "string"
             },
-            description: 'Recipe tags/categories',
+            "description": "Allergy warnings"
           },
-          source: {
-            type: 'string',
-            description: 'Recipe source',
+          "label": {
+            "type": "string",
+            "description": "Recipe name",
+            "example": "Chicken Salad with Mixed Greens"
           },
-          originalUrl: {
-            type: 'string',
-            description: 'Original recipe URL',
-          },
-          imageUrl: {
-            type: 'string',
-            description: 'Recipe image URL',
-          },
-          healthLabels: {
-            type: 'array',
-            items: {
-              type: 'string',
+          "ingredientLines": {
+            "type": "array",
+            "items": {
+              "type": "string"
             },
-            description: 'Health-related labels',
+            "description": "Step-by-step instructions"
           },
-          cautions: {
-            type: 'array',
-            items: {
-              type: 'string',
-            },
-            description: 'Allergy warnings',
+          "totalTime": {
+            "type": "integer",
+            "description": "Total cooking time in minutes"
           },
-          label: {
-            type: 'string',
-            description: 'Recipe name',
-            example: 'Chicken Salad with Mixed Greens',
+          "calories": {
+            "type": "integer",
+            "description": "Total calories per serving"
           },
-          ingredientLines: {
-            type: 'array',
-            items: {
-              type: 'string',
-            },
-            description: 'Step-by-step instructions',
-          },
-          totalTime: {
-            type: 'integer',
-            description: 'Total cooking time in minutes',
-          },
-          calories: {
-            type: 'integer',
-            description: 'Total calories per serving',
-          },
-          totalNutrients: {
-            type: 'object',
-            properties: {
-              PROCNT: {
-                type: 'object',
-                properties: {
-                  quantity: {
-                    type: 'number',
-                    description: 'Protein content in grams',
-                  },
-                },
+          "totalNutrients": {
+            "type": "object",
+            "properties": {
+              "PROCNT": {
+                "type": "object",
+                "properties": {
+                  "quantity": {
+                    "type": "number",
+                    "description": "Protein content in grams"
+                  }
+                }
               },
-              CHOCDF: {
-                type: 'object',
-                properties: {
-                  quantity: {
-                    type: 'number',
-                    description: 'Carbohydrate content in grams',
-                  },
-                },
+              "CHOCDF": {
+                "type": "object",
+                "properties": {
+                  "quantity": {
+                    "type": "number",
+                    "description": "Carbohydrate content in grams"
+                  }
+                }
               },
-              FAT: {
-                type: 'object',
-                properties: {
-                  quantity: {
-                    type: 'number',
-                    description: 'Fat content in grams',
-                  },
-                },
+              "FAT": {
+                "type": "object",
+                "properties": {
+                  "quantity": {
+                    "type": "number",
+                    "description": "Fat content in grams"
+                  }
+                }
               },
-              FIBTG: {
-                type: 'object',
-                properties: {
-                  quantity: {
-                    type: 'number',
-                    description: 'Fiber content in grams',
-                  },
-                },
-              },
-            },
-          },
-        },
+              "FIBTG": {
+                "type": "object",
+                "properties": {
+                  "quantity": {
+                    "type": "number",
+                    "description": "Fiber content in grams"
+                  }
+                }
+              }
+            }
+          }
+        }
       },
-      MealPlan: {
-        type: 'object',
-        properties: {
-          day: {
-            type: 'string',
-            description: 'Day of the week',
+      "MealPlan": {
+        "type": "object",
+        "properties": {
+          "day": {
+            "type": "string",
+            "description": "Day of the week"
           },
-          totalCost: {
-            type: 'number',
-            description: 'Total estimated cost',
+          "totalCost": {
+            "type": "number",
+            "description": "Total estimated cost"
           },
-          recipes: {
-            type: 'object',
-            additionalProperties: {
-              $ref: '#/components/schemas/Recipe',
+          "recipes": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Recipe"
             },
-            description: 'Recipes for different meal types',
-          },
-        },
+            "description": "Recipes for different meal types"
+          }
+        }
       },
-      ShoppingItem: {
-        type: 'object',
-        properties: {
-          name: {
-            type: 'string',
-            description: 'Item name',
+      "ShoppingItem": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Item name"
           },
-          amount: {
-            type: 'number',
-            description: 'Quantity needed',
+          "amount": {
+            "type": "number",
+            "description": "Quantity needed"
           },
-          unit: {
-            type: 'string',
-            description: 'Unit of measurement',
+          "unit": {
+            "type": "string",
+            "description": "Unit of measurement"
           },
-          category: {
-            type: 'string',
-            description: 'Shopping category',
+          "category": {
+            "type": "string",
+            "description": "Shopping category"
           },
-          estimatedPrice: {
-            type: 'number',
-            description: 'Estimated price',
+          "estimatedPrice": {
+            "type": "number",
+            "description": "Estimated price"
           },
-          notes: {
-            type: 'string',
-            description: 'Additional notes',
+          "notes": {
+            "type": "string",
+            "description": "Additional notes"
           },
-          krogerProduct: {
-            type: 'object',
-            description: 'Associated Kroger product data',
-          },
-        },
+          "krogerProduct": {
+            "type": "object",
+            "description": "Associated Kroger product data"
+          }
+        }
       },
-      ShoppingList: {
-        type: 'object',
-        properties: {
-          totalCost: {
-            type: 'number',
-            description: 'Total estimated cost',
+      "ShoppingList": {
+        "type": "object",
+        "properties": {
+          "totalCost": {
+            "type": "number",
+            "description": "Total estimated cost"
           },
-          shoppingList: {
-            type: 'array',
-            items: {
-              $ref: '#/components/schemas/ShoppingItem',
-            },
+          "shoppingList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ShoppingItem"
+            }
           },
-          prepSchedule: {
-            type: 'array',
-            items: {
-              type: 'object',
-              properties: {
-                day: {
-                  type: 'string',
-                  description: 'Day of the week',
+          "prepSchedule": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "day": {
+                  "type": "string",
+                  "description": "Day of the week"
                 },
-                tasks: {
-                  type: 'array',
-                  items: {
-                    type: 'object',
-                    properties: {
-                      description: {
-                        type: 'string',
-                        description: 'Task description',
+                "tasks": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "description": {
+                        "type": "string",
+                        "description": "Task description"
                       },
-                      timeRequired: {
-                        type: 'integer',
-                        description: 'Time required in minutes',
+                      "timeRequired": {
+                        "type": "integer",
+                        "description": "Time required in minutes"
                       },
-                      recipes: {
-                        type: 'array',
-                        items: {
-                          type: 'string',
+                      "recipes": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
                         },
-                        description: 'Related recipes',
-                      },
-                    },
+                        "description": "Related recipes"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "pricingNote": {
+            "type": "string",
+            "description": "Pricing information note"
+          }
+        }
+      },
+      "Product": {
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "description": "Unique product identifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "Product name"
+          },
+          "brand": {
+            "type": "string",
+            "description": "Product brand"
+          },
+          "price": {
+            "type": "object",
+            "properties": {
+              "regular": {
+                "type": "number",
+                "description": "Regular price"
+              },
+              "promo": {
+                "type": "number",
+                "description": "Promotional price if available"
+              }
+            }
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string",
+                  "description": "Image URL"
+                },
+                "size": {
+                  "type": "string",
+                  "description": "Image size"
+                }
+              }
+            }
+          },
+          "nutrition": {
+            "type": "object",
+            "description": "Nutritional information"
+          },
+          "aisleLocations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "bayNumber": {
+                  "type": "string",
+                  "description": "Bay number in store"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Location description"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ProductSearchResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Product"
+            }
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "start": {
+                    "type": "integer",
+                    "description": "Starting index"
                   },
-                },
-              },
-            },
-          },
-          pricingNote: {
-            type: 'string',
-            description: 'Pricing information note',
-          },
-        },
-      },
-      Product: {
-        type: 'object',
-        properties: {
-          productId: {
-            type: 'string',
-            description: 'Unique product identifier',
-          },
-          name: {
-            type: 'string',
-            description: 'Product name',
-          },
-          brand: {
-            type: 'string',
-            description: 'Product brand',
-          },
-          price: {
-            type: 'object',
-            properties: {
-              regular: {
-                type: 'number',
-                description: 'Regular price',
-              },
-              promo: {
-                type: 'number',
-                description: 'Promotional price if available',
-              },
-            },
-          },
-          images: {
-            type: 'array',
-            items: {
-              type: 'object',
-              properties: {
-                url: {
-                  type: 'string',
-                  description: 'Image URL',
-                },
-                size: {
-                  type: 'string',
-                  description: 'Image size',
-                },
-              },
-            },
-          },
-          nutrition: {
-            type: 'object',
-            description: 'Nutritional information',
-          },
-          aisleLocations: {
-            type: 'array',
-            items: {
-              type: 'object',
-              properties: {
-                bayNumber: {
-                  type: 'string',
-                  description: 'Bay number in store',
-                },
-                description: {
-                  type: 'string',
-                  description: 'Location description',
-                },
-              },
-            },
-          },
-        },
-      },
-      ProductSearchResponse: {
-        type: 'object',
-        properties: {
-          data: {
-            type: 'array',
-            items: {
-              $ref: '#/components/schemas/Product',
-            },
-          },
-          meta: {
-            type: 'object',
-            properties: {
-              pagination: {
-                type: 'object',
-                properties: {
-                  start: {
-                    type: 'integer',
-                    description: 'Starting index',
+                  "limit": {
+                    "type": "integer",
+                    "description": "Number of items per page"
                   },
-                  limit: {
-                    type: 'integer',
-                    description: 'Number of items per page',
-                  },
-                  total: {
-                    type: 'integer',
-                    description: 'Total number of products',
-                  },
-                },
-              },
-            },
-          },
-        },
+                  "total": {
+                    "type": "integer",
+                    "description": "Total number of products"
+                  }
+                }
+              }
+            }
+          }
+        }
       },
-      RecipeSearchResponse: {
-        type: 'object',
-        properties: {
-          recipes: {
-            type: 'array',
-            items: {
-              $ref: '#/components/schemas/Recipe',
-            },
+      "RecipeSearchResponse": {
+        "type": "object",
+        "properties": {
+          "recipes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Recipe"
+            }
           },
-          nextPage: {
-            type: 'string',
-            nullable: true,
-            description: 'URL for next page of results',
+          "nextPage": {
+            "type": "string",
+            "nullable": true,
+            "description": "URL for next page of results"
           },
-          totalHits: {
-            type: 'integer',
-            description: 'Total number of recipes found',
+          "totalHits": {
+            "type": "integer",
+            "description": "Total number of recipes found"
           },
-          from: {
-            type: 'integer',
-            description: 'Starting index of current page',
+          "from": {
+            "type": "integer",
+            "description": "Starting index of current page"
           },
-          to: {
-            type: 'integer',
-            description: 'Ending index of current page',
-          },
-        },
+          "to": {
+            "type": "integer",
+            "description": "Ending index of current page"
+          }
+        }
       },
-      SyncOperation: {
-        type: 'object',
-        properties: {
-          id: {
-            type: 'string',
-            description: 'Unique operation identifier',
+      "SyncOperation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique operation identifier"
           },
-          operation: {
-            type: 'string',
-            enum: ['CREATE', 'UPDATE', 'DELETE'],
-            description: 'Type of sync operation',
+          "operation": {
+            "type": "string",
+            "enum": [
+              "CREATE",
+              "UPDATE",
+              "DELETE"
+            ],
+            "description": "Type of sync operation"
           },
-          table_name: {
-            type: 'string',
-            description: 'Database table name',
+          "table_name": {
+            "type": "string",
+            "description": "Database table name"
           },
-          record_id: {
-            type: 'string',
-            description: 'Record identifier',
+          "record_id": {
+            "type": "string",
+            "description": "Record identifier"
           },
-          record_data: {
-            type: 'object',
-            description: 'Record data for the operation',
+          "record_data": {
+            "type": "object",
+            "description": "Record data for the operation"
           },
-          timestamp: {
-            type: 'string',
-            format: 'date-time',
-            description: 'Operation timestamp',
-          },
-        },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Operation timestamp"
+          }
+        }
       },
-      SyncResponse: {
-        type: 'object',
-        properties: {
-          success: {
-            type: 'boolean',
-            description: 'Whether the sync was successful',
+      "SyncResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Whether the sync was successful"
           },
-          processed: {
-            type: 'integer',
-            description: 'Number of operations processed',
+          "processed": {
+            "type": "integer",
+            "description": "Number of operations processed"
           },
-          total: {
-            type: 'integer',
-            description: 'Total number of operations',
+          "total": {
+            "type": "integer",
+            "description": "Total number of operations"
           },
-          errors: {
-            type: 'array',
-            items: {
-              type: 'object',
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "object"
             },
-            description: 'List of errors if any',
-          },
-        },
+            "description": "List of errors if any"
+          }
+        }
       },
-      SyncStatus: {
-        type: 'object',
-        properties: {
-          lastSyncTime: {
-            type: 'string',
-            format: 'date-time',
-            nullable: true,
-            description: 'Last successful sync timestamp',
+      "SyncStatus": {
+        "type": "object",
+        "properties": {
+          "lastSyncTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "description": "Last successful sync timestamp"
           },
-          status: {
-            type: 'string',
-            description: 'Current sync status',
-            example: 'ready',
-          },
-        },
+          "status": {
+            "type": "string",
+            "description": "Current sync status",
+            "example": "ready"
+          }
+        }
       },
-      SyncData: {
-        type: 'object',
-        properties: {
-          healthProfiles: {
-            type: 'array',
-            items: {
-              type: 'object',
+      "SyncData": {
+        "type": "object",
+        "properties": {
+          "healthProfiles": {
+            "type": "array",
+            "items": {
+              "type": "object"
             },
-            description: 'Health profile data',
+            "description": "Health profile data"
           },
-          workouts: {
-            type: 'array',
-            items: {
-              type: 'object',
+          "workouts": {
+            "type": "array",
+            "items": {
+              "type": "object"
             },
-            description: 'Workout data with exercises',
+            "description": "Workout data with exercises"
           },
-          meals: {
-            type: 'array',
-            items: {
-              type: 'object',
+          "meals": {
+            "type": "array",
+            "items": {
+              "type": "object"
             },
-            description: 'Meal data',
+            "description": "Meal data"
           },
-          progressLogs: {
-            type: 'array',
-            items: {
-              type: 'object',
+          "progressLogs": {
+            "type": "array",
+            "items": {
+              "type": "object"
             },
-            description: 'Progress log data',
-          },
-        },
-      },
-    },
+            "description": "Progress log data"
+          }
+        }
+      }
+    }
   },
-  security: [
+  "security": [
     {
-      bearerAuth: [],
-    },
+      "bearerAuth": []
+    }
   ],
-  paths: {
-    '/api/docs': {
-      get: {
-        summary: 'Get API documentation',
-        description: 'Returns the Swagger UI documentation for all API endpoints',
-        tags: ['Documentation'],
-        responses: {
-          '200': {
-            description: 'HTML page with Swagger UI documentation',
-            content: {
-              'text/html': {
-                schema: {
-                  type: 'string',
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-    '/api/health': {
-      get: {
-        summary: 'Detailed health check',
-        description: 'Returns detailed health status of all services and available endpoints',
-        tags: ['Health'],
-        responses: {
-          '200': {
-            description: 'Health status retrieved successfully',
-            content: {
-              'application/json': {
-                schema: {
-                  $ref: '#/components/schemas/HealthStatus',
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-    '/api/image-meal-plan': {
-      post: {
-        summary: 'Extract ingredients from food images',
-        description: 'Use AI vision to identify food ingredients in uploaded images',
-        tags: ['Image Analysis'],
-        requestBody: {
-          required: true,
-          content: {
-            'multipart/form-data': {
-              schema: {
-                type: 'object',
-                required: ['image'],
-                properties: {
-                  image: {
-                    type: 'string',
-                    format: 'binary',
-                    description: 'Food image file (JPEG, PNG, etc.)',
-                  },
-                },
-              },
-            },
-          },
-        },
-        responses: {
-          '200': {
-            description: 'Ingredients extracted successfully',
-            content: {
-              'application/json': {
-                schema: {
-                  $ref: '#/components/schemas/ImageAnalysisResponse',
-                },
-              },
-            },
-          },
-          '400': {
-            description: 'Bad request - invalid file',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    error: {
-                      type: 'string',
-                      example: 'No image file provided',
-                    },
-                  },
-                },
-              },
-            },
-          },
-          '500': {
-            description: 'Internal server error',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    error: {
-                      type: 'string',
-                      example: 'Failed to extract ingredients from image',
-                    },
-                    details: {
-                      type: 'string',
-                      example: 'AIML API credentials not configured',
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-    '/api/locations': {
-      get: {
-        summary: 'Search for Kroger store locations',
-        description: 'Find Kroger store locations near a specific location using zip code or coordinates',
-        tags: ['Locations'],
-        parameters: [
-          {
-            in: 'query',
-            name: 'zipCode',
-            schema: {
-              type: 'string',
-            },
-            description: 'ZIP code to search near',
-            example: '12345',
-          },
-          {
-            in: 'query',
-            name: 'lat',
-            schema: {
-              type: 'string',
-            },
-            description: 'Latitude coordinate',
-            example: '40.7128',
-          },
-          {
-            in: 'query',
-            name: 'lon',
-            schema: {
-              type: 'string',
-            },
-            description: 'Longitude coordinate',
-            example: '-74.0060',
-          },
-          {
-            in: 'query',
-            name: 'radiusInMiles',
-            schema: {
-              type: 'integer',
-              default: 100,
-            },
-            description: 'Search radius in miles',
-            example: 50,
-          },
-          {
-            in: 'query',
-            name: 'limit',
-            schema: {
-              type: 'integer',
-              default: 10,
-            },
-            description: 'Maximum number of locations to return',
-            example: 5,
-          },
+  "paths": {
+    "/api/docs": {
+      "get": {
+        "summary": "Get API documentation",
+        "description": "Returns the Swagger UI documentation for all API endpoints",
+        "tags": [
+          "Documentation"
         ],
-        responses: {
-          '200': {
-            description: 'Locations found successfully',
-            content: {
-              'application/json': {
-                schema: {
-                  $ref: '#/components/schemas/LocationSearchResponse',
-                },
-              },
-            },
-          },
-          '400': {
-            description: 'Bad request - missing location parameters',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    error: {
-                      type: 'string',
-                      example: 'At least one location parameter is required: zipCode, lat/lon, or both',
-                    },
-                  },
-                },
-              },
-            },
-          },
-          '500': {
-            description: 'Internal server error',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    error: {
-                      type: 'string',
-                      example: 'Failed to fetch Kroger locations',
-                    },
-                    details: {
-                      type: 'string',
-                      example: 'Unable to authenticate with Kroger API',
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
+        "responses": {
+          "200": {
+            "description": "HTML page with Swagger UI documentation",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
     },
-    '/api/meal-plan': {
-      post: {
-        summary: 'Generate meal plans and shopping lists',
-        description: 'Generate meal plans for a specific day or create shopping lists based on meal plans',
-        tags: ['Meal Planning'],
-        requestBody: {
-          required: true,
-          content: {
-            'application/json': {
-              schema: {
-                type: 'object',
-                required: ['action'],
-                properties: {
-                  action: {
-                    type: 'string',
-                    enum: ['generateDay', 'generateShoppingList'],
-                    description: 'The action to perform',
-                    example: 'generateDay',
-                  },
-                  day: {
-                    type: 'string',
-                    description: 'Day of the week for meal planning',
-                    example: 'Monday',
-                  },
-                  budget: {
-                    type: 'number',
-                    description: 'Budget in dollars',
-                    example: 25,
-                  },
-                  dietaryPreferences: {
-                    type: 'object',
-                    description: 'Dietary restrictions and preferences',
-                    example: {
-                      vegetarian: true,
-                      'gluten-free': false,
-                    },
-                  },
-                  ingredients: {
-                    type: 'array',
-                    items: {
-                      type: 'string',
-                    },
-                    description: 'Available ingredients',
-                    example: ['chicken', 'rice', 'vegetables'],
-                  },
-                  mealPlan: {
-                    type: 'object',
-                    description: 'Existing meal plan for shopping list generation',
-                  },
-                  availableIngredients: {
-                    type: 'array',
-                    items: {
-                      type: 'string',
-                    },
-                    description: 'Ingredients already available',
-                    example: ['salt', 'pepper', 'olive oil'],
-                  },
-                  locationId: {
-                    type: 'string',
-                    description: 'Kroger location ID for pricing',
-                    example: '01400943',
-                  },
-                },
-              },
-            },
-          },
+    "/api/health": {
+      "get": {
+        "summary": "Detailed health check",
+        "description": "Returns detailed health status of all services and available endpoints",
+        "tags": [
+          "Health"
+        ],
+        "responses": {
+          "200": {
+            "description": "Health status retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/image-meal-plan": {
+      "post": {
+        "summary": "Extract ingredients from food images",
+        "description": "Use AI vision to identify food ingredients in uploaded images",
+        "tags": [
+          "Image Analysis"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "image"
+                ],
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Food image file (JPEG, PNG, etc.)"
+                  }
+                }
+              }
+            }
+          }
         },
-        responses: {
-          '200': {
-            description: 'Meal plan or shopping list generated successfully',
-            content: {
-              'application/json': {
-                schema: {
-                  oneOf: [
+        "responses": {
+          "200": {
+            "description": "Ingredients extracted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageAnalysisResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid file",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "No image file provided"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Failed to extract ingredients from image"
+                    },
+                    "details": {
+                      "type": "string",
+                      "example": "AIML API credentials not configured"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/locations": {
+      "get": {
+        "summary": "Search for Kroger store locations",
+        "description": "Find Kroger store locations near a specific location using zip code or coordinates",
+        "tags": [
+          "Locations"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "zipCode",
+            "schema": {
+              "type": "string"
+            },
+            "description": "ZIP code to search near",
+            "example": "12345"
+          },
+          {
+            "in": "query",
+            "name": "lat",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Latitude coordinate",
+            "example": "40.7128"
+          },
+          {
+            "in": "query",
+            "name": "lon",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Longitude coordinate",
+            "example": "-74.0060"
+          },
+          {
+            "in": "query",
+            "name": "radiusInMiles",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Search radius in miles",
+            "example": 50
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            },
+            "description": "Maximum number of locations to return",
+            "example": 5
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Locations found successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationSearchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - missing location parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "At least one location parameter is required: zipCode, lat/lon, or both"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Failed to fetch Kroger locations"
+                    },
+                    "details": {
+                      "type": "string",
+                      "example": "Unable to authenticate with Kroger API"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/meal-plan": {
+      "post": {
+        "summary": "Generate meal plans and shopping lists",
+        "description": "Generate meal plans for a specific day or create shopping lists based on meal plans",
+        "tags": [
+          "Meal Planning"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "action"
+                ],
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "enum": [
+                      "generateDay",
+                      "generateShoppingList"
+                    ],
+                    "description": "The action to perform",
+                    "example": "generateDay"
+                  },
+                  "day": {
+                    "type": "string",
+                    "description": "Day of the week for meal planning",
+                    "example": "Monday"
+                  },
+                  "budget": {
+                    "type": "number",
+                    "description": "Budget in dollars",
+                    "example": 25
+                  },
+                  "dietaryPreferences": {
+                    "type": "object",
+                    "description": "Dietary restrictions and preferences",
+                    "example": {
+                      "vegetarian": true,
+                      "gluten-free": false
+                    }
+                  },
+                  "ingredients": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Available ingredients",
+                    "example": [
+                      "chicken",
+                      "rice",
+                      "vegetables"
+                    ]
+                  },
+                  "mealPlan": {
+                    "type": "object",
+                    "description": "Existing meal plan for shopping list generation"
+                  },
+                  "availableIngredients": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Ingredients already available",
+                    "example": [
+                      "salt",
+                      "pepper",
+                      "olive oil"
+                    ]
+                  },
+                  "locationId": {
+                    "type": "string",
+                    "description": "Kroger location ID for pricing",
+                    "example": "01400943"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Meal plan or shopping list generated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
                     {
-                      $ref: '#/components/schemas/MealPlan',
-                    },
-                    {
-                      $ref: '#/components/schemas/ShoppingList',
-                    },
-                  ],
-                },
-              },
-            },
-          },
-          '400': {
-            description: 'Bad request - invalid action',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    error: {
-                      type: 'string',
-                      example: "Invalid action. Use 'generateDay' or 'generateShoppingList'",
-                    },
-                  },
-                },
-              },
-            },
-          },
-          '500': {
-            description: 'Internal server error',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    error: {
-                      type: 'string',
-                      example: 'Failed to process meal plan request',
-                    },
-                    details: {
-                      type: 'string',
-                      example: 'Unknown error',
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-    '/api/ping': {
-      get: {
-        summary: 'Health check endpoint',
-        description: 'Returns server status and service availability information',
-        tags: ['Health'],
-        responses: {
-          '200': {
-            description: 'Server is healthy and running',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    status: {
-                      type: 'string',
-                      example: 'ok',
-                    },
-                    timestamp: {
-                      type: 'string',
-                      format: 'date-time',
-                      example: '2024-01-15T10:30:00.000Z',
-                    },
-                    message: {
-                      type: 'string',
-                      example: 'Server is running',
-                    },
-                    version: {
-                      type: 'string',
-                      example: '1.0.0',
-                    },
-                    services: {
-                      type: 'object',
-                      properties: {
-                        kroger: {
-                          type: 'boolean',
-                          description: 'Kroger API service status',
-                        },
-                        edamam: {
-                          type: 'boolean',
-                          description: 'Edamam API service status',
-                        },
-                        aiml: {
-                          type: 'boolean',
-                          description: 'AI/ML service status',
-                        },
-                      },
-                    },
-                    rateLimit: {
-                      type: 'object',
-                      properties: {
-                        remaining: {
-                          type: 'integer',
-                          description: 'Remaining requests allowed',
-                        },
-                        resetTime: {
-                          type: 'string',
-                          format: 'date-time',
-                          description: 'When the rate limit resets',
-                        },
-                      },
-                    },
-                  },
-                },
-              },
-            },
-          },
-          '429': {
-            description: 'Rate limit exceeded',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    error: {
-                      type: 'string',
-                      example: 'Rate limit exceeded',
-                    },
-                    message: {
-                      type: 'string',
-                      example: 'Too many requests. Please try again later.',
-                    },
-                    retryAfter: {
-                      type: 'string',
-                      example: '15 minutes',
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-    '/api/products': {
-      get: {
-        summary: 'Search for products',
-        description: 'Search for products using the Kroger Product API',
-        tags: ['Products'],
-        parameters: [
-          {
-            in: 'query',
-            name: 'term',
-            schema: {
-              type: 'string',
-              default: 'milk',
-            },
-            description: 'Search term for products',
-            example: 'organic milk',
-          },
-          {
-            in: 'query',
-            name: 'locationId',
-            required: true,
-            schema: {
-              type: 'string',
-            },
-            description: 'Kroger location ID',
-            example: '01400943',
-          },
-          {
-            in: 'query',
-            name: 'limit',
-            schema: {
-              type: 'integer',
-              default: 20,
-            },
-            description: 'Maximum number of products to return',
-            example: 10,
-          },
-        ],
-        responses: {
-          '200': {
-            description: 'Products found successfully',
-            content: {
-              'application/json': {
-                schema: {
-                  $ref: '#/components/schemas/ProductSearchResponse',
-                },
-              },
-            },
-          },
-          '400': {
-            description: 'Bad request - missing required parameters',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    error: {
-                      type: 'string',
-                      example: 'locationId parameter is required',
-                    },
-                  },
-                },
-              },
-            },
-          },
-          '500': {
-            description: 'Internal server error',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    error: {
-                      type: 'string',
-                      example: 'Failed to fetch Kroger products',
-                    },
-                    details: {
-                      type: 'string',
-                      example: 'Unable to authenticate with Kroger Product API',
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-    '/api/recipes': {
-      get: {
-        summary: 'Search for recipes',
-        description: 'Search for recipes using the Edamam API with various filters and parameters',
-        tags: ['Recipes'],
-        parameters: [
-          {
-            in: 'query',
-            name: 'query',
-            required: true,
-            schema: {
-              type: 'string',
-            },
-            description: 'Search query for recipes',
-            example: 'chicken salad',
-          },
-          {
-            in: 'query',
-            name: 'userId',
-            required: true,
-            schema: {
-              type: 'string',
-            },
-            description: 'User ID for tracking and personalization',
-            example: 'user123',
-          },
-          {
-            in: 'query',
-            name: 'diet',
-            schema: {
-              type: 'string',
-            },
-            description: 'Diet type filter',
-            example: 'balanced',
-          },
-          {
-            in: 'query',
-            name: 'health',
-            schema: {
-              type: 'array',
-              items: {
-                type: 'string',
-              },
-            },
-            description: 'Health labels (allergies, dietary restrictions)',
-            example: ['dairy-free', 'gluten-free'],
-          },
-          {
-            in: 'query',
-            name: 'cuisineType',
-            schema: {
-              type: 'string',
-            },
-            description: 'Cuisine type filter',
-            example: 'American',
-          },
-          {
-            in: 'query',
-            name: 'mealType',
-            schema: {
-              type: 'string',
-            },
-            description: 'Meal type filter',
-            example: 'lunch',
-          },
-          {
-            in: 'query',
-            name: 'dishType',
-            schema: {
-              type: 'string',
-            },
-            description: 'Dish type filter',
-            example: 'main course',
-          },
-          {
-            in: 'query',
-            name: 'from',
-            schema: {
-              type: 'integer',
-              default: 0,
-            },
-            description: 'Starting index for pagination',
-          },
-          {
-            in: 'query',
-            name: 'to',
-            schema: {
-              type: 'integer',
-              default: 20,
-            },
-            description: 'Ending index for pagination',
-          },
-        ],
-        responses: {
-          '200': {
-            description: 'Recipes found successfully',
-            content: {
-              'application/json': {
-                schema: {
-                  $ref: '#/components/schemas/RecipeSearchResponse',
-                },
-              },
-            },
-          },
-          '400': {
-            description: 'Bad request - missing required parameters',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    error: {
-                      type: 'string',
-                      example: 'Query parameter is required',
-                    },
-                  },
-                },
-              },
-            },
-          },
-          '500': {
-            description: 'Internal server error',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    error: {
-                      type: 'string',
-                      example: 'Unknown error',
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-    '/api/swagger.json': {
-      get: {
-        summary: 'Get Swagger JSON specification',
-        description: 'Returns the OpenAPI 3.0 specification for all API endpoints',
-        tags: ['Documentation'],
-        responses: {
-          '200': {
-            description: 'OpenAPI 3.0 specification',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-    '/api/sync': {
-      post: {
-        summary: 'Sync data operations',
-        description: 'Process multiple data operations (CREATE, UPDATE, DELETE) for synchronization',
-        tags: ['Sync'],
-        security: [
-          {
-            bearerAuth: [],
-          },
-        ],
-        requestBody: {
-          required: true,
-          content: {
-            'application/json': {
-              schema: {
-                type: 'object',
-                required: ['operations'],
-                properties: {
-                  operations: {
-                    type: 'array',
-                    items: {
-                      $ref: '#/components/schemas/SyncOperation',
-                    },
-                    description: 'Array of sync operations to process',
-                  },
-                },
-              },
-            },
-          },
-        },
-        responses: {
-          '200': {
-            description: 'Sync operations processed successfully',
-            content: {
-              'application/json': {
-                schema: {
-                  $ref: '#/components/schemas/SyncResponse',
-                },
-              },
-            },
-          },
-          '400': {
-            description: 'Bad request - invalid operations data',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    error: {
-                      type: 'string',
-                      example: 'Invalid operations data',
-                    },
-                  },
-                },
-              },
-            },
-          },
-          '401': {
-            description: 'Unauthorized - user not authenticated',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    error: {
-                      type: 'string',
-                      example: 'Unauthorized: User not authenticated',
-                    },
-                  },
-                },
-              },
-            },
-          },
-          '500': {
-            description: 'Internal server error',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    error: {
-                      type: 'string',
-                      example: 'Sync failed',
-                    },
-                    details: {
-                      type: 'string',
-                      example: 'Unknown error',
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-      get: {
-        summary: 'Get sync status or fetch data',
-        description: 'Retrieve sync status or fetch user data for synchronization',
-        tags: ['Sync'],
-        security: [
-          {
-            bearerAuth: [],
-          },
-        ],
-        parameters: [
-          {
-            in: 'query',
-            name: 'action',
-            required: true,
-            schema: {
-              type: 'string',
-              enum: ['status', 'fetch'],
-            },
-            description: 'Action to perform',
-            example: 'status',
-          },
-          {
-            in: 'query',
-            name: 'since',
-            schema: {
-              type: 'string',
-              format: 'date-time',
-            },
-            description: 'ISO date string for fetching data since this time (only for fetch action)',
-            example: '2024-01-01T00:00:00.000Z',
-          },
-        ],
-        responses: {
-          '200': {
-            description: 'Sync status or data retrieved successfully',
-            content: {
-              'application/json': {
-                schema: {
-                  oneOf: [
-                    {
-                      $ref: '#/components/schemas/SyncStatus',
+                      "$ref": "#/components/schemas/MealPlan"
                     },
                     {
-                      $ref: '#/components/schemas/SyncData',
-                    },
-                  ],
-                },
-              },
-            },
+                      "$ref": "#/components/schemas/ShoppingList"
+                    }
+                  ]
+                }
+              }
+            }
           },
-          '400': {
-            description: 'Bad request - invalid action',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    error: {
-                      type: 'string',
-                      example: 'Invalid action',
-                    },
-                  },
-                },
-              },
-            },
+          "400": {
+            "description": "Bad request - invalid action",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid action. Use 'generateDay' or 'generateShoppingList'"
+                    }
+                  }
+                }
+              }
+            }
           },
-          '401': {
-            description: 'Unauthorized - user not authenticated',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    error: {
-                      type: 'string',
-                      example: 'Unauthorized: User not authenticated',
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Failed to process meal plan request"
                     },
-                  },
-                },
-              },
-            },
-          },
-          '500': {
-            description: 'Internal server error',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    error: {
-                      type: 'string',
-                      example: 'Failed to get sync status',
-                    },
-                    details: {
-                      type: 'string',
-                      example: 'Unknown error',
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
+                    "details": {
+                      "type": "string",
+                      "example": "Unknown error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     },
-    '/api/test': {
-      get: {
-        summary: 'Test API endpoint',
-        description: 'Simple test endpoint to verify API routes are working',
-        tags: ['Testing'],
-        responses: {
-          '200': {
-            description: 'API is working',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    message: {
-                      type: 'string',
-                      example: 'API routes are working!',
+    "/api/ping": {
+      "get": {
+        "summary": "Health check endpoint",
+        "description": "Returns server status and service availability information",
+        "tags": [
+          "Health"
+        ],
+        "responses": {
+          "200": {
+            "description": "Server is healthy and running",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "ok"
                     },
-                  },
-                },
-              },
-            },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": "2024-01-15T10:30:00.000Z"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Server is running"
+                    },
+                    "version": {
+                      "type": "string",
+                      "example": "1.0.0"
+                    },
+                    "services": {
+                      "type": "object",
+                      "properties": {
+                        "kroger": {
+                          "type": "boolean",
+                          "description": "Kroger API service status"
+                        },
+                        "edamam": {
+                          "type": "boolean",
+                          "description": "Edamam API service status"
+                        },
+                        "aiml": {
+                          "type": "boolean",
+                          "description": "AI/ML service status"
+                        }
+                      }
+                    },
+                    "rateLimit": {
+                      "type": "object",
+                      "properties": {
+                        "remaining": {
+                          "type": "integer",
+                          "description": "Remaining requests allowed"
+                        },
+                        "resetTime": {
+                          "type": "string",
+                          "format": "date-time",
+                          "description": "When the rate limit resets"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
-        },
-      },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Rate limit exceeded"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Too many requests. Please try again later."
+                    },
+                    "retryAfter": {
+                      "type": "string",
+                      "example": "15 minutes"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     },
+    "/api/products": {
+      "get": {
+        "summary": "Search for products",
+        "description": "Search for products using the Kroger Product API",
+        "tags": [
+          "Products"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "term",
+            "schema": {
+              "type": "string",
+              "default": "milk"
+            },
+            "description": "Search term for products",
+            "example": "organic milk"
+          },
+          {
+            "in": "query",
+            "name": "locationId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Kroger location ID",
+            "example": "01400943"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 20
+            },
+            "description": "Maximum number of products to return",
+            "example": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Products found successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductSearchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - missing required parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "locationId parameter is required"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Failed to fetch Kroger products"
+                    },
+                    "details": {
+                      "type": "string",
+                      "example": "Unable to authenticate with Kroger Product API"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/recipes": {
+      "get": {
+        "summary": "Search for recipes",
+        "description": "Search for recipes using the Edamam API with various filters and parameters",
+        "tags": [
+          "Recipes"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search query for recipes",
+            "example": "chicken salad"
+          },
+          {
+            "in": "query",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "User ID for tracking and personalization",
+            "example": "user123"
+          },
+          {
+            "in": "query",
+            "name": "diet",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Diet type filter",
+            "example": "balanced"
+          },
+          {
+            "in": "query",
+            "name": "health",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Health labels (allergies, dietary restrictions)",
+            "example": [
+              "dairy-free",
+              "gluten-free"
+            ]
+          },
+          {
+            "in": "query",
+            "name": "cuisineType",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Cuisine type filter",
+            "example": "American"
+          },
+          {
+            "in": "query",
+            "name": "mealType",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Meal type filter",
+            "example": "lunch"
+          },
+          {
+            "in": "query",
+            "name": "dishType",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Dish type filter",
+            "example": "main course"
+          },
+          {
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Starting index for pagination"
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "schema": {
+              "type": "integer",
+              "default": 20
+            },
+            "description": "Ending index for pagination"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Recipes found successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipeSearchResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - missing required parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Query parameter is required"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Unknown error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/swagger.json": {
+      "get": {
+        "summary": "Get Swagger JSON specification",
+        "description": "Returns the OpenAPI 3.0 specification for all API endpoints",
+        "tags": [
+          "Documentation"
+        ],
+        "responses": {
+          "200": {
+            "description": "OpenAPI 3.0 specification",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sync": {
+      "post": {
+        "summary": "Sync data operations",
+        "description": "Process multiple data operations (CREATE, UPDATE, DELETE) for synchronization",
+        "tags": [
+          "Sync"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "operations"
+                ],
+                "properties": {
+                  "operations": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/SyncOperation"
+                    },
+                    "description": "Array of sync operations to process"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sync operations processed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SyncResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid operations data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid operations data"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - user not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Unauthorized: User not authenticated"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Sync failed"
+                    },
+                    "details": {
+                      "type": "string",
+                      "example": "Unknown error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get sync status or fetch data",
+        "description": "Retrieve sync status or fetch user data for synchronization",
+        "tags": [
+          "Sync"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "action",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "status",
+                "fetch"
+              ]
+            },
+            "description": "Action to perform",
+            "example": "status"
+          },
+          {
+            "in": "query",
+            "name": "since",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "ISO date string for fetching data since this time (only for fetch action)",
+            "example": "2024-01-01T00:00:00.000Z"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sync status or data retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/SyncStatus"
+                    },
+                    {
+                      "$ref": "#/components/schemas/SyncData"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid action",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid action"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - user not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Unauthorized: User not authenticated"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Failed to get sync status"
+                    },
+                    "details": {
+                      "type": "string",
+                      "example": "Unknown error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/test": {
+      "get": {
+        "summary": "Test API endpoint",
+        "description": "Simple test endpoint to verify API routes are working",
+        "tags": [
+          "Testing"
+        ],
+        "responses": {
+          "200": {
+            "description": "API is working",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "API routes are working!"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   },
-  tags: [],
+  "tags": []
 } as const;
 
 export default swaggerSpec;
