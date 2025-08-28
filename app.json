@@ -17,7 +17,7 @@
           "image": "./src/assets/images/adaptive-icon.png",
           "imageWidth": 200,
           "resizeMode": "cover",
-          "backgroundColor": "#000"
+          "backgroundColor": "#000000"
         }
       ],
       "expo-router",
@@ -33,7 +33,7 @@
     "splash": {
       "image": "./src/assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000000"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -54,7 +54,7 @@
       "edgeToEdgeEnabled": true,
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#000000"
       },
       "softwareKeyboardLayoutMode": "pan",
       "package": "com.jongan69.prepai"

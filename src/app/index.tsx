@@ -104,7 +104,7 @@ const LandingPage = () => {
                 title="Get Started"
                 variant="outline"
                 className="border-white bg-white"
-                textClassName="text-white"
+                textClassName="text-black"
               />
             </View>
           </View>
@@ -385,7 +385,9 @@ const LandingPage = () => {
             </View>
 
             <View className="mt-8 flex-row items-center justify-between border-t border-white border-opacity-20 pt-8">
-              <ThemedText className="text-white opacity-70">© 2024 PrepAI. All rights reserved.</ThemedText>
+              <ThemedText className="text-white opacity-70">
+                © {new Date().getFullYear()} PrepAI. All rights reserved.
+              </ThemedText>
               <View className="flex-row space-x-4">
                 <TouchableOpacity>
                   <Icon
