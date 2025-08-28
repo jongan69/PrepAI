@@ -257,6 +257,7 @@ erDiagram
     Workout ||--o{ Exercise
     Meal ||--o{ MealItem
 ```
+```
 
 ### Application Flow
 
