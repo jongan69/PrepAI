@@ -240,7 +240,7 @@ export default function SubscriptionScreen() {
 
           {/* Value Proposition */}
           <View className="mt-8 px-global">
-            <Card className="bg-secondary/50" title="" image={require('@/assets/img/banner.jpg')}>
+            <Card className="bg-secondary/50" title="" image={require('@/assets/img/subscription-banner.jpg')}>
               <View className="p-4">
                 <ThemedText className="mb-2 text-lg font-semibold">
                   ✨ Why Choose PrepAI?
@@ -348,7 +348,7 @@ const MoneyOfferCard: React.FC<MoneyOfferCardProps> = ({ offer, isSelected, onSe
       case 'downsell':
         return require('@/assets/img/progress.png');
       case 'continuity':
-        return require('@/assets/img/banner.jpg');
+        return require('@/assets/img/subscription-banner.jpg');
       default:
         return require('@/assets/img/welcome.jpg');
     }
