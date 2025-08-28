@@ -156,7 +156,9 @@ const Select: React.FC<SelectProps> = ({
 
   if (variant === 'inline') {
     return (
-      <View className={`relative mb-global ${containerClassName}`} style={style}>
+      <View
+        className={`relative mb-global ${containerClassName}`}
+        style={style}>
         {label && (
           <ThemedText className="absolute left-3 top-2 mb-2 text-xs font-medium text-text opacity-60">
             {label}
@@ -173,7 +175,12 @@ const Select: React.FC<SelectProps> = ({
           <ThemedText className={selectedOption ? 'text-text' : 'text-text opacity-60'}>
             {selectedOption ? selectedOption.label : placeholder}
           </ThemedText>
-          <Icon name="ChevronDown" size={20} color={colors.text} className="-translate-y-1" />
+          <Icon
+            name="ChevronDown"
+            size={20}
+            color={colors.text}
+            className="-translate-y-1"
+          />
         </TouchableOpacity>
         {error && <ThemedText className="mt-1 text-xs text-red-500">{error}</ThemedText>}
         {renderActionSheet()}
@@ -199,7 +206,11 @@ const Select: React.FC<SelectProps> = ({
             <ThemedText className={selectedOption ? 'text-text' : 'text-text opacity-60'}>
               {selectedOption ? selectedOption.label : placeholder}
             </ThemedText>
-            <Icon name="ChevronDown" size={20} color={colors.text} />
+            <Icon
+              name="ChevronDown"
+              size={20}
+              color={colors.text}
+            />
           </TouchableOpacity>
         </View>
         {error && <ThemedText className="mt-1 text-xs text-red-500">{error}</ThemedText>}
@@ -214,7 +225,9 @@ const Select: React.FC<SelectProps> = ({
         className={`relative mb-global ${containerClassName}`}
         style={{ position: 'relative', ...style }}>
         <View className="relative">
-          <Pressable className="z-40 bg-secondary px-0" onPress={handlePress}>
+          <Pressable
+            className="z-40 bg-secondary px-0"
+            onPress={handlePress}>
             <Animated.Text
               style={[
                 {
@@ -253,7 +266,11 @@ const Select: React.FC<SelectProps> = ({
             <ThemedText className={selectedOption ? 'text-text' : 'transparent'}>
               {selectedOption ? selectedOption.label : ''}
             </ThemedText>
-            <Icon name="ChevronDown" size={20} color={colors.text} />
+            <Icon
+              name="ChevronDown"
+              size={20}
+              color={colors.text}
+            />
           </TouchableOpacity>
         </View>
 
@@ -264,12 +281,16 @@ const Select: React.FC<SelectProps> = ({
   }
 
   return (
-    <View className={`relative mb-8 ${containerClassName}`} style={style}>
+    <View
+      className={`relative mb-8 ${containerClassName}`}
+      style={style}>
       <Pressable
         className="z-40 bg-background px-1"
         style={{ position: 'absolute', left: -6, top: 0 }}
         onPress={handlePress}>
-        <Animated.Text style={[labelStyle]} className="bg-background text-text">
+        <Animated.Text
+          style={[labelStyle]}
+          className="bg-background text-text">
           {label}
         </Animated.Text>
       </Pressable>
@@ -285,7 +306,11 @@ const Select: React.FC<SelectProps> = ({
         <ThemedText className={selectedOption ? 'text-text' : 'transparent'}>
           {selectedOption ? selectedOption.label : ''}
         </ThemedText>
-        <Icon name="ChevronDown" size={20} color={colors.text} />
+        <Icon
+          name="ChevronDown"
+          size={20}
+          color={colors.text}
+        />
       </TouchableOpacity>
 
       {error && <ThemedText className="mt-1 text-xs text-red-500">{error}</ThemedText>}

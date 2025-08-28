@@ -68,29 +68,29 @@ export default function ProfileScreen() {
   }, [isInitialized, userId]);
 
   const handleLogout = () => {
-    Alert.alert(
-      'Logout',
-      'Are you sure you want to logout? Your data will remain safely stored and synced.',
-      [
-        {
-          text: 'Cancel',
-          style: 'cancel',
+    Alert.alert('Logout', 'Are you sure you want to logout? Your data will remain safely stored and synced.', [
+      {
+        text: 'Cancel',
+        style: 'cancel',
+      },
+      {
+        text: 'Logout',
+        style: 'destructive',
+        onPress: () => {
+          logout();
         },
-        {
-          text: 'Logout',
-          style: 'destructive',
-          onPress: () => {
-            logout();
-          },
-        },
-      ]
-    );
+      },
+    ]);
   };
 
   return (
     <>
-      <Header showBackButton title="Profile" rightComponents={[<ThemeToggle />]} />
-      <ThemedScroller 
+      <Header
+        showBackButton
+        title="Profile"
+        rightComponents={[<ThemeToggle />]}
+      />
+      <ThemedScroller
         className="px-6 pt-4"
         refreshControl={
           <RefreshControl
@@ -99,13 +99,16 @@ export default function ProfileScreen() {
             tintColor="#666"
             colors={['#007AFF']}
           />
-        }
-      >
+        }>
         <View
           style={shadowPresets.medium}
           className=" mb-4 w-full flex-row rounded-2xl bg-secondary pb-10 pt-10 ">
           <View className="w-1/2 flex-col items-center">
-            <Avatar src={imageUrl} name={displayName} size="xl" />
+            <Avatar
+              src={imageUrl}
+              name={displayName}
+              size="xl"
+            />
             <View className="mt-4 flex-1 items-center">
               <ThemedText className="text-2xl font-bold">{displayName}</ThemedText>
               <View className="flex flex-row items-center">
@@ -117,9 +120,7 @@ export default function ProfileScreen() {
           </View>
           <View className="w-1/2 flex-col items-start border-l border-border pl-10 ">
             <View className="flex-1 flex-col justify-center">
-              <ThemedText className="text-xl font-bold">
-                {latestWeight ? `${latestWeight.weight}kg` : '--'}
-              </ThemedText>
+              <ThemedText className="text-xl font-bold">{latestWeight ? `${latestWeight.weight}kg` : '--'}</ThemedText>
               <ThemedText className="font-xs opacity-50">Current weight</ThemedText>
             </View>
             <View className="flex-1 flex-col justify-center">
@@ -129,7 +130,9 @@ export default function ProfileScreen() {
           </View>
         </View>
         <UpgradeToPlus />
-        <View style={shadowPresets.medium} className="mt-4 rounded-2xl bg-secondary">
+        <View
+          style={shadowPresets.medium}
+          className="mt-4 rounded-2xl bg-secondary">
           <ListLink
             className="px-5"
             hasBorder
@@ -182,7 +185,9 @@ const UpgradeToPlus = () => {
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 2 }}
       style={[{ borderRadius: 10 }, shadowPresets.medium]}>
-      <Link asChild href="/(mobile)/(profile)/subscription">
+      <Link
+        asChild
+        href="/(mobile)/(profile)/subscription">
         <Pressable className="flex flex-row items-center justify-between p-6">
           <View>
             <ThemedText className="font-outfit-bold text-xl text-white">Go premium</ThemedText>

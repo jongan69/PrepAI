@@ -12,7 +12,11 @@ import { shadowPresets } from '@/utils/useShadow';
 export default function AddWaterScreen() {
   return (
     <View className="relative flex-1 bg-background">
-      <Header className="bg-transparent" title="Add Water" showBackButton />
+      <Header
+        className="bg-transparent"
+        title="Add Water"
+        showBackButton
+      />
 
       <View className="relative w-full flex-1 items-center justify-center">
         <WaterBar />
@@ -81,7 +85,10 @@ const WaterBar = () => {
                 <View className="h-px w-full bg-text" />
                 <View className="h-px w-full bg-transparent" />
               </View>
-              <Animated.View style={animatedStyle} className="w-full bg-highlight" />
+              <Animated.View
+                style={animatedStyle}
+                className="w-full bg-highlight"
+              />
             </View>
             <ThemedText className="mt-4 text-lg font-semibold">{waterAmount} ml</ThemedText>
           </View>
@@ -111,7 +118,11 @@ const WaterBar = () => {
 const GlassCard = (props: any) => {
   return (
     <Pressable className="relative w-28 items-center justify-center rounded-xl bg-secondary py-4">
-      <Icon name="GlassWater" size={20} className="h-12 w-12 rounded-full bg-background" />
+      <Icon
+        name="GlassWater"
+        size={20}
+        className="h-12 w-12 rounded-full bg-background"
+      />
       <ThemedText className="mt-4 text-sm font-semibold">{props.amount} ml</ThemedText>
     </Pressable>
   );

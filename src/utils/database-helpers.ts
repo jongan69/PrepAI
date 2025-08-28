@@ -98,9 +98,7 @@ export async function getWeeklyStats(userId: string) {
 
   // Get weight change
   const weightChange =
-    weightEntries.length >= 2
-      ? weightEntries[0].weight - weightEntries[weightEntries.length - 1].weight
-      : 0;
+    weightEntries.length >= 2 ? weightEntries[0].weight - weightEntries[weightEntries.length - 1].weight : 0;
 
   return {
     totalCalories,
@@ -151,9 +149,7 @@ export async function getMonthlyStats(userId: string) {
 
   // Get weight change
   const weightChange =
-    weightEntries.length >= 2
-      ? weightEntries[0].weight - weightEntries[weightEntries.length - 1].weight
-      : 0;
+    weightEntries.length >= 2 ? weightEntries[0].weight - weightEntries[weightEntries.length - 1].weight : 0;
 
   return {
     totalCalories,

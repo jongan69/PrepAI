@@ -1,5 +1,3 @@
-expo-env.d.ts
-
 # Generated files
 src/spec/swagger-spec.ts
 swagger.json
@@ -9,3 +7,13 @@ prisma/generated/
 # Build outputs
 dist/
 build/
+
+# Dependencies
+node_modules/
+
+# Environment files
+.env*
+!.env.example
+
+# Logs
+*.log

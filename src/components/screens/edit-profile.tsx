@@ -162,9 +162,7 @@ export default function EditProfileScreen() {
     if (healthProfile) {
       setHealthData({
         gender: healthProfile.gender as 'Male' | 'Female' | undefined,
-        birthday: healthProfile.birthday
-          ? new Date(healthProfile.birthday)
-          : new Date('1990-01-01'),
+        birthday: healthProfile.birthday ? new Date(healthProfile.birthday) : new Date('1990-01-01'),
         height: {
           value: healthProfile.height || 170,
           unit: (healthProfile.heightUnit as 'cm' | 'ft') || 'cm',
@@ -209,9 +207,7 @@ export default function EditProfileScreen() {
   }, [healthProfile]);
 
   const toggleGoal = (goalId: string) => {
-    setSelectedGoals((prev) =>
-      prev.includes(goalId) ? prev.filter((id) => id !== goalId) : [...prev, goalId]
-    );
+    setSelectedGoals((prev) => (prev.includes(goalId) ? prev.filter((id) => id !== goalId) : [...prev, goalId]));
   };
 
   const onPickImage = async () => {
@@ -331,10 +327,7 @@ export default function EditProfileScreen() {
           }
         } catch (clerkError: any) {
           console.error('❌ Clerk update error:', clerkError);
-          Alert.alert(
-            'Clerk Error',
-            clerkError.errors?.[0]?.message || 'Failed to update profile in Clerk'
-          );
+          Alert.alert('Clerk Error', clerkError.errors?.[0]?.message || 'Failed to update profile in Clerk');
           return;
         }
       }
@@ -342,7 +335,6 @@ export default function EditProfileScreen() {
       // Update health profile in database
       if (userId) {
         try {
-
           // Convert health data to database format
           const updateData = {
             gender: healthData.gender,
@@ -531,17 +523,31 @@ export default function EditProfileScreen() {
             activeOpacity={0.9}
             disabled={isUploading}>
             {profileImage ? (
-              <Image source={{ uri: profileImage }} className="h-28 w-28 rounded-full" />
+              <Image
+                source={{ uri: profileImage }}
+                className="h-28 w-28 rounded-full"
+              />
             ) : imageUrl ? (
-              <Image source={{ uri: imageUrl }} className="h-28 w-28 rounded-full" />
+              <Image
+                source={{ uri: imageUrl }}
+                className="h-28 w-28 rounded-full"
+              />
             ) : (
               <View className="h-24 w-24 items-center justify-center rounded-full bg-background">
-                <Icon name="Plus" size={25} className="text-light-subtext dark:text-dark-subtext" />
+                <Icon
+                  name="Plus"
+                  size={25}
+                  className="text-light-subtext dark:text-dark-subtext"
+                />
               </View>
             )}
             {isUploading && (
               <View className="absolute inset-0 items-center justify-center rounded-full bg-black/50">
-                <Icon name="Loader2" size={20} className="text-white" />
+                <Icon
+                  name="Loader2"
+                  size={20}
+                  className="text-white"
+                />
               </View>
             )}
           </TouchableOpacity>
@@ -681,9 +687,7 @@ export default function EditProfileScreen() {
             <View className="items-center justify-center py-4">
               {healthData.height.unit === 'cm' ? (
                 <View className="items-center">
-                  <ThemedText className="mb-4 text-3xl font-bold">
-                    {healthData.height.value || 170} cm
-                  </ThemedText>
+                  <ThemedText className="mb-4 text-3xl font-bold">{healthData.height.value || 170} cm</ThemedText>
                   <View className="flex-row items-center gap-4">
                     <Button
                       title="-"
@@ -719,9 +723,7 @@ export default function EditProfileScreen() {
                     {Math.floor(healthData.height.value || 5.7)}'
                     {(() => {
                       const inches = Math.round(((healthData.height.value || 5.7) % 1) * 100);
-                      return inches > 11
-                        ? Math.round(((healthData.height.value || 5.7) % 1) * 10)
-                        : inches;
+                      return inches > 11 ? Math.round(((healthData.height.value || 5.7) % 1) * 10) : inches;
                     })() || 0}
                     "
                   </ThemedText>
@@ -818,9 +820,7 @@ export default function EditProfileScreen() {
           {/* Weight */}
           <View className="mb-6">
             <ThemedText className="mb-3 text-base font-medium">Weight</ThemedText>
-            <ThemedText className="mb-3 text-sm opacity-60">
-              What is your current weight?
-            </ThemedText>
+            <ThemedText className="mb-3 text-sm opacity-60">What is your current weight?</ThemedText>
 
             <View className="mb-4 flex-row items-center justify-center gap-2">
               <Button
@@ -856,9 +856,7 @@ export default function EditProfileScreen() {
             <View className="items-center justify-center py-4">
               {healthData.weight.value !== undefined && healthData.weight.unit === 'kg' ? (
                 <View className="items-center">
-                  <ThemedText className="mb-4 text-3xl font-bold">
-                    {healthData.weight.value || 70} kg
-                  </ThemedText>
+                  <ThemedText className="mb-4 text-3xl font-bold">{healthData.weight.value || 70} kg</ThemedText>
                   <View className="flex-row items-center gap-4">
                     <Button
                       title="-"
@@ -890,9 +888,7 @@ export default function EditProfileScreen() {
                 </View>
               ) : healthData.weight.value !== undefined && healthData.weight.unit === 'lb' ? (
                 <View className="items-center">
-                  <ThemedText className="mb-4 text-3xl font-bold">
-                    {healthData.weight.value || 154} lb
-                  </ThemedText>
+                  <ThemedText className="mb-4 text-3xl font-bold">{healthData.weight.value || 154} lb</ThemedText>
                   <View className="flex-row items-center gap-4">
                     <Button
                       title="-"
@@ -924,9 +920,7 @@ export default function EditProfileScreen() {
                 </View>
               ) : (
                 <View className="h-32 items-center justify-center">
-                  <ThemedText className="text-center opacity-60">
-                    Loading weight picker...
-                  </ThemedText>
+                  <ThemedText className="text-center opacity-60">Loading weight picker...</ThemedText>
                 </View>
               )}
             </View>
@@ -1001,7 +995,9 @@ export default function EditProfileScreen() {
           title="Goals"
           subtitle="Select your health and fitness goals">
           {Object.entries(groupedGoals).map(([category, categoryGoals]) => (
-            <View key={category} className="mb-6">
+            <View
+              key={category}
+              className="mb-6">
               <ThemedText className="mb-3 text-lg font-semibold">
                 {categoryTitles[category as keyof typeof categoryTitles]}
               </ThemedText>
@@ -1021,25 +1017,25 @@ export default function EditProfileScreen() {
         </Section>
 
         {/* Units Section */}
-        <Section titleSize="xl" className="pb-8 pt-4" title="Units" subtitle="Metric or imperial">
+        <Section
+          titleSize="xl"
+          className="pb-8 pt-4"
+          title="Units"
+          subtitle="Metric or imperial">
           <View className="mt-4">
             <ThemedText className="mb-2 text-sm font-medium">Height Units</ThemedText>
             <MetricPicker
               defaultSelected={unitPreferences.heightUnit}
               option1="cm"
               option2="in"
-              onSelectionChange={(selected) =>
-                setUnitPreferences((prev) => ({ ...prev, heightUnit: selected }))
-              }
+              onSelectionChange={(selected) => setUnitPreferences((prev) => ({ ...prev, heightUnit: selected }))}
             />
             <ThemedText className="mb-2 mt-4 text-sm font-medium">Weight Units</ThemedText>
             <MetricPicker
               defaultSelected={unitPreferences.weightUnit}
               option1="kg"
               option2="lb"
-              onSelectionChange={(selected) =>
-                setUnitPreferences((prev) => ({ ...prev, weightUnit: selected }))
-              }
+              onSelectionChange={(selected) => setUnitPreferences((prev) => ({ ...prev, weightUnit: selected }))}
             />
           </View>
         </Section>
@@ -1071,16 +1067,12 @@ const MetricPicker = (props: {
       <Pressable
         className={`flex flex-1 items-center justify-center rounded-lg py-3 ${selected === props.option1 ? 'bg-text' : ''}`}
         onPress={() => handleSelection(props.option1)}>
-        <ThemedText className={selected === props.option1 ? '!text-background' : ''}>
-          {props.option1}
-        </ThemedText>
+        <ThemedText className={selected === props.option1 ? '!text-background' : ''}>{props.option1}</ThemedText>
       </Pressable>
       <Pressable
         className={`flex flex-1 items-center justify-center rounded-lg py-3 ${selected === props.option2 ? 'bg-text' : ''}`}
         onPress={() => handleSelection(props.option2)}>
-        <ThemedText className={selected === props.option2 ? '!text-background' : ''}>
-          {props.option2}
-        </ThemedText>
+        <ThemedText className={selected === props.option2 ? '!text-background' : ''}>{props.option2}</ThemedText>
       </Pressable>
     </View>
   );

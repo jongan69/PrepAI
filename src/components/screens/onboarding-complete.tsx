@@ -57,26 +57,33 @@ export default function OnboardingComplete() {
         {/* Success Icon */}
         <View className="mb-12 h-32 w-32 items-center justify-center self-center rounded-full bg-white/25 backdrop-blur-sm">
           <View className="h-24 w-24 items-center justify-center rounded-full bg-white/30">
-            <Icon name="Check" size={56} color="white" strokeWidth={3} />
+            <Icon
+              name="Check"
+              size={56}
+              color="white"
+              strokeWidth={3}
+            />
           </View>
         </View>
 
         {/* Title */}
-        <ThemedText className="mb-6 text-center text-5xl font-bold text-white">
-          You're All Set!
-        </ThemedText>
+        <ThemedText className="mb-6 text-center text-5xl font-bold text-white">You're All Set!</ThemedText>
 
         {/* Description */}
         <ThemedText className="mb-12 text-center text-xl leading-7 text-white/90">
-          Welcome to PrepAI! Your personalized fitness journey starts now. We'll help you track your
-          progress and achieve your health goals.
+          Welcome to PrepAI! Your personalized fitness journey starts now. We'll help you track your progress and
+          achieve your health goals.
         </ThemedText>
 
         {/* Features Preview */}
         <View className="mb-16 w-full">
           <View className="mb-6 w-full flex-row items-center rounded-2xl bg-white/15 p-4 backdrop-blur-sm">
             <View className="mr-4 h-12 w-12 items-center justify-center rounded-full bg-white/20">
-              <Icon name="Brain" size={24} color="white" />
+              <Icon
+                name="Brain"
+                size={24}
+                color="white"
+              />
             </View>
             <ThemedText className="flex-1 text-lg font-medium text-white">
               AI-powered insights and recommendations
@@ -85,7 +92,11 @@ export default function OnboardingComplete() {
 
           <View className="mb-6 w-full flex-row items-center rounded-2xl bg-white/15 p-4 backdrop-blur-sm">
             <View className="mr-4 h-12 w-12 items-center justify-center rounded-full bg-white/20">
-              <Icon name="BarChart3" size={24} color="white" />
+              <Icon
+                name="BarChart3"
+                size={24}
+                color="white"
+              />
             </View>
             <ThemedText className="flex-1 text-lg font-medium text-white">
               Track meals, workouts, and progress
@@ -94,11 +105,13 @@ export default function OnboardingComplete() {
 
           <View className="w-full flex-row items-center rounded-2xl bg-white/15 p-4 backdrop-blur-sm">
             <View className="mr-4 h-12 w-12 items-center justify-center rounded-full bg-white/20">
-              <Icon name="Target" size={24} color="white" />
+              <Icon
+                name="Target"
+                size={24}
+                color="white"
+              />
             </View>
-            <ThemedText className="flex-1 text-lg font-medium text-white">
-              Personalized goals and motivation
-            </ThemedText>
+            <ThemedText className="flex-1 text-lg font-medium text-white">Personalized goals and motivation</ThemedText>
           </View>
         </View>
 

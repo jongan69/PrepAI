@@ -92,11 +92,13 @@ const Birthday = ({ userId }: { userId: string | null }) => {
         size={30}
         className="mx-auto my-8 h-20 w-20 rounded-full border border-border"
       />
-      <ThemedText className="mb-7 text-center text-3xl font-bold">
-        When is your birthday?
-      </ThemedText>
+      <ThemedText className="mb-7 text-center text-3xl font-bold">When is your birthday?</ThemedText>
 
-      <DatePicker label="Birthday" onChange={handleBirthdayChange} value={birthday} />
+      <DatePicker
+        label="Birthday"
+        onChange={handleBirthdayChange}
+        value={birthday}
+      />
     </View>
   );
 };
@@ -111,9 +113,7 @@ const Trend = ({ userId }: { userId: string | null }) => {
 
   return (
     <View className="flex-1 px-global">
-      <ThemedText className="mb-7 text-center text-3xl font-bold">
-        How was your weight past week?
-      </ThemedText>
+      <ThemedText className="mb-7 text-center text-3xl font-bold">How was your weight past week?</ThemedText>
       <Selectable
         title="I have been gaining weight"
         icon="ArrowUp"
@@ -147,18 +147,13 @@ const Frequency = ({ userId }: { userId: string | null }) => {
 
   const handleFrequencySelect = async (selectedFrequency: '0' | '1-3' | '4-6' | '7+') => {
     setFrequency(selectedFrequency);
-    await storageManager.saveUserPreferences(
-      { exerciseFrequency: selectedFrequency },
-      userId || undefined
-    );
+    await storageManager.saveUserPreferences({ exerciseFrequency: selectedFrequency }, userId || undefined);
   };
 
   return (
     <View className="flex-1 px-global">
       <View className=" mb-7">
-        <ThemedText className="text-center text-3xl font-bold">
-          How often do you exercise?
-        </ThemedText>
+        <ThemedText className="text-center text-3xl font-bold">How often do you exercise?</ThemedText>
         <ThemedText className="text-center text-base opacity-60">
           Estimate workouts, recreational sports or resistance training.
         </ThemedText>

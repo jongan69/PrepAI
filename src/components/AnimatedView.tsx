@@ -359,7 +359,9 @@ function AnimatedViewComponent({
       style={[style, initialHiddenStyle]}
       onLayout={handleLayout}
       collapsable={false}>
-      <Animated.View style={[getAnimationStyle(), style]} className={className}>
+      <Animated.View
+        style={[getAnimationStyle(), style]}
+        className={className}>
         {children}
       </Animated.View>
     </View>

@@ -119,7 +119,12 @@ const SearchInput = () => {
       style={{ paddingTop: insets.top }}
       className="flex-row items-center justify-between bg-secondary px-4 pb-4">
       <View className="relative h-14 flex-1 flex-row  rounded-xl bg-border">
-        <Icon name="ArrowLeft" onPress={() => router.back()} size={20} className="pl-2" />
+        <Icon
+          name="ArrowLeft"
+          onPress={() => router.back()}
+          size={20}
+          className="pl-2"
+        />
         <TextInput
           className="h-14 flex-1 rounded-xl px-4 text-text"
           placeholder="Search meals"
@@ -148,7 +153,11 @@ const MealCard = (props: any) => {
           className="h-10 w-10 rounded-full bg-highlight"
         />
       ) : (
-        <Icon name="Plus" size={20} className="h-10 w-10 rounded-full bg-background" />
+        <Icon
+          name="Plus"
+          size={20}
+          className="h-10 w-10 rounded-full bg-background"
+        />
       )}
     </Pressable>
   );

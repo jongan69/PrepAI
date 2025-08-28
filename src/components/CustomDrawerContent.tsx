@@ -13,28 +13,37 @@ export default function CustomDrawerContent() {
   const insets = useSafeAreaInsets();
   const { imageUrl, displayName, initials } = useClerkUser();
   return (
-    <ThemedScroller className="flex-1 bg-secondary p-8 " style={{ paddingTop: insets.top }}>
+    <ThemedScroller
+      className="flex-1 bg-secondary p-8 "
+      style={{ paddingTop: insets.top }}>
       <ThemedText className="mb-8 mt-4 font-outfit-bold text-2xl">
         PrepAI<Text className="text-highlight">.</Text>
       </ThemedText>
 
       {/* User Profile Section */}
-      <Link href="/(mobile)/(profile)" asChild>
+      <Link
+        href="/(mobile)/(profile)"
+        asChild>
         <Pressable className="mb-8 flex-row items-center rounded-xl border-b border-border   py-10">
-          <Avatar src={imageUrl} name={displayName} size="md" />
+          <Avatar
+            src={imageUrl}
+            name={displayName}
+            size="md"
+          />
           <View className="ml-3">
-            <ThemedText className="text-light-text dark:text-dark-text font-semibold">
-              {displayName}
-            </ThemedText>
-            <ThemedText className="text-light-subtext dark:text-dark-subtext text-sm">
-              72kg • Goal: 70kg
-            </ThemedText>
+            <ThemedText className="text-light-text dark:text-dark-text font-semibold">{displayName}</ThemedText>
+            <ThemedText className="text-light-subtext dark:text-dark-subtext text-sm">72kg • Goal: 70kg</ThemedText>
           </View>
         </Pressable>
       </Link>
 
       <View className="mb-6 flex-col border-b border-border pb-6">
-        <NavItem href="/(mobile)/(index)/" icon="Home" label="Home" description="Daily overview" />
+        <NavItem
+          href="/(mobile)/(index)/"
+          icon="Home"
+          label="Home"
+          description="Daily overview"
+        />
         <NavItem
           href="/(mobile)/(index)/workouts"
           icon="Dumbbell"
@@ -62,9 +71,7 @@ export default function CustomDrawerContent() {
       </View>
 
       <View className="flex-row items-center justify-between">
-        <ThemedText className="text-light-subtext dark:text-dark-subtext text-sm">
-          Version 1.0.0
-        </ThemedText>
+        <ThemedText className="text-light-subtext dark:text-dark-subtext text-sm">Version 1.0.0</ThemedText>
         <ThemeToggle />
       </View>
     </ThemedScroller>
@@ -80,10 +87,16 @@ type NavItemProps = {
 };
 
 export const NavItem = ({ href, icon, label, description }: NavItemProps) => (
-  <Link href={href as any} asChild>
+  <Link
+    href={href as any}
+    asChild>
     <TouchableOpacity className="flex-row items-center py-3">
       <View className="h-14 w-14 flex-row items-center justify-center rounded-xl   bg-background">
-        <Icon name={icon} size={18} className="" />
+        <Icon
+          name={icon}
+          size={18}
+          className=""
+        />
       </View>
       <View className="ml-4 flex-1 ">
         {label && <ThemedText className="text-lg font-bold ">{label}</ThemedText>}

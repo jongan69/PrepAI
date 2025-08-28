@@ -53,7 +53,7 @@ export function validateRecordOwnership(
  */
 export function useSecurityContext(): SecurityContext {
   const { userId } = useDatabase();
-  
+
   return {
     userId,
     isAuthenticated: !!userId,
@@ -67,11 +67,11 @@ export function useSecurityContext(): SecurityContext {
  */
 export async function validateApiRequest(request: Request): Promise<string> {
   const userId = request.headers.get('x-user-id');
-  
+
   if (!userId) {
     throw new Error('Unauthorized: Missing user ID in request headers');
   }
-  
+
   return userId;
 }
 
@@ -90,7 +90,7 @@ export function validateDataAccess(
   if (authenticatedUserId !== dataUserId) {
     throw new Error(`Unauthorized: User ${authenticatedUserId} cannot ${operation} data for user ${dataUserId}`);
   }
-  
+
   return true;
 }
 
@@ -113,7 +113,7 @@ export function validateUserId(userId: string): boolean {
   if (!userId || typeof userId !== 'string' || userId.length === 0) {
     throw new Error('Invalid user ID format');
   }
-  
+
   // Add additional validation as needed (e.g., UUID format, etc.)
   return true;
 }

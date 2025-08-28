@@ -73,14 +73,14 @@ const WorkoutBarChart: React.FC<WorkoutBarChartProps> = ({ className = '' }) => 
               const heightPercentage = duration / maxDuration;
 
               return (
-                <View key={index} className="relative flex-1 items-center">
+                <View
+                  key={index}
+                  className="relative flex-1 items-center">
                   {/* Vertical Grid Line */}
                   <View className="absolute bottom-0 h-40 w-px bg-transparent" />
 
                   <Animated.View
-                    className={`w-full max-w-10 rounded-t-md ${
-                      duration > 0 ? 'bg-sky-500' : 'bg-background'
-                    }`}
+                    className={`w-full max-w-10 rounded-t-md ${duration > 0 ? 'bg-sky-500' : 'bg-background'}`}
                     style={{
                       height: animatedValues[index].interpolate({
                         inputRange: [0, 1],
@@ -98,7 +98,9 @@ const WorkoutBarChart: React.FC<WorkoutBarChartProps> = ({ className = '' }) => 
       {/* Bottom Axis - Days */}
       <View className="mt-2 flex-row gap-2 px-2 pl-8">
         {days.map((day, index) => (
-          <View key={index} className="flex-1 flex-row items-center justify-center">
+          <View
+            key={index}
+            className="flex-1 flex-row items-center justify-center">
             <ThemedText className="mx-auto text-xs">{day}</ThemedText>
           </View>
         ))}

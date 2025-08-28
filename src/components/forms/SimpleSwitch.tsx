@@ -57,15 +57,17 @@ const Switch: React.FC<SwitchProps> = ({
       style={style}>
       {icon && (
         <View className="mr-3">
-          <Icon name={icon} size={20} color={colors.text} />
+          <Icon
+            name={icon}
+            size={20}
+            color={colors.text}
+          />
         </View>
       )}
 
       <View className="flex-1">
         {label && <ThemedText className="text-base font-medium">{label}</ThemedText>}
-        {description && (
-          <ThemedText className="text-sm text-text opacity-60">{description}</ThemedText>
-        )}
+        {description && <ThemedText className="text-sm text-text opacity-60">{description}</ThemedText>}
       </View>
 
       <View className="relative h-6 w-10 rounded-full">

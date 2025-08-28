@@ -89,10 +89,15 @@ const contactInfo = [
 export default function HelpScreen() {
   return (
     <View className="dark:bg-dark-primary flex-1 bg-background">
-      <Header title="Help & Support" showBackButton />
+      <Header
+        title="Help & Support"
+        showBackButton
+      />
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        <AnimatedView animation="fadeIn" duration={400}>
+        <AnimatedView
+          animation="fadeIn"
+          duration={400}>
           {/* FAQ Section */}
           <Section
             title="Frequently Asked Questions"
@@ -102,10 +107,11 @@ export default function HelpScreen() {
 
           <View className="px-global">
             {faqData.map((faq) => (
-              <Expandable key={faq.id} title={faq.question} className="py-1">
-                <ThemedText className="text-light-text dark:text-dark-text leading-6">
-                  {faq.answer}
-                </ThemedText>
+              <Expandable
+                key={faq.id}
+                title={faq.question}
+                className="py-1">
+                <ThemedText className="text-light-text dark:text-dark-text leading-6">{faq.answer}</ThemedText>
               </Expandable>
             ))}
           </View>
@@ -126,12 +132,13 @@ export default function HelpScreen() {
                 disabled={!contact.action}
                 className="flex-row items-center border-b border-border py-4">
                 <View className="mr-4 h-10 w-10 items-center justify-center rounded-full bg-secondary">
-                  <Icon name={contact.icon} size={20} />
+                  <Icon
+                    name={contact.icon}
+                    size={20}
+                  />
                 </View>
                 <View>
-                  <ThemedText className="text-light-subtext dark:text-dark-subtext text-sm">
-                    {contact.type}
-                  </ThemedText>
+                  <ThemedText className="text-light-subtext dark:text-dark-subtext text-sm">{contact.type}</ThemedText>
                   <ThemedText className="font-medium">{contact.value}</ThemedText>
                 </View>
                 {contact.action && (

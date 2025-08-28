@@ -63,7 +63,11 @@ export default function ExerciseSetTracker({
         <ThemedText className="text-lg font-semibold">{exerciseName}</ThemedText>
         <View className="flex-row items-center">
           <ThemedText className="text-subtext mr-2 text-sm">{target}</ThemedText>
-          <Icon name="ChevronRight" size={16} className="text-highlight" />
+          <Icon
+            name="ChevronRight"
+            size={16}
+            className="text-highlight"
+          />
         </View>
       </View>
 
@@ -74,7 +78,11 @@ export default function ExerciseSetTracker({
           <Pressable
             onPress={onAddSet}
             className="h-12 w-12 items-center justify-center rounded-full border border-border bg-secondary">
-            <Icon name="Plus" size={20} className="text-subtext" />
+            <Icon
+              name="Plus"
+              size={20}
+              className="text-subtext"
+            />
           </Pressable>
         )}
       </View>

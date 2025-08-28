@@ -3,12 +3,7 @@ import { Link } from 'expo-router';
 import React, { useState } from 'react';
 import { View, Pressable, Dimensions, Image } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withTiming,
-  Easing,
-} from 'react-native-reanimated';
+import Animated, { useSharedValue, useAnimatedStyle, withTiming, Easing } from 'react-native-reanimated';
 
 import Avatar from '@/components/Avatar';
 import Header from '@/components/Header';
@@ -77,14 +72,30 @@ export default function ProgressScreen() {
             weight="75.2"
             photo={require('@/assets/img/progress-2.png')}
           />
-          <ProgressCard day="Saturday, 14 June" weight="75.2" />
-          <ProgressCard day="Friday, 13 June" weight="75.2" />
-          <ProgressCard day="Thursday, 12 June" weight="75.2" />
-          <ProgressCard day="Wednesday, 11 June" weight="75.2" />
+          <ProgressCard
+            day="Saturday, 14 June"
+            weight="75.2"
+          />
+          <ProgressCard
+            day="Friday, 13 June"
+            weight="75.2"
+          />
+          <ProgressCard
+            day="Thursday, 12 June"
+            weight="75.2"
+          />
+          <ProgressCard
+            day="Wednesday, 11 June"
+            weight="75.2"
+          />
 
           {/* Money Model Integration - Smart Offer Card for Progress */}
           <View className="mt-6">
-            <SmartOfferCard placement="progress" variant="full" className="mb-4" />
+            <SmartOfferCard
+              placement="progress"
+              variant="full"
+              className="mb-4"
+            />
           </View>
         </View>
       </ThemedScroller>
@@ -118,8 +129,8 @@ const WeightLossChart: React.FC<WeightLossChartProps> = ({ className = '' }) => 
 
   // Mock weight data for past month (30 days) - more realistic with daily fluctuations
   const weightData = [
-    75.2, 75.2, 75.2, 75.0, 74.9, 74.9, 74.9, 74.8, 74.7, 74.7, 74.8, 74.8, 74.8, 74.7, 74.6, 74.5,
-    74.4, 74.3, 74.2, 74.1, 74.1, 73.9, 73.9, 73.9, 73.8, 73.8, 73.8, 73.7, 73.7, 73.6,
+    75.2, 75.2, 75.2, 75.0, 74.9, 74.9, 74.9, 74.8, 74.7, 74.7, 74.8, 74.8, 74.8, 74.7, 74.6, 74.5, 74.4, 74.3, 74.2,
+    74.1, 74.1, 73.9, 73.9, 73.9, 73.8, 73.8, 73.8, 73.7, 73.7, 73.6,
   ];
 
   // Calculate statistics
@@ -229,9 +240,7 @@ const WeightLossChart: React.FC<WeightLossChartProps> = ({ className = '' }) => 
                 size={20}
                 color={colors.highlight}
               />
-              <ThemedText className="text-4xl font-bold text-green-600">
-                {weightLost.toFixed(1)}
-              </ThemedText>
+              <ThemedText className="text-4xl font-bold text-green-600">{weightLost.toFixed(1)}</ThemedText>
               <ThemedText className="mb-1 ml-1 text-lg opacity-60">kg</ThemedText>
             </View>
           </View>
@@ -240,7 +249,9 @@ const WeightLossChart: React.FC<WeightLossChartProps> = ({ className = '' }) => 
 
       {/* Chart */}
       <View className="-ml-4">
-        <Animated.View className="overflow-hidden" style={animatedStyle}>
+        <Animated.View
+          className="overflow-hidden"
+          style={animatedStyle}>
           <LineChart
             data={chartData}
             width={width - 30}
@@ -303,7 +314,9 @@ const WeightLossChart: React.FC<WeightLossChartProps> = ({ className = '' }) => 
 
 const ProgressCard = (props: any) => {
   return (
-    <Link asChild href="/(mobile)/(modals)/add-weight">
+    <Link
+      asChild
+      href="/(mobile)/(modals)/add-weight">
       <Pressable className="mt-4 flex-row items-center justify-between rounded-lg bg-secondary p-4">
         <View>
           <ThemedText className="text-base">{props.day}</ThemedText>
@@ -317,7 +330,11 @@ const ProgressCard = (props: any) => {
           />
         ) : (
           <View className="h-12 w-12 items-center justify-center rounded-lg bg-background">
-            <Icon name="Image" size={16} className="opacity-50" />
+            <Icon
+              name="Image"
+              size={16}
+              className="opacity-50"
+            />
           </View>
         )}
       </Pressable>

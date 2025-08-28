@@ -57,7 +57,9 @@ export default function WorkoutHistoryScreen() {
       {/* Day headers */}
       <View className="mb-2 flex-row justify-around">
         {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, index) => (
-          <View key={index} className="h-8 w-8 items-center justify-center">
+          <View
+            key={index}
+            className="h-8 w-8 items-center justify-center">
             <ThemedText className="text-subtext text-xs">{day}</ThemedText>
           </View>
         ))}
@@ -113,10 +115,7 @@ export default function WorkoutHistoryScreen() {
             size={16}
             className={`mr-2 ${viewMode === mode.key ? 'text-highlight' : 'text-subtext'}`}
           />
-          <ThemedText
-            className={`text-sm ${
-              viewMode === mode.key ? 'font-medium text-highlight' : 'text-subtext'
-            }`}>
+          <ThemedText className={`text-sm ${viewMode === mode.key ? 'font-medium text-highlight' : 'text-subtext'}`}>
             {mode.label}
           </ThemedText>
         </Pressable>
@@ -126,7 +125,11 @@ export default function WorkoutHistoryScreen() {
 
   return (
     <>
-      <Header title="History" className="bg-secondary" showBackButton />
+      <Header
+        title="History"
+        className="bg-secondary"
+        showBackButton
+      />
 
       <ThemedScroller className="flex-1">
         <View className="p-global">
@@ -140,7 +143,9 @@ export default function WorkoutHistoryScreen() {
           )}
 
           {viewMode === 'list' && (
-            <Section title="Recent Workouts" className="mb-6">
+            <Section
+              title="Recent Workouts"
+              className="mb-6">
               {[
                 { date: 'Today', workout: 'Workout B', exercises: 5 },
                 { date: 'Yesterday', workout: 'Workout A', exercises: 5 },
@@ -148,17 +153,22 @@ export default function WorkoutHistoryScreen() {
                 { date: '3 days ago', workout: 'Workout B', exercises: 5 },
                 { date: '1 week ago', workout: 'Workout A', exercises: 5 },
               ].map((item, index) => (
-                <Link key={index} asChild href="/screens/workout-detail">
+                <Link
+                  key={index}
+                  asChild
+                  href="/screens/workout-detail">
                   <Pressable className="mb-3 flex-row items-center justify-between rounded-lg bg-secondary p-4">
                     <View>
                       <ThemedText className="text-base font-medium">{item.workout}</ThemedText>
                       <ThemedText className="text-subtext text-sm">{item.date}</ThemedText>
                     </View>
                     <View className="flex-row items-center">
-                      <ThemedText className="text-subtext mr-2 text-sm">
-                        {item.exercises} exercises
-                      </ThemedText>
-                      <Icon name="ChevronRight" size={16} className="text-subtext" />
+                      <ThemedText className="text-subtext mr-2 text-sm">{item.exercises} exercises</ThemedText>
+                      <Icon
+                        name="ChevronRight"
+                        size={16}
+                        className="text-subtext"
+                      />
                     </View>
                   </Pressable>
                 </Link>
@@ -167,11 +177,12 @@ export default function WorkoutHistoryScreen() {
           )}
 
           {viewMode === 'notes' && (
-            <Section title="Workout Notes" className="mb-6">
+            <Section
+              title="Workout Notes"
+              className="mb-6">
               <View className="rounded-lg bg-secondary p-4">
                 <ThemedText className="text-subtext text-sm">
-                  No workout notes yet. Add notes during your workouts to track progress and
-                  observations.
+                  No workout notes yet. Add notes during your workouts to track progress and observations.
                 </ThemedText>
               </View>
             </Section>

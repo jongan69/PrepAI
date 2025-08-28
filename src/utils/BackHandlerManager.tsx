@@ -50,10 +50,7 @@ class BackHandlerManager {
     this.activeHandlerId = id;
 
     // Add the main handler function to the back button
-    this.backHandlerSubscription = BackHandler.addEventListener(
-      'hardwareBackPress',
-      this.mainHandler
-    );
+    this.backHandlerSubscription = BackHandler.addEventListener('hardwareBackPress', this.mainHandler);
   }
 
   // Unregister a handler by ID

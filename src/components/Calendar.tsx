@@ -41,20 +41,7 @@ export const ThemedCalendar: React.FC<ThemedCalendarProps> = ({
   const selectedYear = new Date(currentMonth).getFullYear();
   const selectedMonthIndex = new Date(currentMonth).getMonth();
 
-  const months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   const jumpToYear = (yearDelta: number) => {
     const newDate = new Date(currentMonth);
@@ -63,7 +50,9 @@ export const ThemedCalendar: React.FC<ThemedCalendarProps> = ({
   };
 
   return (
-    <View className={`overflow-hidden rounded-2xl ${className}`} style={style}>
+    <View
+      className={`overflow-hidden rounded-2xl ${className}`}
+      style={style}>
       {/* Year Navigation */}
       <View
         style={{
@@ -72,19 +61,33 @@ export const ThemedCalendar: React.FC<ThemedCalendarProps> = ({
           borderBottomWidth: 1,
         }}
         className="flex-row items-center justify-between px-4 py-3">
-        <TouchableOpacity onPress={() => jumpToYear(-1)} className="p-2">
-          <Icon name="ChevronLeft" size={20} color={colors.text} />
+        <TouchableOpacity
+          onPress={() => jumpToYear(-1)}
+          className="p-2">
+          <Icon
+            name="ChevronLeft"
+            size={20}
+            color={colors.text}
+          />
         </TouchableOpacity>
 
         <ThemedText className="text-lg font-semibold">{selectedYear}</ThemedText>
 
-        <TouchableOpacity onPress={() => jumpToYear(1)} className="p-2">
-          <Icon name="ChevronRight" size={20} color={colors.text} />
+        <TouchableOpacity
+          onPress={() => jumpToYear(1)}
+          className="p-2">
+          <Icon
+            name="ChevronRight"
+            size={20}
+            color={colors.text}
+          />
         </TouchableOpacity>
       </View>
 
       {/* Month Quick Navigation */}
-      <View style={{ backgroundColor: colors.secondary }} className="px-4 py-2">
+      <View
+        style={{ backgroundColor: colors.secondary }}
+        className="px-4 py-2">
         <View className="flex-row justify-between">
           {months.map((month, index) => (
             <TouchableOpacity
@@ -94,9 +97,7 @@ export const ThemedCalendar: React.FC<ThemedCalendarProps> = ({
                 newDate.setMonth(index);
                 setCurrentMonth(newDate.toISOString().split('T')[0]);
               }}
-              className={`rounded px-2 py-1 ${
-                index === selectedMonthIndex ? 'opacity-100' : 'opacity-60'
-              }`}
+              className={`rounded px-2 py-1 ${index === selectedMonthIndex ? 'opacity-100' : 'opacity-60'}`}
               style={{
                 backgroundColor: index === selectedMonthIndex ? colors.highlight : 'transparent',
               }}>

@@ -1,10 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { View, StyleProp, ViewStyle, LayoutChangeEvent } from 'react-native';
-import {
-  PanGestureHandler,
-  PanGestureHandlerGestureEvent,
-  TapGestureHandler,
-} from 'react-native-gesture-handler';
+import { PanGestureHandler, PanGestureHandlerGestureEvent, TapGestureHandler } from 'react-native-gesture-handler';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -85,9 +81,7 @@ const Slider = ({
 
   // Percentage for positioning (0-1)
   const percentage = useSharedValue(
-    maxValue === minValue
-      ? 0
-      : Math.max(0, Math.min(1, (effectiveValue - minValue) / (maxValue - minValue)))
+    maxValue === minValue ? 0 : Math.max(0, Math.min(1, (effectiveValue - minValue) / (maxValue - minValue)))
   );
 
   // Calculate display value from percentage
@@ -113,9 +107,7 @@ const Slider = ({
   // Calculate track width
   const trackWidth = useDerivedValue(() => {
     // Make track width relative to thumb center position
-    return (
-      percentage.value * (containerWidth.value - currentSize.thumbSize) + currentSize.thumbSize / 2
-    );
+    return percentage.value * (containerWidth.value - currentSize.thumbSize) + currentSize.thumbSize / 2;
   });
 
   // Handle direct tap on track
@@ -151,10 +143,7 @@ const Slider = ({
   };
 
   // Handle pan gesture
-  const panHandler = useAnimatedGestureHandler<
-    PanGestureHandlerGestureEvent,
-    AnimatedGestureContext
-  >({
+  const panHandler = useAnimatedGestureHandler<PanGestureHandlerGestureEvent, AnimatedGestureContext>({
     onStart: (_, ctx) => {
       ctx.startPercentage = percentage.value;
     },
@@ -209,12 +198,8 @@ const Slider = ({
 
       // Initialize position based on value or initialValue
       if (maxValue !== minValue) {
-        const valueToUse =
-          value !== undefined ? value : initialValue !== undefined ? initialValue : 0;
-        const validPercentage = Math.max(
-          0,
-          Math.min(1, (valueToUse - minValue) / (maxValue - minValue))
-        );
+        const valueToUse = value !== undefined ? value : initialValue !== undefined ? initialValue : 0;
+        const validPercentage = Math.max(0, Math.min(1, (valueToUse - minValue) / (maxValue - minValue)));
         percentage.value = validPercentage;
       }
     },
@@ -236,13 +221,13 @@ const Slider = ({
   );
 
   return (
-    <View className={`w-full ${className}`} style={style}>
+    <View
+      className={`w-full ${className}`}
+      style={style}>
       {label && (
         <View className="mb-2 flex-row justify-between">
           <ThemedText className={currentSize.labelText}>{label}</ThemedText>
-          <Animated.Text className={`text-text opacity-60 ${currentSize.valueText}`}>
-            {formatValue.value}
-          </Animated.Text>
+          <Animated.Text className={`text-text opacity-60 ${currentSize.valueText}`}>{formatValue.value}</Animated.Text>
         </View>
       )}
 

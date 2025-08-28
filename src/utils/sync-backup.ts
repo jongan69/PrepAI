@@ -64,9 +64,7 @@ export class SyncBackupManager {
       let totalCount = 0;
       for (const table of tables) {
         try {
-          const result = await syncDatabase.getAllAsync<{ count: number }>(
-            `SELECT COUNT(*) as count FROM ${table}`
-          );
+          const result = await syncDatabase.getAllAsync<{ count: number }>(`SELECT COUNT(*) as count FROM ${table}`);
           totalCount += result[0]?.count || 0;
         } catch {
           // Table might not exist yet, skip it
@@ -196,9 +194,7 @@ export class SyncBackupManager {
     syncPercentage: number;
   }> {
     try {
-      const totalResult = await syncDatabase.getAllAsync<{ count: number }>(
-        'SELECT COUNT(*) as count FROM sync_log'
-      );
+      const totalResult = await syncDatabase.getAllAsync<{ count: number }>('SELECT COUNT(*) as count FROM sync_log');
       const syncedResult = await syncDatabase.getAllAsync<{ count: number }>(
         'SELECT COUNT(*) as count FROM sync_log WHERE synced = 1'
       );

@@ -102,7 +102,12 @@ const SearchInput = () => {
       style={{ paddingTop: insets.top }}
       className="flex-col items-center justify-between bg-secondary px-4 pb-4">
       <View className="relative h-14 flex-row  rounded-xl bg-border">
-        <Icon name="ArrowLeft" onPress={() => router.back()} size={20} className="pl-2" />
+        <Icon
+          name="ArrowLeft"
+          onPress={() => router.back()}
+          size={20}
+          className="pl-2"
+        />
         <TextInput
           className="h-14 flex-1 rounded-xl px-4 text-text "
           placeholder="Search workouts"
@@ -110,11 +115,31 @@ const SearchInput = () => {
         />
       </View>
       <CardScroller className="mt-4">
-        <Chip className="!bg-background" size="lg" label="Strength" />
-        <Chip className="!bg-background" size="lg" label="Cardio" />
-        <Chip className="!bg-background" size="lg" label="Yoga" />
-        <Chip className="!bg-background" size="lg" label="Pilates" />
-        <Chip className="!bg-background" size="lg" label="Functional" />
+        <Chip
+          className="!bg-background"
+          size="lg"
+          label="Strength"
+        />
+        <Chip
+          className="!bg-background"
+          size="lg"
+          label="Cardio"
+        />
+        <Chip
+          className="!bg-background"
+          size="lg"
+          label="Yoga"
+        />
+        <Chip
+          className="!bg-background"
+          size="lg"
+          label="Pilates"
+        />
+        <Chip
+          className="!bg-background"
+          size="lg"
+          label="Functional"
+        />
       </CardScroller>
     </View>
   );
@@ -122,7 +147,9 @@ const SearchInput = () => {
 
 const WorkoutCard = (props: any) => {
   return (
-    <Link asChild href="/(mobile)/(modals)/add-workout">
+    <Link
+      asChild
+      href="/(mobile)/(modals)/add-workout">
       <Pressable
         style={shadowPresets.card}
         className="flex-row items-center justify-between rounded-xl bg-secondary p-4">
@@ -131,7 +158,11 @@ const WorkoutCard = (props: any) => {
 
           <View className="flex-row items-center gap-4">
             <View className="flex-row items-center">
-              <Icon name="Clock" size={14} className="mr-1 opacity-60" />
+              <Icon
+                name="Clock"
+                size={14}
+                className="mr-1 opacity-60"
+              />
               <ThemedText className="text-sm opacity-60">{props.duration}</ThemedText>
             </View>
 
@@ -141,7 +172,11 @@ const WorkoutCard = (props: any) => {
           </View>
         </View>
 
-        <Icon name="Play" size={20} className="h-10 w-10 rounded-full bg-background" />
+        <Icon
+          name="Play"
+          size={20}
+          className="h-10 w-10 rounded-full bg-background"
+        />
       </Pressable>
     </Link>
   );

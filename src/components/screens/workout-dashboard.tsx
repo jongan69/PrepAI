@@ -65,7 +65,9 @@ export default function StrongLiftsDashboardScreen() {
           </View>
 
           {workout.exercises.map((exercise, index) => (
-            <View key={index} className="mb-1">
+            <View
+              key={index}
+              className="mb-1">
               <ThemedText className="text-subtext text-sm">
                 {exercise.name}: {exercise.sets}
               </ThemedText>
@@ -106,7 +108,10 @@ export default function StrongLiftsDashboardScreen() {
       <ThemedScroller className="flex-1">
         <View className="p-global">
           {/* Welcome Card */}
-          <Card className="mb-6" title="Welcome Back!" image={require('@/assets/img/muscles.png')}>
+          <Card
+            className="mb-6"
+            title="Welcome Back!"
+            image={require('@/assets/img/muscles.png')}>
             <View className="flex-row items-start justify-between">
               <View className="flex-1">
                 <ThemedText className="mb-2 text-xl font-bold">Welcome Back!</ThemedText>
@@ -114,7 +119,12 @@ export default function StrongLiftsDashboardScreen() {
                   Last workout 1 week ago. Deload to avoid soreness.
                 </ThemedText>
               </View>
-              <Button title="Deload" variant="primary" size="small" className="ml-4" />
+              <Button
+                title="Deload"
+                variant="primary"
+                size="small"
+                className="ml-4"
+              />
             </View>
           </Card>
 
@@ -122,16 +132,24 @@ export default function StrongLiftsDashboardScreen() {
           {workoutCards.map(renderWorkoutCard)}
 
           {/* Start Workout Card */}
-          <Card className="mb-6" title="Start Workout" image={require('@/assets/img/muscles.png')}>
+          <Card
+            className="mb-6"
+            title="Start Workout"
+            image={require('@/assets/img/muscles.png')}>
             <View className="flex-row items-start justify-between">
               <View className="flex-1">
                 <ThemedText className="mb-2 text-xl font-bold">Start Workout</ThemedText>
-                <ThemedText className="text-subtext text-sm">
-                  Finish in 67min at 11:35 PM
-                </ThemedText>
+                <ThemedText className="text-subtext text-sm">Finish in 67min at 11:35 PM</ThemedText>
               </View>
-              <Link asChild href="/(mobile)/(workout)/stronglifts-workout">
-                <Button title="Start" variant="primary" size="small" className="ml-4" />
+              <Link
+                asChild
+                href="/(mobile)/(workout)/stronglifts-workout">
+                <Button
+                  title="Start"
+                  variant="primary"
+                  size="small"
+                  className="ml-4"
+                />
               </Link>
             </View>
           </Card>

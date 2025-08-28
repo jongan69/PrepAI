@@ -82,10 +82,7 @@ export default function OnboardingStart() {
         if (preferences && userId) {
           try {
             // Convert preferences to health profile and save to database
-            const healthProfileData = storageManager.convertPreferencesToHealthProfile(
-              preferences,
-              userId as string
-            );
+            const healthProfileData = storageManager.convertPreferencesToHealthProfile(preferences, userId as string);
 
             // Check if health profile already exists in database
             const existingProfile = await syncDatabase.getHealthProfile(userId as string);
@@ -114,17 +111,11 @@ export default function OnboardingStart() {
           ]
         );
       } else {
-        Alert.alert(
-          'No Profile Found',
-          'No saved profile was found. Please continue with the setup process.'
-        );
+        Alert.alert('No Profile Found', 'No saved profile was found. Please continue with the setup process.');
       }
     } catch (error) {
       console.error('Error recovering profile:', error);
-      Alert.alert(
-        'Recovery Failed',
-        'Unable to recover your profile. Please continue with the setup process.'
-      );
+      Alert.alert('Recovery Failed', 'Unable to recover your profile. Please continue with the setup process.');
     } finally {
       setIsRecovering(false);
     }
@@ -136,27 +127,31 @@ export default function OnboardingStart() {
 
   return (
     <>
-      <ImageBackground source={require('@/assets/img/welcome.jpg')} style={{ flex: 1 }}>
+      <ImageBackground
+        source={require('@/assets/img/welcome.jpg')}
+        style={{ flex: 1 }}>
         <LinearGradient
           colors={['transparent', 'rgba(0,0,0,0.8)']}
           style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
           <View className=" flex h-full flex-1 items-start justify-end p-6">
             <View>
-              <ThemedText className="mt-auto font-outfit-bold text-4xl text-white">
-                Welcome to PrepAI
-              </ThemedText>
+              <ThemedText className="mt-auto font-outfit-bold text-4xl text-white">Welcome to PrepAI</ThemedText>
               <ThemedText className="mt-2 text-base text-white">
-                Your personal health and fitness companion. Let's get your account set up with a few
-                quick steps.
+                Your personal health and fitness companion. Let's get your account set up with a few quick steps.
               </ThemedText>
             </View>
 
             {/* Sync Status */}
             <View className="mt-4">
-              <HealthSyncStatus compact showControls={false} />
+              <HealthSyncStatus
+                compact
+                showControls={false}
+              />
             </View>
 
-            <View className=" mt-6 w-full space-y-5" style={{ paddingBottom: insets.bottom }}>
+            <View
+              className=" mt-6 w-full space-y-5"
+              style={{ paddingBottom: insets.bottom }}>
               <Button
                 size="large"
                 className="!bg-highlight"

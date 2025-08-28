@@ -49,7 +49,9 @@ const Favorite: React.FC<FavoriteProps> = ({
 
   return (
     <>
-      <Pressable onPress={handleToggle} className={className}>
+      <Pressable
+        onPress={handleToggle}
+        className={className}>
         {isWhite ? (
           <Icon
             name="Bookmark"
@@ -69,7 +71,9 @@ const Favorite: React.FC<FavoriteProps> = ({
         )}
       </Pressable>
 
-      <ActionSheetThemed ref={actionSheetRef} gestureEnabled>
+      <ActionSheetThemed
+        ref={actionSheetRef}
+        gestureEnabled>
         <View className="p-4 pb-6">
           <ThemedText className="mb-1 mt-4 text-left text-lg font-bold">
             {isFavorite ? 'Added to Bookmarks' : 'Removed from Bookmarks'}
@@ -83,7 +87,11 @@ const Favorite: React.FC<FavoriteProps> = ({
 
           <View className="w-full flex-row justify-center">
             {isFavorite && (
-              <Button title="View Bookmarks" className="flex-1" onPress={handleViewFavorites} />
+              <Button
+                title="View Bookmarks"
+                className="flex-1"
+                onPress={handleViewFavorites}
+              />
             )}
 
             <Button

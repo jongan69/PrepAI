@@ -29,18 +29,16 @@ export default function StrongLiftsSetupScreen() {
   const [weightUnit, setWeightUnit] = useState<'lb' | 'kg'>('lb');
   const [workoutDays, setWorkoutDays] = useState<number>(3);
 
-  const updateExerciseWeight = (
-    index: number,
-    field: 'startingWeight' | 'currentWeight',
-    value: string
-  ) => {
+  const updateExerciseWeight = (index: number, field: 'startingWeight' | 'currentWeight', value: string) => {
     const updatedExercises = [...exercises];
     updatedExercises[index][field] = value;
     setExercises(updatedExercises);
   };
 
   const renderExercise = (exercise: Exercise, index: number) => (
-    <View key={exercise.name} className="mb-4 rounded-lg bg-secondary p-4">
+    <View
+      key={exercise.name}
+      className="mb-4 rounded-lg bg-secondary p-4">
       <ThemedText className="mb-3 text-lg font-semibold">{exercise.name}</ThemedText>
 
       <View className="flex-row gap-3">
@@ -75,12 +73,18 @@ export default function StrongLiftsSetupScreen() {
 
   return (
     <>
-      <Header title="StrongLifts Setup" className="bg-secondary" showBackButton />
+      <Header
+        title="StrongLifts Setup"
+        className="bg-secondary"
+        showBackButton
+      />
 
       <ThemedScroller className="flex-1">
         <View className="p-global">
           {/* Program Overview */}
-          <Section title="StrongLifts 5x5 Program" className="mb-6">
+          <Section
+            title="StrongLifts 5x5 Program"
+            className="mb-6">
             <View className="rounded-lg bg-secondary p-4">
               <ThemedText className="mb-2 text-base font-medium">Program Overview</ThemedText>
               <ThemedText className="text-subtext mb-2 text-sm">• 5 compound exercises</ThemedText>
@@ -91,7 +95,9 @@ export default function StrongLiftsSetupScreen() {
           </Section>
 
           {/* Weight Unit Selection */}
-          <Section title="Weight Unit" className="mb-6">
+          <Section
+            title="Weight Unit"
+            className="mb-6">
             <View className="flex-row rounded-lg bg-secondary p-1">
               {['lb', 'kg'].map((unit) => (
                 <Pressable
@@ -101,9 +107,7 @@ export default function StrongLiftsSetupScreen() {
                     weightUnit === unit ? 'bg-background' : 'bg-transparent'
                   }`}>
                   <ThemedText
-                    className={`text-base font-medium ${
-                      weightUnit === unit ? 'text-highlight' : 'text-subtext'
-                    }`}>
+                    className={`text-base font-medium ${weightUnit === unit ? 'text-highlight' : 'text-subtext'}`}>
                     {unit.toUpperCase()}
                   </ThemedText>
                 </Pressable>
@@ -112,7 +116,9 @@ export default function StrongLiftsSetupScreen() {
           </Section>
 
           {/* Body Weight */}
-          <Section title="Body Weight" className="mb-6">
+          <Section
+            title="Body Weight"
+            className="mb-6">
             <Input
               value={bodyWeight}
               onChangeText={setBodyWeight}
@@ -123,7 +129,9 @@ export default function StrongLiftsSetupScreen() {
           </Section>
 
           {/* Workout Frequency */}
-          <Section title="Workout Frequency" className="mb-6">
+          <Section
+            title="Workout Frequency"
+            className="mb-6">
             <View className="flex-row rounded-lg bg-secondary p-1">
               {[2, 3, 4].map((days) => (
                 <Pressable
@@ -133,9 +141,7 @@ export default function StrongLiftsSetupScreen() {
                     workoutDays === days ? 'bg-background' : 'bg-transparent'
                   }`}>
                   <ThemedText
-                    className={`text-base font-medium ${
-                      workoutDays === days ? 'text-highlight' : 'text-subtext'
-                    }`}>
+                    className={`text-base font-medium ${workoutDays === days ? 'text-highlight' : 'text-subtext'}`}>
                     {days}x/week
                   </ThemedText>
                 </Pressable>
@@ -144,12 +150,16 @@ export default function StrongLiftsSetupScreen() {
           </Section>
 
           {/* Exercise Weights */}
-          <Section title="Exercise Starting Weights" className="mb-6">
+          <Section
+            title="Exercise Starting Weights"
+            className="mb-6">
             {exercises.map((exercise, index) => renderExercise(exercise, index))}
           </Section>
 
           {/* Program Schedule */}
-          <Section title="Workout Schedule" className="mb-6">
+          <Section
+            title="Workout Schedule"
+            className="mb-6">
             <View className="rounded-lg bg-secondary p-4">
               <ThemedText className="mb-3 text-base font-medium">Workout A</ThemedText>
               <ThemedText className="text-subtext mb-1 text-sm">• Squat 5x5</ThemedText>
@@ -167,7 +177,9 @@ export default function StrongLiftsSetupScreen() {
 
       {/* Bottom Actions */}
       <View className="border-t border-border bg-secondary p-global">
-        <Link asChild href="/(mobile)/(index)">
+        <Link
+          asChild
+          href="/(mobile)/(index)">
           <Button
             title="Start StrongLifts Program"
             variant="primary"

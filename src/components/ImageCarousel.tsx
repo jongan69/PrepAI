@@ -89,9 +89,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
           images.map((_, index) => (
             <View
               key={index}
-              className={`mx-1 h-2 w-2 rounded-full ${
-                index === activeIndex ? 'bg-white' : 'bg-white/40'
-              }`}
+              className={`mx-1 h-2 w-2 rounded-full ${index === activeIndex ? 'bg-white' : 'bg-white/40'}`}
             />
           ))
         ) : (
@@ -106,7 +104,9 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
   };
 
   const renderItem = ({ item, index }: { item: string | ImageSourcePropType; index: number }) => (
-    <Pressable onPress={handleImagePress} style={{ width: containerWidth, height }}>
+    <Pressable
+      onPress={handleImagePress}
+      style={{ width: containerWidth, height }}>
       <Image
         source={typeof item === 'string' ? { uri: item } : item}
         style={[

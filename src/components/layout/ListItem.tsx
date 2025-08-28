@@ -51,8 +51,22 @@ const ListItem = forwardRef<View, ListItemProps>((props, ref) => {
 
   const renderLeading = () => {
     if (leading) return leading;
-    if (avatar) return <Avatar {...avatar} size={avatar.size || 'sm'} />;
-    if (icon) return <Icon name={icon.name} color={icon.color} variant="bordered" iconSize="m" />;
+    if (avatar)
+      return (
+        <Avatar
+          {...avatar}
+          size={avatar.size || 'sm'}
+        />
+      );
+    if (icon)
+      return (
+        <Icon
+          name={icon.name}
+          color={icon.color}
+          variant="bordered"
+          iconSize="m"
+        />
+      );
     return null;
   };
 
@@ -76,11 +90,7 @@ const ListItem = forwardRef<View, ListItemProps>((props, ref) => {
       {hasLeading && <View className="mr-3">{renderLeading()}</View>}
 
       <View className="flex-1">
-        {typeof title === 'string' ? (
-          <ThemedText className="text-base font-semibold">{title}</ThemedText>
-        ) : (
-          title
-        )}
+        {typeof title === 'string' ? <ThemedText className="text-base font-semibold">{title}</ThemedText> : title}
         {subtitle && <ThemedText className="text-sm opacity-60">{subtitle}</ThemedText>}
       </View>
 
@@ -91,8 +101,13 @@ const ListItem = forwardRef<View, ListItemProps>((props, ref) => {
   // If href is provided, use Link component
   if (href && !disabled) {
     return (
-      <Link href={href} asChild>
-        <Pressable ref={ref} className="active:bg-secondary" {...rest}>
+      <Link
+        href={href}
+        asChild>
+        <Pressable
+          ref={ref}
+          className="active:bg-secondary"
+          {...rest}>
           {itemContent}
         </Pressable>
       </Link>

@@ -24,10 +24,10 @@ const WorkoutStreak: React.FC<WorkoutStreakProps> = ({ className = '' }) => {
   return (
     <View className={className}>
       {days.map((day, dayIndex) => (
-        <View key={dayIndex} className="mb-1 flex-row items-center">
-          <ThemedText className="text-light-subtext dark:text-dark-subtext mr-3 w-4 text-xs">
-            {day}
-          </ThemedText>
+        <View
+          key={dayIndex}
+          className="mb-1 flex-row items-center">
+          <ThemedText className="text-light-subtext dark:text-dark-subtext mr-3 w-4 text-xs">{day}</ThemedText>
           <View className="flex-row gap-3">
             {workoutData[dayIndex].map((completed, weekIndex) => (
               <View

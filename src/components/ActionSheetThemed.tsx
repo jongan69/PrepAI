@@ -6,24 +6,22 @@ import useThemeColors from '@/contexts/ThemeColors';
 
 interface ActionSheetThemedProps extends ActionSheetProps {}
 
-const ActionSheetThemed = forwardRef<ActionSheetRef, ActionSheetThemedProps>(
-  ({ containerStyle, ...props }, ref) => {
-    const colors = useThemeColors();
-    const insets = useSafeAreaInsets();
-    return (
-      <ActionSheet
-        {...props}
-        ref={ref}
-        containerStyle={{
-          backgroundColor: colors.secondary,
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
-          paddingBottom: insets.bottom,
-          ...containerStyle,
-        }}
-      />
-    );
-  }
-);
+const ActionSheetThemed = forwardRef<ActionSheetRef, ActionSheetThemedProps>(({ containerStyle, ...props }, ref) => {
+  const colors = useThemeColors();
+  const insets = useSafeAreaInsets();
+  return (
+    <ActionSheet
+      {...props}
+      ref={ref}
+      containerStyle={{
+        backgroundColor: colors.secondary,
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        paddingBottom: insets.bottom,
+        ...containerStyle,
+      }}
+    />
+  );
+});
 
 export default ActionSheetThemed;

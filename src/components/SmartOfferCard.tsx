@@ -185,14 +185,16 @@ export default function SmartOfferCard({
             <View className="relative z-10 p-4">
               <View className="flex-row items-center justify-between">
                 <View className="flex-1">
-                  <ThemedText className="text-lg font-bold text-highlight">
-                    {getPlacementMessage()}
-                  </ThemedText>
+                  <ThemedText className="text-lg font-bold text-highlight">{getPlacementMessage()}</ThemedText>
                   <ThemedText className="text-muted-foreground text-sm">
                     {offer.title} - {offer.price === 0 ? 'FREE' : `$${offer.price}`}
                   </ThemedText>
                 </View>
-                <Icon name="ArrowRight" size={20} className="text-highlight" />
+                <Icon
+                  name="ArrowRight"
+                  size={20}
+                  className="text-highlight"
+                />
               </View>
             </View>
           </Card>
@@ -220,18 +222,23 @@ export default function SmartOfferCard({
             <View className="p-4">
               <View className="mb-2 flex-row items-center justify-between">
                 <View className="flex-row items-center">
-                  <Icon name={offer.icon as IconName} size={20} className="mr-2 text-highlight" />
+                  <Icon
+                    name={offer.icon as IconName}
+                    size={20}
+                    className="mr-2 text-highlight"
+                  />
                   <ThemedText className="font-semibold">{offer.title}</ThemedText>
                 </View>
-                {offer.isPopular && <Chip label="POPULAR" className="bg-highlight/20" />}
+                {offer.isPopular && (
+                  <Chip
+                    label="POPULAR"
+                    className="bg-highlight/20"
+                  />
+                )}
               </View>
-              <ThemedText className="text-muted-foreground mb-2 text-sm">
-                {offer.description}
-              </ThemedText>
+              <ThemedText className="text-muted-foreground mb-2 text-sm">{offer.description}</ThemedText>
               <View className="flex-row items-center justify-between">
-                <ThemedText className="text-lg font-bold">
-                  {offer.price === 0 ? 'FREE' : `$${offer.price}`}
-                </ThemedText>
+                <ThemedText className="text-lg font-bold">{offer.price === 0 ? 'FREE' : `$${offer.price}`}</ThemedText>
                 <ThemedText className="text-xs font-medium text-highlight">Learn More →</ThemedText>
               </View>
             </View>
@@ -253,7 +260,10 @@ export default function SmartOfferCard({
           padding: 0,
           margin: 0,
         }}>
-        <Card className={`overflow-hidden bg-secondary ${className}`} title="" image="">
+        <Card
+          className={`overflow-hidden bg-secondary ${className}`}
+          title=""
+          image="">
           {/* Background Image */}
           <View className="absolute inset-0 opacity-5">
             <Image
@@ -268,9 +278,7 @@ export default function SmartOfferCard({
             <View className="mb-4 flex-row items-start justify-between">
               <View className="flex-1">
                 <ThemedText className="text-xl font-bold">{offer.title}</ThemedText>
-                <ThemedText className="text-muted-foreground text-base">
-                  {offer.description}
-                </ThemedText>
+                <ThemedText className="text-muted-foreground text-base">{offer.description}</ThemedText>
               </View>
               <Icon
                 name={offer.icon as IconName}
@@ -281,16 +289,20 @@ export default function SmartOfferCard({
 
             {/* Urgency Message */}
             <View className="mb-4">
-              <ThemedText className="text-sm font-medium text-highlight">
-                {getUrgencyMessage()}
-              </ThemedText>
+              <ThemedText className="text-sm font-medium text-highlight">{getUrgencyMessage()}</ThemedText>
             </View>
 
             {/* Features */}
             <View className="mb-4">
               {offer.features.slice(0, 3).map((feature, index) => (
-                <View key={index} className="mb-1 flex-row items-center">
-                  <Icon name="Check" size={14} className="mr-2 text-highlight" />
+                <View
+                  key={index}
+                  className="mb-1 flex-row items-center">
+                  <Icon
+                    name="Check"
+                    size={14}
+                    className="mr-2 text-highlight"
+                  />
                   <ThemedText className="text-sm">{feature}</ThemedText>
                 </View>
               ))}
@@ -304,13 +316,9 @@ export default function SmartOfferCard({
             {/* Price and Action */}
             <View className="flex-row items-center justify-between">
               <View>
-                <ThemedText className="text-2xl font-bold">
-                  {offer.price === 0 ? 'FREE' : `$${offer.price}`}
-                </ThemedText>
+                <ThemedText className="text-2xl font-bold">{offer.price === 0 ? 'FREE' : `$${offer.price}`}</ThemedText>
                 {offer.originalPrice && (
-                  <ThemedText className="text-muted-foreground text-sm line-through">
-                    ${offer.originalPrice}
-                  </ThemedText>
+                  <ThemedText className="text-muted-foreground text-sm line-through">${offer.originalPrice}</ThemedText>
                 )}
               </View>
               <Button
@@ -325,7 +333,11 @@ export default function SmartOfferCard({
             {/* Guarantee */}
             {offer.guarantee && (
               <View className="mt-4 flex-row items-center justify-center">
-                <Icon name="Shield" size={16} className="mr-2 text-highlight" />
+                <Icon
+                  name="Shield"
+                  size={16}
+                  className="mr-2 text-highlight"
+                />
                 <ThemedText className="text-sm font-medium">{offer.guarantee}</ThemedText>
               </View>
             )}

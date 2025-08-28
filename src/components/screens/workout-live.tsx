@@ -117,7 +117,13 @@ export default function StrongLiftsWorkoutScreen() {
         title="Workout B"
         className="bg-secondary"
         showBackButton
-        rightComponents={[<Icon name="ChevronDown" size={20} className="text-highlight" />]}
+        rightComponents={[
+          <Icon
+            name="ChevronDown"
+            size={20}
+            className="text-highlight"
+          />,
+        ]}
       />
 
       <ThemedScroller className="flex-1">
@@ -159,8 +165,18 @@ export default function StrongLiftsWorkoutScreen() {
 
       {/* Bottom Actions */}
       <View className="flex-row justify-between border-t border-border bg-secondary p-global">
-        <Button title="Note" variant="ghost" size="medium" className="mr-2 flex-1" />
-        <Button title="Edit" variant="ghost" size="medium" className="ml-2 flex-1" />
+        <Button
+          title="Note"
+          variant="ghost"
+          size="medium"
+          className="mr-2 flex-1"
+        />
+        <Button
+          title="Edit"
+          variant="ghost"
+          size="medium"
+          className="ml-2 flex-1"
+        />
       </View>
     </>
   );

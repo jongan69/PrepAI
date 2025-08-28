@@ -104,10 +104,7 @@ class StorageManager {
     // Convert birthday to age
     if (preferences.birthday) {
       // Handle both Date objects and ISO strings
-      const birthdayDate =
-        preferences.birthday instanceof Date
-          ? preferences.birthday
-          : new Date(preferences.birthday);
+      const birthdayDate = preferences.birthday instanceof Date ? preferences.birthday : new Date(preferences.birthday);
 
       if (!isNaN(birthdayDate.getTime())) {
         profile.birthday = birthdayDate.toISOString();
@@ -240,14 +237,8 @@ class StorageManager {
         // Save to database if we have a user ID
         const currentUserId = userId || useDataStore.getState().user?.id;
         if (currentUserId) {
-          console.log(
-            '🔄 StorageManager - Converting preferences to health profile for user:',
-            currentUserId
-          );
-          const healthProfileData = this.convertPreferencesToHealthProfile(
-            preferences,
-            currentUserId
-          );
+          console.log('🔄 StorageManager - Converting preferences to health profile for user:', currentUserId);
+          const healthProfileData = this.convertPreferencesToHealthProfile(preferences, currentUserId);
           console.log('🔄 StorageManager - Health profile data:', healthProfileData);
 
           // Check if health profile already exists
@@ -256,9 +247,7 @@ class StorageManager {
           if (existingProfile) {
             console.log('🔄 StorageManager - Updating existing health profile');
             // Update existing profile
-            await useDataStore
-              .getState()
-              .updateHealthProfile(existingProfile.id, healthProfileData);
+            await useDataStore.getState().updateHealthProfile(existingProfile.id, healthProfileData);
           } else {
             console.log('🔄 StorageManager - Creating new health profile');
             // Create new profile

@@ -36,7 +36,9 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
         style={currentTheme === 'dark' ? 'light' : 'dark'}
         animated
       />
-      <View style={themes[currentTheme]} className="flex-1 bg-background">
+      <View
+        style={themes[currentTheme]}
+        className="flex-1 bg-background">
         {children}
       </View>
     </ThemeContext.Provider>

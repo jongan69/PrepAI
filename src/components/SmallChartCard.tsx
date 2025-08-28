@@ -110,7 +110,11 @@ export const SmallChartCard = ({
             <ThemedText className="text-xl font-bold">{value}</ThemedText>
             <ThemedText className="ml-1 -translate-y-1 text-sm opacity-50">{unit}</ThemedText>
           </View>
-          <Icon name="ChevronRight" size={20} color={colors.text} />
+          <Icon
+            name="ChevronRight"
+            size={20}
+            color={colors.text}
+          />
         </View>
       )}
     </View>

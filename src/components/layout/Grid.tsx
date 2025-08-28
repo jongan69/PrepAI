@@ -34,7 +34,10 @@ export default function Grid({ children, columns = 2, spacing = 16, className, s
   }, [children, columns]);
 
   return (
-    <View className={`w-full ${className}`} style={style} onLayout={handleLayout}>
+    <View
+      className={`w-full ${className}`}
+      style={style}
+      onLayout={handleLayout}>
       {rows.map((row, rowIndex) => (
         <View
           key={rowIndex}

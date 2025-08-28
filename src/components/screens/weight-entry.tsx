@@ -26,16 +26,27 @@ export default function WeightEntryScreen() {
 
   return (
     <View className="relative flex-1 flex-col bg-background">
-      <Header className="bg-transparent" title="Weight Entry" showBackButton />
+      <Header
+        className="bg-transparent"
+        title="Weight Entry"
+        showBackButton
+      />
       <View className="relative w-full flex-1 items-center justify-center">
         <Pressable
           className="mb-20 h-44 w-44 items-center justify-center overflow-hidden rounded-xl border border-border bg-secondary"
           onPress={pickImage}>
           {selectedImage ? (
-            <Image source={{ uri: selectedImage }} className="h-full w-full" resizeMode="cover" />
+            <Image
+              source={{ uri: selectedImage }}
+              className="h-full w-full"
+              resizeMode="cover"
+            />
           ) : (
             <>
-              <Icon name="Camera" size={30} />
+              <Icon
+                name="Camera"
+                size={30}
+              />
               <ThemedText className="mt-2 text-sm">Add photo</ThemedText>
             </>
           )}
@@ -82,9 +93,7 @@ const WeightBar = () => {
             }`}
           />
           <View className="mx-6">
-            <ThemedText className="text-center text-5xl font-semibold">
-              {weight.toFixed(1)} kg
-            </ThemedText>
+            <ThemedText className="text-center text-5xl font-semibold">{weight.toFixed(1)} kg</ThemedText>
           </View>
 
           <Icon

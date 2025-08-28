@@ -13,13 +13,7 @@ interface ToastProps {
   isVisible: boolean;
 }
 
-const Toast: React.FC<ToastProps> = ({
-  message,
-  type = 'info',
-  duration = 3000,
-  onHide,
-  isVisible,
-}) => {
+const Toast: React.FC<ToastProps> = ({ message, type = 'info', duration = 3000, onHide, isVisible }) => {
   const colors = useThemeColors();
   const translateY = useRef(new Animated.Value(-100)).current;
 

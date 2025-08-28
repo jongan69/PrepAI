@@ -42,7 +42,10 @@ const ListLink: React.FC<ListLinkProps> = ({
       style={style}>
       {icon && (
         <View className="mr-4">
-          <Icon name={icon} size={iconSize} />
+          <Icon
+            name={icon}
+            size={iconSize}
+          />
         </View>
       )}
       <View className="flex-1">
@@ -51,7 +54,10 @@ const ListLink: React.FC<ListLinkProps> = ({
       </View>
       {showChevron && (
         <View className="opacity-20">
-          <Icon name={rightIcon} size={20} />
+          <Icon
+            name={rightIcon}
+            size={20}
+          />
         </View>
       )}
     </View>
@@ -60,7 +66,10 @@ const ListLink: React.FC<ListLinkProps> = ({
   // If we have an href, make it a Link, otherwise a Pressable
   if (href && !disabled) {
     return (
-      <Link href={href as any} asChild className={` ${hasBorder ? 'border-b border-border' : ''}`}>
+      <Link
+        href={href as any}
+        asChild
+        className={` ${hasBorder ? 'border-b border-border' : ''}`}>
         <Pressable
           onPress={() => {
             console.log(`[ListLink] Navigation pressed: ${title}`);

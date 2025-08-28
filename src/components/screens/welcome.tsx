@@ -53,7 +53,9 @@ export default function OnboardingScreen() {
   };
 
   return (
-    <View style={{}} className="flex-1 bg-background">
+    <View
+      style={{}}
+      className="flex-1 bg-background">
       <View className="relative flex-1 bg-background">
         <FlatList
           className="h-full w-full"
@@ -66,8 +68,12 @@ export default function OnboardingScreen() {
           decelerationRate="fast"
           snapToInterval={width}
           renderItem={({ item }) => (
-            <View style={{ width }} className="items-center justify-center">
-              <ImageBackground source={item.image} className="absolute left-0 top-0 h-full w-full">
+            <View
+              style={{ width }}
+              className="items-center justify-center">
+              <ImageBackground
+                source={item.image}
+                className="absolute left-0 top-0 h-full w-full">
                 <LinearGradient
                   colors={['transparent', 'rgba(0,0,0,0.8)']}
                   style={{
@@ -76,7 +82,9 @@ export default function OnboardingScreen() {
                     display: 'flex',
                     flexDirection: 'column',
                   }}>
-                  <View className="mt-8 flex-1 items-center justify-center" style={{}}>
+                  <View
+                    className="mt-8 flex-1 items-center justify-center"
+                    style={{}}>
                     <Icon
                       name={item.icon as IconName}
                       size={30}
@@ -84,12 +92,8 @@ export default function OnboardingScreen() {
                       color="white"
                       className="h-20 w-20 rounded-full border border-white/40"
                     />
-                    <ThemedText className="mt-6 text-center font-outfit-bold text-3xl">
-                      {item.title}
-                    </ThemedText>
-                    <Text className="px-20 text-center text-lg text-text opacity-80">
-                      {item.description}
-                    </Text>
+                    <ThemedText className="mt-6 text-center font-outfit-bold text-3xl">{item.title}</ThemedText>
+                    <Text className="px-20 text-center text-lg text-text opacity-80">{item.description}</Text>
                   </View>
                 </LinearGradient>
               </ImageBackground>
@@ -117,17 +121,29 @@ export default function OnboardingScreen() {
             <Pressable
               onPress={() => router.push('/(mobile)/(onboarding)/login')}
               className="flex flex-1 flex-row items-center justify-center rounded-full border border-white py-4">
-              <AntDesign name="google" size={22} color="white" />
+              <AntDesign
+                name="google"
+                size={22}
+                color="white"
+              />
             </Pressable>
             <Pressable
               onPress={() => router.push('/(mobile)/(onboarding)/login')}
               className="flex w-1/4 flex-1 flex-row items-center justify-center rounded-full bg-white py-4">
-              <Icon name="Mail" size={20} color="black" />
+              <Icon
+                name="Mail"
+                size={20}
+                color="black"
+              />
             </Pressable>
             <Pressable
               onPress={() => router.push('/(mobile)/(onboarding)/login')}
               className="flex flex-1 flex-row items-center justify-center rounded-full border border-white py-4">
-              <AntDesign name="apple1" size={22} color="white" />
+              <AntDesign
+                name="apple1"
+                size={22}
+                color="white"
+              />
             </Pressable>
           </View>
         </View>

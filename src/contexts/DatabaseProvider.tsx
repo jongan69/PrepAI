@@ -68,7 +68,7 @@ export function DatabaseProvider({ children }: DatabaseProviderProps) {
     }
 
     let isMounted = true;
-    
+
     const handleUserAuth = async () => {
       if (!isAuthLoaded || !isInitialized || !isMounted) return;
 
@@ -194,9 +194,7 @@ export function DatabaseProvider({ children }: DatabaseProviderProps) {
         // assume they have completed onboarding (they've used the app before)
         let finalIsCompleted = isCompleted;
         if (!isFirstTime && !isCompleted) {
-          console.log(
-            '🔄 DatabaseProvider - Auto-fixing onboarding status for non-authenticated existing user'
-          );
+          console.log('🔄 DatabaseProvider - Auto-fixing onboarding status for non-authenticated existing user');
           await storageManager.forceCompleteOnboardingForExistingUser();
           finalIsCompleted = true;
         }

@@ -10,7 +10,11 @@ import ThemedText from '@/components/ThemedText';
 export default function AddWeightScreen() {
   return (
     <View className="relative flex-1 bg-background">
-      <Header className="bg-transparent" title="Add Weight" showBackButton />
+      <Header
+        className="bg-transparent"
+        title="Add Weight"
+        showBackButton
+      />
       <View className="relative w-full flex-1 items-center justify-center">
         <WeightBar />
       </View>
@@ -81,9 +85,7 @@ const WeightBar = () => {
             }`}
           />
           <View className="mx-6">
-            <ThemedText className="text-center text-5xl font-semibold">
-              {getDisplayValue()}
-            </ThemedText>
+            <ThemedText className="text-center text-5xl font-semibold">{getDisplayValue()}</ThemedText>
           </View>
 
           <Icon

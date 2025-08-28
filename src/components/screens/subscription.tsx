@@ -35,9 +35,7 @@ interface MoneyOffer {
 
 export default function SubscriptionScreen() {
   const [selectedOffer, setSelectedOffer] = useState<string>('');
-  const [currentStage, setCurrentStage] = useState<
-    'attraction' | 'upsell' | 'downsell' | 'continuity'
-  >('attraction');
+  const [currentStage, setCurrentStage] = useState<'attraction' | 'upsell' | 'downsell' | 'continuity'>('attraction');
   const actionSheetRef = useRef<ActionSheetRef>(null);
   const colors = useThemeColors();
 
@@ -50,12 +48,7 @@ export default function SubscriptionScreen() {
       title: '7-Day Free Trial',
       description: 'Try PrepAI Premium risk-free',
       price: 'FREE',
-      features: [
-        'Unlimited meal planning',
-        'AI workout recommendations',
-        'Progress tracking',
-        'Cancel anytime',
-      ],
+      features: ['Unlimited meal planning', 'AI workout recommendations', 'Progress tracking', 'Cancel anytime'],
       icon: 'Gift',
       trialDays: 7,
       guarantee: '100% Money Back Guarantee',
@@ -117,12 +110,7 @@ export default function SubscriptionScreen() {
       title: 'Basic Monthly',
       description: 'Essential features only',
       price: '$14.99',
-      features: [
-        'Basic meal planning',
-        'Simple workout tracking',
-        'Weight logging',
-        'Basic support',
-      ],
+      features: ['Basic meal planning', 'Simple workout tracking', 'Weight logging', 'Basic support'],
       icon: 'Check',
     },
     {
@@ -221,9 +209,7 @@ export default function SubscriptionScreen() {
             <View className="mb-4 flex-row items-center justify-between">
               <ThemedText className="text-2xl font-bold">{getStageTitle(currentStage)}</ThemedText>
             </View>
-            <ThemedText className="text-muted-foreground text-base">
-              {getStageDescription(currentStage)}
-            </ThemedText>
+            <ThemedText className="text-muted-foreground text-base">{getStageDescription(currentStage)}</ThemedText>
           </View>
 
           {/* Current Stage Offers */}
@@ -240,33 +226,46 @@ export default function SubscriptionScreen() {
 
           {/* Value Proposition */}
           <View className="mt-8 px-global">
-            <Card className="bg-secondary/50" title="" image={require('@/assets/img/subscription-banner.jpg')}>
+            <Card
+              className="bg-secondary/50"
+              title=""
+              image={require('@/assets/img/subscription-banner.jpg')}>
               <View className="p-4">
-                <ThemedText className="mb-2 text-lg font-semibold">
-                  ✨ Why Choose PrepAI?
-                </ThemedText>
+                <ThemedText className="mb-2 text-lg font-semibold">✨ Why Choose PrepAI?</ThemedText>
                 <ThemedText className="text-muted-foreground mb-3 text-sm">
                   We're here to support your health journey every step of the way:
                 </ThemedText>
                 <View className="space-y-2">
                   <View className="flex-row items-center">
-                    <Icon name="Gift" size={16} className="mr-2" />
+                    <Icon
+                      name="Gift"
+                      size={16}
+                      className="mr-2"
+                    />
                     <ThemedText className="text-sm">Start free with no commitment</ThemedText>
                   </View>
                   <View className="flex-row items-center">
-                    <Icon name="TrendingUp" size={16} className="mr-2" />
-                    <ThemedText className="text-sm">
-                      Unlock advanced features as you grow
-                    </ThemedText>
+                    <Icon
+                      name="TrendingUp"
+                      size={16}
+                      className="mr-2"
+                    />
+                    <ThemedText className="text-sm">Unlock advanced features as you grow</ThemedText>
                   </View>
                   <View className="flex-row items-center">
-                    <Icon name="Shield" size={16} className="mr-2" />
-                    <ThemedText className="text-sm">
-                      Choose the plan that fits your needs
-                    </ThemedText>
+                    <Icon
+                      name="Shield"
+                      size={16}
+                      className="mr-2"
+                    />
+                    <ThemedText className="text-sm">Choose the plan that fits your needs</ThemedText>
                   </View>
                   <View className="flex-row items-center">
-                    <Icon name="Crown" size={16} className="mr-2" />
+                    <Icon
+                      name="Crown"
+                      size={16}
+                      className="mr-2"
+                    />
                     <ThemedText className="text-sm">Invest in your long-term success</ThemedText>
                   </View>
                 </View>
@@ -309,11 +308,14 @@ export default function SubscriptionScreen() {
         }}
         ref={actionSheetRef}>
         <View className="items-center px-6 pt-10">
-          <Icon name="Check" size={24} className="mb-6 h-20 w-20 rounded-full bg-highlight" />
+          <Icon
+            name="Check"
+            size={24}
+            className="mb-6 h-20 w-20 rounded-full bg-highlight"
+          />
           <ThemedText className="text-4xl font-semibold">Welcome to PrepAI!</ThemedText>
           <ThemedText className="mb-8 mt-2 px-14 text-center text-lg font-light">
-            You're all set up with your chosen plan. We'll notify you before your next billing
-            cycle.
+            You're all set up with your chosen plan. We'll notify you before your next billing cycle.
           </ThemedText>
           <Button
             onPress={() => actionSheetRef.current?.hide()}
@@ -357,12 +359,14 @@ const MoneyOfferCard: React.FC<MoneyOfferCardProps> = ({ offer, isSelected, onSe
   return (
     <Pressable
       onPress={onSelect}
-      className={`relative mb-4 rounded-xl border-2 bg-secondary ${
-        isSelected ? 'border-highlight' : 'border-border'
-      }`}>
+      className={`relative mb-4 rounded-xl border-2 bg-secondary ${isSelected ? 'border-highlight' : 'border-border'}`}>
       {/* Background Image */}
       <View className="absolute inset-0 overflow-hidden opacity-10">
-        <Image source={getOfferImage()} className="h-full w-full" resizeMode="cover" />
+        <Image
+          source={getOfferImage()}
+          className="h-full w-full"
+          resizeMode="cover"
+        />
       </View>
 
       {/* Popular Badge */}
@@ -390,9 +394,7 @@ const MoneyOfferCard: React.FC<MoneyOfferCardProps> = ({ offer, isSelected, onSe
             name={offer.icon as IconName}
             size={32}
             color={isSelected ? colors.highlight : colors.text}
-            className={`h-16 w-16 rounded-full p-4 ${
-              isSelected ? 'bg-highlight/20' : 'bg-background'
-            }`}
+            className={`h-16 w-16 rounded-full p-4 ${isSelected ? 'bg-highlight/20' : 'bg-background'}`}
           />
         </View>
 
@@ -400,9 +402,7 @@ const MoneyOfferCard: React.FC<MoneyOfferCardProps> = ({ offer, isSelected, onSe
         <View className="mb-4 flex-row items-center">
           <ThemedText className="text-3xl font-bold">{offer.price}</ThemedText>
           {offer.originalPrice && (
-            <ThemedText className="text-muted-foreground ml-2 text-lg line-through">
-              {offer.originalPrice}
-            </ThemedText>
+            <ThemedText className="text-muted-foreground ml-2 text-lg line-through">{offer.originalPrice}</ThemedText>
           )}
           {offer.discount && (
             <View className="ml-2 rounded-full bg-highlight px-2 py-1">
@@ -414,8 +414,14 @@ const MoneyOfferCard: React.FC<MoneyOfferCardProps> = ({ offer, isSelected, onSe
         {/* Features */}
         <View className="mb-4">
           {offer.features.map((feature, index) => (
-            <View key={index} className="mb-2 flex-row items-center">
-              <Icon name="Check" size={16} className="mr-2 text-highlight" />
+            <View
+              key={index}
+              className="mb-2 flex-row items-center">
+              <Icon
+                name="Check"
+                size={16}
+                className="mr-2 text-highlight"
+              />
               <ThemedText className="text-sm">{feature}</ThemedText>
             </View>
           ))}
@@ -424,7 +430,11 @@ const MoneyOfferCard: React.FC<MoneyOfferCardProps> = ({ offer, isSelected, onSe
         {/* Guarantee */}
         {offer.guarantee && (
           <View className="flex-row items-center">
-            <Icon name="Shield" size={16} className="mr-2 text-highlight" />
+            <Icon
+              name="Shield"
+              size={16}
+              className="mr-2 text-highlight"
+            />
             <ThemedText className="text-sm font-medium">{offer.guarantee}</ThemedText>
           </View>
         )}

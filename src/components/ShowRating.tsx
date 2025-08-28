@@ -44,8 +44,14 @@ const ShowRating: React.FC<ShowRatingProps> = ({
 
   if (displayMode === 'number') {
     return (
-      <View className={`flex-row  items-center gap-x-1 ${className}`} style={style}>
-        <Ionicons name="star" size={getSize().icon} color={starColor} />
+      <View
+        className={`flex-row  items-center gap-x-1 ${className}`}
+        style={style}>
+        <Ionicons
+          name="star"
+          size={getSize().icon}
+          color={starColor}
+        />
         <ThemedText
           className={`font-medium ${getSize().text}`}
           style={color ? { color: starColor } : undefined}>

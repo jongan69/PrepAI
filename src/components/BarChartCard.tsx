@@ -69,9 +69,13 @@ const BarChartCard: React.FC<BarChartCardProps> = ({
       <View className="flex-row">
         {/* Y-Axis Labels */}
         {showYAxis && (
-          <View className="mr-3 justify-between" style={{ height: chartHeight }}>
+          <View
+            className="mr-3 justify-between"
+            style={{ height: chartHeight }}>
             {defaultYLabels.reverse().map((value, index) => (
-              <ThemedText key={index} className="min-w-6 text-right text-xs opacity-60">
+              <ThemedText
+                key={index}
+                className="min-w-6 text-right text-xs opacity-60">
                 {value}
               </ThemedText>
             ))}
@@ -79,14 +83,18 @@ const BarChartCard: React.FC<BarChartCardProps> = ({
         )}
 
         {/* Chart Area */}
-        <View className="flex-1" style={{ height: chartHeight }}>
+        <View
+          className="flex-1"
+          style={{ height: chartHeight }}>
           {/* Bars Container */}
           <View className="h-full flex-row items-end justify-between px-0">
             {data.map((value, index) => {
               const heightPercentage = (value - minValue) / range;
 
               return (
-                <View key={index} className="flex-1 items-center ">
+                <View
+                  key={index}
+                  className="flex-1 items-center ">
                   <Animated.View
                     className="mx-1 rounded-t-md"
                     style={{
@@ -109,9 +117,13 @@ const BarChartCard: React.FC<BarChartCardProps> = ({
 
       {/* Bottom Axis - Labels */}
       {showXAxis && labels && (
-        <View className="mt-2 flex-row" style={{ marginLeft: showYAxis ? 32 : 0 }}>
+        <View
+          className="mt-2 flex-row"
+          style={{ marginLeft: showYAxis ? 32 : 0 }}>
           {labels.map((label, index) => (
-            <View key={index} className="flex-1 items-center">
+            <View
+              key={index}
+              className="flex-1 items-center">
               <ThemedText className="text-xs opacity-60">{label}</ThemedText>
             </View>
           ))}

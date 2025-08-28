@@ -83,10 +83,10 @@ export default function LoginScreen() {
         // and redirect the user
         if (signInAttempt.status === 'complete') {
           await setActive({ session: signInAttempt.createdSessionId });
-          
+
           // Mark that user has opened the app before (not first time user)
           await storageManager.setFirstTimeUserCompleted();
-          
+
           console.log('Login successful, redirecting to main app');
           // Let the router handle redirection based on onboarding status
           router.replace('/');
@@ -106,8 +106,12 @@ export default function LoginScreen() {
   };
 
   return (
-    <ImageBackground source={require('@/assets/img/onboarding-1.jpg')} style={{ flex: 1 }}>
-      <LinearGradient colors={['transparent', 'transparent']} style={{ flex: 1 }}>
+    <ImageBackground
+      source={require('@/assets/img/onboarding-1.jpg')}
+      style={{ flex: 1 }}>
+      <LinearGradient
+        colors={['transparent', 'transparent']}
+        style={{ flex: 1 }}>
         <ScrollView
           contentContainerStyle={{ flex: 1 }}
           keyboardShouldPersistTaps="handled"
@@ -115,9 +119,16 @@ export default function LoginScreen() {
           bounces={false}
           className="flex-1">
           <StatusBar style="light" />
-          <View className="flex-1" style={{ paddingTop: insets.top }}>
+          <View
+            className="flex-1"
+            style={{ paddingTop: insets.top }}>
             <View className="w-full flex-row items-center justify-between px-global">
-              <Icon name="ArrowLeft" onPress={() => router.back()} size={24} color="white" />
+              <Icon
+                name="ArrowLeft"
+                onPress={() => router.back()}
+                size={24}
+                color="white"
+              />
               <Link
                 href="/(mobile)/(onboarding)/signup"
                 className="rounded-xl border border-white/60 px-3 py-2 text-white">

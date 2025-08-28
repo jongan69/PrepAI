@@ -55,19 +55,24 @@ const Expandable: React.FC<ExpandableProps> = ({
   };
 
   return (
-    <View className={`border-b border-border ${className}`} style={style}>
-      <Pressable onPress={toggleExpand} className="flex-row items-center py-5">
+    <View
+      className={`border-b border-border ${className}`}
+      style={style}>
+      <Pressable
+        onPress={toggleExpand}
+        className="flex-row items-center py-5">
         {icon && (
           <View className="mr-3">
-            <Icon name={icon} size={24} />
+            <Icon
+              name={icon}
+              size={24}
+            />
           </View>
         )}
         <View className="flex-1">
           <ThemedText className="text-base font-medium">{title}</ThemedText>
           {description && (
-            <ThemedText className="text-light-subtext dark:text-dark-subtext text-sm">
-              {description}
-            </ThemedText>
+            <ThemedText className="text-light-subtext dark:text-dark-subtext text-sm">{description}</ThemedText>
           )}
         </View>
         <Animated.View
@@ -81,7 +86,10 @@ const Expandable: React.FC<ExpandableProps> = ({
               },
             ],
           }}>
-          <Icon name="ChevronDown" size={20} />
+          <Icon
+            name="ChevronDown"
+            size={20}
+          />
         </Animated.View>
       </Pressable>
       <Animated.View

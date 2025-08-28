@@ -1,15 +1,7 @@
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
-import {
-  View,
-  Text,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-  ViewStyle,
-  ImageSourcePropType,
-} from 'react-native';
+import { View, Text, Image, ImageBackground, TouchableOpacity, ViewStyle, ImageSourcePropType } from 'react-native';
 
 import { Button } from './Button';
 import Favorite from './Favorite';
@@ -111,7 +103,11 @@ const Card: React.FC<CardProps> = ({
     if (!rating) return null;
     return (
       <View className="flex-row items-center">
-        <MaterialIcons name="star" size={16} color={colors.text} />
+        <MaterialIcons
+          name="star"
+          size={16}
+          color={colors.text}
+        />
         <ThemedText className="ml-0 text-xs font-semibold">{rating}</ThemedText>
       </View>
     );
@@ -135,7 +131,11 @@ const Card: React.FC<CardProps> = ({
         <View className="relative">
           {hasFavorite && (
             <View className="absolute right-2 top-2 z-50">
-              <Favorite initialState={false} productName={title} size={24} />
+              <Favorite
+                initialState={false}
+                productName={title}
+                size={24}
+              />
             </View>
           )}
           {variant === 'overlay' ? (
@@ -150,7 +150,9 @@ const Card: React.FC<CardProps> = ({
                   <View className="absolute bottom-0 left-0 right-0 p-4">
                     <Text className="text-base font-bold text-white">{title}</Text>
                     {description && (
-                      <Text numberOfLines={1} className="text-xs text-white">
+                      <Text
+                        numberOfLines={1}
+                        className="text-xs text-white">
                         {description}
                       </Text>
                     )}
@@ -183,7 +185,9 @@ const Card: React.FC<CardProps> = ({
             <ThemedText className="mb-2 text-sm font-semibold">{title}</ThemedText>
 
             {description && (
-              <ThemedText numberOfLines={1} className="text-xs text-gray-600 dark:text-gray-300">
+              <ThemedText
+                numberOfLines={1}
+                className="text-xs text-gray-600 dark:text-gray-300">
                 {description}
               </ThemedText>
             )}
@@ -195,7 +199,12 @@ const Card: React.FC<CardProps> = ({
             )}
             {children}
             {button && (
-              <Button className="mt-3" title={button} size="small" onPress={onButtonPress} />
+              <Button
+                className="mt-3"
+                title={button}
+                size="small"
+                onPress={onButtonPress}
+              />
             )}
           </View>
         )}

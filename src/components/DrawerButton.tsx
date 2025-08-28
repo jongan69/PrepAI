@@ -14,12 +14,7 @@ interface DrawerButtonProps {
   isAvatar?: boolean;
 }
 
-export default function DrawerButton({
-  size = 'md',
-  className,
-  style,
-  isAvatar = false,
-}: DrawerButtonProps) {
+export default function DrawerButton({ size = 'md', className, style, isAvatar = false }: DrawerButtonProps) {
   const colors = useThemeColors();
   const { imageUrl, displayName } = useClerkUser();
   const navigation = useNavigation<NavigationProp<any>>();
@@ -39,12 +34,24 @@ export default function DrawerButton({
   };
 
   return (
-    <View className={`rounded-full ${className}`} style={style}>
-      <Pressable onPress={handlePress} style={({ pressed }) => [{ opacity: pressed ? 0.7 : 1 }]}>
+    <View
+      className={`rounded-full ${className}`}
+      style={style}>
+      <Pressable
+        onPress={handlePress}
+        style={({ pressed }) => [{ opacity: pressed ? 0.7 : 1 }]}>
         {isAvatar ? (
-          <Avatar src={imageUrl} name={displayName} size="xs" />
+          <Avatar
+            src={imageUrl}
+            name={displayName}
+            size="xs"
+          />
         ) : (
-          <Icon name="Menu" size={sizeMap[size]} color={colors.text} />
+          <Icon
+            name="Menu"
+            size={sizeMap[size]}
+            color={colors.text}
+          />
         )}
       </Pressable>
     </View>

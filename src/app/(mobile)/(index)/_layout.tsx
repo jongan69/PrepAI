@@ -22,15 +22,25 @@ export default function Layout() {
           paddingBottom: insets.bottom,
         }}>
         {/* Home Tab */}
-        <TabTrigger name="index" href="/" asChild>
-          <TabButton labelAnimated icon="Home">
+        <TabTrigger
+          name="index"
+          href="/"
+          asChild>
+          <TabButton
+            labelAnimated
+            icon="Home">
             Home
           </TabButton>
         </TabTrigger>
 
         {/* Workouts Tab */}
-        <TabTrigger name="workouts" href="/workouts" asChild>
-          <TabButton labelAnimated icon="BicepsFlexed">
+        <TabTrigger
+          name="workouts"
+          href="/workouts"
+          asChild>
+          <TabButton
+            labelAnimated
+            icon="BicepsFlexed">
             Workouts
           </TabButton>
         </TabTrigger>
@@ -40,15 +50,25 @@ export default function Layout() {
         </View>
 
         {/* Meals Tab */}
-        <TabTrigger name="meals" href="/meals" asChild>
-          <TabButton labelAnimated icon="Utensils">
+        <TabTrigger
+          name="meals"
+          href="/meals"
+          asChild>
+          <TabButton
+            labelAnimated
+            icon="Utensils">
             Meals
           </TabButton>
         </TabTrigger>
 
         {/* Progress Tab */}
-        <TabTrigger name="progress" href="/progress" asChild>
-          <TabButton labelAnimated icon="ChartNoAxesColumn">
+        <TabTrigger
+          name="progress"
+          href="/progress"
+          asChild>
+          <TabButton
+            labelAnimated
+            icon="ChartNoAxesColumn">
             Progress
           </TabButton>
         </TabTrigger>

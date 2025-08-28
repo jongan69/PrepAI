@@ -33,7 +33,11 @@ export default function useThemedNavigation() {
 
   // StatusBar component with appropriate theme styling
   const ThemedStatusBar = () => (
-    <StatusBar style={isDark ? 'light' : 'dark'} backgroundColor="transparent" translucent />
+    <StatusBar
+      style={isDark ? 'light' : 'dark'}
+      backgroundColor="transparent"
+      translucent
+    />
   );
 
   // Navigation container/stack screen options for themed backgrounds

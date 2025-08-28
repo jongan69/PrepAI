@@ -165,7 +165,12 @@ export default function MealsScreen() {
       <Header
         className="bg-secondary"
         leftComponent={
-          <Avatar src={imageUrl} name={displayName} size="sm" link="/(mobile)/(profile)" />
+          <Avatar
+            src={imageUrl}
+            name={displayName}
+            size="sm"
+            link="/(mobile)/(profile)"
+          />
         }
         rightComponents={[
           <Icon
@@ -177,7 +182,9 @@ export default function MealsScreen() {
         ]}
       />
       <View className="w-full flex-row items-center justify-between border-b border-border bg-secondary px-global py-4">
-        <Pressable onPress={handlePrevDay} disabled={currentDayIndex === 0}>
+        <Pressable
+          onPress={handlePrevDay}
+          disabled={currentDayIndex === 0}>
           <Icon
             name="ChevronLeft"
             size={20}
@@ -185,7 +192,9 @@ export default function MealsScreen() {
           />
         </Pressable>
         <ThemedText className="text-base">{daysData[currentDayIndex].date}</ThemedText>
-        <Pressable onPress={handleNextDay} disabled={currentDayIndex === daysData.length - 1}>
+        <Pressable
+          onPress={handleNextDay}
+          disabled={currentDayIndex === daysData.length - 1}>
           <Icon
             name="ChevronRight"
             size={20}
@@ -222,7 +231,9 @@ const DayContent = ({ data }: { data: (typeof daysData)[0] }) => {
   const { width } = require('react-native').Dimensions.get('window');
 
   return (
-    <ThemedScroller className="flex-1 bg-background !px-0" style={{ width }}>
+    <ThemedScroller
+      className="flex-1 bg-background !px-0"
+      style={{ width }}>
       <TopPart data={data} />
       <View className="px-global">
         {data.meals.breakfast && (
@@ -256,9 +267,9 @@ const DayContent = ({ data }: { data: (typeof daysData)[0] }) => {
 
         {/* Money Model Integration - Smart Offer Card for Meals */}
         <View className="mt-6">
-          <SmartOfferCard 
-            placement="meal" 
-            variant="compact" 
+          <SmartOfferCard
+            placement="meal"
+            variant="compact"
             className="mb-4"
           />
         </View>
@@ -273,9 +284,17 @@ const TopPart = ({ data }: { data: (typeof daysData)[0] }) => {
   return (
     <View className="mb-global bg-secondary">
       <View className="px-global">
-        <Section title="Calories remaining" titleSize="2xl" className="mt-10" />
+        <Section
+          title="Calories remaining"
+          titleSize="2xl"
+          className="mt-10"
+        />
 
-        <ProgressBar percentage={percentage} height={5} className="my-10" />
+        <ProgressBar
+          percentage={percentage}
+          height={5}
+          className="my-10"
+        />
         <View className="mb-10 flex-row items-center justify-between">
           <View className="items-center">
             <ThemedText className="text-xl font-bold">{data.goal.toLocaleString()}</ThemedText>
@@ -307,15 +326,24 @@ const FoodCard = (props: any) => {
 
   if (props.calories === 0) {
     return (
-      <View style={shadowPresets.large} className="mb-4 rounded-xl bg-secondary">
+      <View
+        style={shadowPresets.large}
+        className="mb-4 rounded-xl bg-secondary">
         <View className="flex-row items-center justify-between border-b border-border p-4">
           <ThemedText className="text-lg font-bold">{props.title}</ThemedText>
           <ThemedText className="text-sm">0</ThemedText>
         </View>
-        <Link asChild href="/(mobile)/(modals)/add-meal">
+        <Link
+          asChild
+          href="/(mobile)/(modals)/add-meal">
           <Pressable className="flex-row items-center justify-between rounded-b-xl bg-background p-4">
             <ThemedText className="text-sm font-bold uppercase !text-sky-500">Add food</ThemedText>
-            <Icon name="PlusCircle" size={20} className="opacity-50" color={colors.highlight} />
+            <Icon
+              name="PlusCircle"
+              size={20}
+              className="opacity-50"
+              color={colors.highlight}
+            />
           </Pressable>
         </Link>
       </View>
@@ -323,7 +351,9 @@ const FoodCard = (props: any) => {
   }
 
   return (
-    <View style={shadowPresets.large} className="mb-4 rounded-xl bg-secondary">
+    <View
+      style={shadowPresets.large}
+      className="mb-4 rounded-xl bg-secondary">
       <View className="flex-row items-center justify-between border-b border-border p-4">
         <ThemedText className="text-lg font-bold">{props.title}</ThemedText>
         <ThemedText className="text-sm">{props.calories}</ThemedText>
@@ -336,10 +366,17 @@ const FoodCard = (props: any) => {
           isHighInProtein={item.isHighInProtein}
         />
       ))}
-      <Link asChild href="/(mobile)/(modals)/add-meal">
+      <Link
+        asChild
+        href="/(mobile)/(modals)/add-meal">
         <Pressable className="flex-row items-center justify-between rounded-b-xl bg-background p-4">
           <ThemedText className="text-sm font-bold uppercase !text-sky-500">Add food</ThemedText>
-          <Icon name="PlusCircle" size={20} className="opacity-50" color={colors.highlight} />
+          <Icon
+            name="PlusCircle"
+            size={20}
+            className="opacity-50"
+            color={colors.highlight}
+          />
         </Pressable>
       </Link>
     </View>
@@ -357,7 +394,11 @@ const FoodItem = (props: any) => {
         {props.isHighInProtein && (
           <View className="mt-1 flex-row items-center rounded-lg bg-background p-2">
             <View className="h-6 w-6 items-center justify-center rounded-lg bg-highlight">
-              <Icon name="Check" size={12} color="white" />
+              <Icon
+                name="Check"
+                size={12}
+                color="white"
+              />
             </View>
             <ThemedText className="ml-2 text-xs">This food is high in protein</ThemedText>
           </View>

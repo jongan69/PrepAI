@@ -84,9 +84,7 @@ const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({ variant, count = 1, cla
   const renderArticle = () => (
     <View className="flex-1">
       <Animated.View
-        style={[
-          { opacity, backgroundColor: colors.secondary, width: windowWidth, height: windowWidth },
-        ]}
+        style={[{ opacity, backgroundColor: colors.secondary, width: windowWidth, height: windowWidth }]}
       />
       <View className="flex-1 p-4">
         <Animated.View
@@ -167,11 +165,7 @@ const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({ variant, count = 1, cla
     }
   };
 
-  return (
-    <View className={`dark:bg-dark-primary flex-1 bg-background ${className}`}>
-      {renderContent()}
-    </View>
-  );
+  return <View className={`dark:bg-dark-primary flex-1 bg-background ${className}`}>{renderContent()}</View>;
 };
 
 export default SkeletonLoader;

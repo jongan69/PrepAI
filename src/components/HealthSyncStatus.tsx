@@ -13,11 +13,7 @@ interface HealthSyncStatusProps {
   compact?: boolean;
 }
 
-export function HealthSyncStatus({
-  showControls = true,
-  className = '',
-  compact = false,
-}: HealthSyncStatusProps) {
+export function HealthSyncStatus({ showControls = true, className = '', compact = false }: HealthSyncStatusProps) {
   const { isSyncing, lastSyncTime, syncEnabled, getSyncStats, setSyncEnabled } = useSyncStore();
 
   const stats = getSyncStats();
@@ -61,10 +57,12 @@ export function HealthSyncStatus({
   if (compact) {
     return (
       <View className={`flex-row items-center space-x-2 ${className}`}>
-        <Icon name={getStatusIcon()} size={16} className={getStatusColor()} />
-        <ThemedText className="text-xs text-gray-600 dark:text-gray-400">
-          {getStatusText()}
-        </ThemedText>
+        <Icon
+          name={getStatusIcon()}
+          size={16}
+          className={getStatusColor()}
+        />
+        <ThemedText className="text-xs text-gray-600 dark:text-gray-400">{getStatusText()}</ThemedText>
         {showControls && (
           <Button
             onPress={() => setSyncEnabled(!syncEnabled)}
@@ -78,10 +76,13 @@ export function HealthSyncStatus({
   }
 
   return (
-    <View
-      className={`flex-row items-center justify-between rounded-lg bg-gray-50 p-4 dark:bg-gray-800 ${className}`}>
+    <View className={`flex-row items-center justify-between rounded-lg bg-gray-50 p-4 dark:bg-gray-800 ${className}`}>
       <View className="flex-row items-center space-x-3">
-        <Icon name={getStatusIcon()} size={20} className={getStatusColor()} />
+        <Icon
+          name={getStatusIcon()}
+          size={20}
+          className={getStatusColor()}
+        />
         <View>
           <ThemedText className="text-sm font-medium">Health Data Sync</ThemedText>
           <ThemedText className="text-xs text-gray-500 dark:text-gray-400">

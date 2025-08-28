@@ -32,7 +32,7 @@ export function useWorkouts(userId: string) {
   // Get today's workouts
   const todayWorkouts = useMemo(() => {
     const today = new Date().toISOString().split('T')[0];
-    return workouts.filter(workout => workout.date === today);
+    return workouts.filter((workout) => workout.date === today);
   }, [workouts]);
 
   // Get this week's workouts
@@ -42,15 +42,13 @@ export function useWorkouts(userId: string) {
     weekStart.setDate(today.getDate() - today.getDay());
     const weekStartStr = weekStart.toISOString().split('T')[0];
     const weekEndStr = today.toISOString().split('T')[0];
-    
-    return workouts.filter(workout => 
-      workout.date >= weekStartStr && workout.date <= weekEndStr
-    );
+
+    return workouts.filter((workout) => workout.date >= weekStartStr && workout.date <= weekEndStr);
   }, [workouts]);
 
   // Get workouts by category
   const getWorkoutsByCategory = (category: string) => {
-    return workouts.filter(workout => workout.category === category);
+    return workouts.filter((workout) => workout.category === category);
   };
 
   return {
@@ -77,12 +75,12 @@ export function useMeals(userId: string, date?: string) {
 
   // Get meals for specific date
   const dateMeals = useMemo(() => {
-    return meals.filter(meal => meal.date === targetDate);
+    return meals.filter((meal) => meal.date === targetDate);
   }, [meals, targetDate]);
 
   // Get meals by type for specific date
   const getMealsByType = (mealType: string) => {
-    return dateMeals.filter(meal => meal.mealType === mealType);
+    return dateMeals.filter((meal) => meal.mealType === mealType);
   };
 
   // Calculate total calories for the date
@@ -134,9 +132,9 @@ export function useWeightEntries(userId: string) {
     const weekAgo = new Date(today);
     weekAgo.setDate(today.getDate() - 7);
     const weekStartStr = weekAgo.toISOString().split('T')[0];
-    
+
     return weightEntries
-      .filter(entry => entry.date >= weekStartStr)
+      .filter((entry) => entry.date >= weekStartStr)
       .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
   }, [weightEntries]);
 
@@ -186,18 +184,18 @@ export function useWaterIntake(userId: string, date?: string) {
     const threeDaysAgo = new Date(today);
     threeDaysAgo.setDate(today.getDate() - 3);
     const startDate = threeDaysAgo.toISOString().split('T')[0];
-    
+
     const dailyIntake: { [key: string]: number } = {};
-    
+
     waterIntake
-      .filter(intake => intake.date >= startDate)
-      .forEach(intake => {
+      .filter((intake) => intake.date >= startDate)
+      .forEach((intake) => {
         if (!dailyIntake[intake.date]) {
           dailyIntake[intake.date] = 0;
         }
         dailyIntake[intake.date] += intake.amountMl;
       });
-    
+
     return Object.entries(dailyIntake).map(([date, amount]) => ({
       date,
       amountMl: amount,
@@ -229,7 +227,7 @@ export function useSleepEntries(userId: string, date?: string) {
 
   // Get sleep entry for specific date
   const dateSleepEntry = useMemo(() => {
-    return sleepEntries.find(entry => entry.date === targetDate);
+    return sleepEntries.find((entry) => entry.date === targetDate);
   }, [sleepEntries, targetDate]);
 
   // Get sleep trend (last 7 days)
@@ -238,9 +236,9 @@ export function useSleepEntries(userId: string, date?: string) {
     const weekAgo = new Date(today);
     weekAgo.setDate(today.getDate() - 7);
     const weekStartStr = weekAgo.toISOString().split('T')[0];
-    
+
     return sleepEntries
-      .filter(entry => entry.date >= weekStartStr)
+      .filter((entry) => entry.date >= weekStartStr)
       .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
   }, [sleepEntries]);
 
@@ -274,7 +272,7 @@ export function useProgressLogs(userId: string) {
   // Get today's progress log
   const todayProgress = useMemo(() => {
     const today = new Date().toISOString().split('T')[0];
-    return progressLogs.find(log => log.date === today);
+    return progressLogs.find((log) => log.date === today);
   }, [progressLogs]);
 
   // Get progress trend (last 7 days)
@@ -283,9 +281,9 @@ export function useProgressLogs(userId: string) {
     const weekAgo = new Date(today);
     weekAgo.setDate(today.getDate() - 7);
     const weekStartStr = weekAgo.toISOString().split('T')[0];
-    
+
     return progressLogs
-      .filter(log => log.date >= weekStartStr)
+      .filter((log) => log.date >= weekStartStr)
       .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
   }, [progressLogs]);
 
@@ -310,22 +308,22 @@ export function useGoals(userId: string) {
 
   // Get active goals
   const activeGoals = useMemo(() => {
-    return goals.filter(goal => goal.isActive);
+    return goals.filter((goal) => goal.isActive);
   }, [goals]);
 
   // Get goals by type
   const getGoalsByType = (type: string) => {
-    return goals.filter(goal => goal.type === type);
+    return goals.filter((goal) => goal.type === type);
   };
 
   // Get completed goals
   const completedGoals = useMemo(() => {
-    return goals.filter(goal => goal.current >= goal.target);
+    return goals.filter((goal) => goal.current >= goal.target);
   }, [goals]);
 
   // Get progress percentage for a goal
   const getGoalProgress = (goalId: string) => {
-    const goal = goals.find(g => g.id === goalId);
+    const goal = goals.find((g) => g.id === goalId);
     if (!goal) return 0;
     return Math.min(100, (goal.current / goal.target) * 100);
   };
@@ -376,7 +374,7 @@ export function useDashboardData(userId: string) {
     // User info
     user,
     healthProfile,
-    
+
     // Calories
     totalCalories,
     targetCalories,
@@ -384,23 +382,23 @@ export function useDashboardData(userId: string) {
     remainingCalories,
     weeklyCalories,
     macros,
-    
+
     // Weight
     currentWeight: latestWeight?.weightKg || 0,
     weightTrend,
-    
+
     // Water
     waterIntake: totalWaterLiters,
     targetWater: targetWaterL,
     waterProgress,
     waterTrend,
-    
+
     // Sleep
     sleepHours: dateSleepEntry?.hours || 0,
     sleepQuality: dateSleepEntry?.quality || 'good',
     sleepProgress,
     sleepTrend,
-    
+
     // Workouts
     todayWorkouts,
     weeklyWorkouts,
@@ -421,4 +419,3 @@ export function useRealTimeData(userId: string) {
     refreshData,
   };
 }
-

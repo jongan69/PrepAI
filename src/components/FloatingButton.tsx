@@ -65,7 +65,11 @@ const FloatingButton: React.FC<FloatingButtonProps> = ({
       onPress={onPress}
       className="flex-row items-center rounded-full bg-highlight px-4 py-3 shadow-lg"
       style={[styles.button, style]}>
-      <Icon name={icon} size={20} color="white" />
+      <Icon
+        name={icon}
+        size={20}
+        color="white"
+      />
       <ThemedText className="ml-2 text-white">{label}</ThemedText>
     </TouchableOpacity>
   );
@@ -82,7 +86,9 @@ const FloatingButton: React.FC<FloatingButtonProps> = ({
         } as ViewStyle,
       ]}>
       {href ? (
-        <Link href={href} asChild>
+        <Link
+          href={href}
+          asChild>
           {buttonContent}
         </Link>
       ) : (

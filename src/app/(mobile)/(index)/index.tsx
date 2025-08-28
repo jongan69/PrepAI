@@ -88,10 +88,20 @@ export default function HomeScreen() {
       <Header
         className="bg-secondary"
         leftComponent={
-          <Avatar src={imageUrl} name={displayName} size="sm" link="/(mobile)/(profile)" />
+          <Avatar
+            src={imageUrl}
+            name={displayName}
+            size="sm"
+            link="/(mobile)/(profile)"
+          />
         }
         rightComponents={[
-          <HeaderIcon key="notifications" icon="Bell" hasBadge href="/(mobile)/notifications" />,
+          <HeaderIcon
+            key="notifications"
+            icon="Bell"
+            hasBadge
+            href="/(mobile)/notifications"
+          />,
         ]}
       />
       <ThemedScroller
@@ -135,7 +145,11 @@ export default function HomeScreen() {
 
           {/* Money Model Integration - Smart Offer Card */}
           <View className="mt-6">
-            <SmartOfferCard placement="home" variant="compact" className="mb-4" />
+            <SmartOfferCard
+              placement="home"
+              variant="compact"
+              className="mb-4"
+            />
           </View>
         </View>
       </ThemedScroller>
@@ -298,7 +312,10 @@ const CaloriesOverview: React.FC<CaloriesOverviewProps> = ({
       {/* Animated Progress Ring */}
       <View className="mb-12 items-center">
         <View className="relative h-32 w-32 items-center justify-center rounded-full bg-background">
-          <Svg width={size} height={size} style={{ position: 'absolute' }}>
+          <Svg
+            width={size}
+            height={size}
+            style={{ position: 'absolute' }}>
             {/* Background circle */}
             <Circle
               cx={size / 2}
@@ -336,8 +353,13 @@ const CaloriesOverview: React.FC<CaloriesOverviewProps> = ({
       <View className="items-center justify-center">
         <View className="flex-row items-center">
           <ThemedText className="text-lg font-bold">Calories Today</ThemedText>
-          <Pressable onPress={onEditTarget} className="ml-2 rounded-full p-1">
-            <Icon name="Edit" size={16} />
+          <Pressable
+            onPress={onEditTarget}
+            className="ml-2 rounded-full p-1">
+            <Icon
+              name="Edit"
+              size={16}
+            />
           </Pressable>
         </View>
       </View>
@@ -345,36 +367,36 @@ const CaloriesOverview: React.FC<CaloriesOverviewProps> = ({
       {/* Calories Breakdown */}
       <View className="mt-4 flex-row  justify-between rounded-2xl border-t  border-border px-6 pt-4">
         <View className="items-center">
-          <ThemedText className="text-light-subtext dark:text-dark-subtext text-sm">
-            Consumed
-          </ThemedText>
+          <ThemedText className="text-light-subtext dark:text-dark-subtext text-sm">Consumed</ThemedText>
           <View className="flex-row items-center">
-            <Icon name="Apple" size={14} className="mr-2" />
-            <ThemedText className="text-lg font-bold ">
-              {currentCalories.toLocaleString()}
-            </ThemedText>
+            <Icon
+              name="Apple"
+              size={14}
+              className="mr-2"
+            />
+            <ThemedText className="text-lg font-bold ">{currentCalories.toLocaleString()}</ThemedText>
           </View>
         </View>
         <View className="items-center">
-          <ThemedText className="text-light-subtext dark:text-dark-subtext text-sm">
-            Burned
-          </ThemedText>
+          <ThemedText className="text-light-subtext dark:text-dark-subtext text-sm">Burned</ThemedText>
           <View className="flex-row items-center">
-            <Icon name="Flame" size={14} className="mr-2" />
-            <ThemedText className="text-lg font-bold ">
-              {caloriesBurned.toLocaleString()}
-            </ThemedText>
+            <Icon
+              name="Flame"
+              size={14}
+              className="mr-2"
+            />
+            <ThemedText className="text-lg font-bold ">{caloriesBurned.toLocaleString()}</ThemedText>
           </View>
         </View>
         <View className="items-center">
-          <ThemedText className="text-light-subtext dark:text-dark-subtext text-sm">
-            Remaining
-          </ThemedText>
+          <ThemedText className="text-light-subtext dark:text-dark-subtext text-sm">Remaining</ThemedText>
           <View className="flex-row items-center">
-            <Icon name="ChartPie" size={14} className="mr-2" />
-            <ThemedText className="text-lg font-bold ">
-              {Math.max(0, remaining).toLocaleString()}
-            </ThemedText>
+            <Icon
+              name="ChartPie"
+              size={14}
+              className="mr-2"
+            />
+            <ThemedText className="text-lg font-bold ">{Math.max(0, remaining).toLocaleString()}</ThemedText>
           </View>
         </View>
       </View>

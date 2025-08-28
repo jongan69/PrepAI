@@ -15,7 +15,11 @@ export default function OnboardingLoading() {
       className="flex-1 items-center justify-center bg-background"
       style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
       <View className="items-center">
-        <Icon name="Brain" size={64} className="mb-6" />
+        <Icon
+          name="Brain"
+          size={64}
+          className="mb-6"
+        />
         <ThemedText className="mb-2 text-center text-2xl font-bold">PrepAI</ThemedText>
         <ThemedText className="text-text/60 mb-8 text-center text-base">
           Loading your personalized experience...

@@ -37,43 +37,35 @@ export default function SettingsScreen() {
   });
 
   const handleLogout = () => {
-    Alert.alert(
-      'Logout',
-      'Are you sure you want to logout? Your data will remain safely stored and synced.',
-      [
-        {
-          text: 'Cancel',
-          style: 'cancel',
+    Alert.alert('Logout', 'Are you sure you want to logout? Your data will remain safely stored and synced.', [
+      {
+        text: 'Cancel',
+        style: 'cancel',
+      },
+      {
+        text: 'Logout',
+        style: 'destructive',
+        onPress: () => {
+          logout();
         },
-        {
-          text: 'Logout',
-          style: 'destructive',
-          onPress: () => {
-            logout();
-          },
-        },
-      ]
-    );
+      },
+    ]);
   };
 
   const handleDeleteAccount = () => {
-    Alert.alert(
-      'Delete Account',
-      'This action cannot be undone. All your data will be permanently deleted.',
-      [
-        {
-          text: 'Cancel',
-          style: 'cancel',
+    Alert.alert('Delete Account', 'This action cannot be undone. All your data will be permanently deleted.', [
+      {
+        text: 'Cancel',
+        style: 'cancel',
+      },
+      {
+        text: 'Delete',
+        style: 'destructive',
+        onPress: () => {
+          console.log('Account deletion requested');
         },
-        {
-          text: 'Delete',
-          style: 'destructive',
-          onPress: () => {
-            console.log('Account deletion requested');
-          },
-        },
-      ]
-    );
+      },
+    ]);
   };
 
   const handleComingSoon = (feature: string) => {
@@ -82,8 +74,14 @@ export default function SettingsScreen() {
 
   return (
     <>
-      <Header showBackButton title="Settings" rightComponents={[<ThemeToggle />]} />
-      <ThemedScroller className="px-6 pt-4" contentContainerStyle={{ paddingBottom: 100 }}>
+      <Header
+        showBackButton
+        title="Settings"
+        rightComponents={[<ThemeToggle />]}
+      />
+      <ThemedScroller
+        className="px-6 pt-4"
+        contentContainerStyle={{ paddingBottom: 100 }}>
         {/* Quick Actions */}
         <View className="mb-6 rounded-2xl bg-secondary p-4">
           <ThemedText className="mb-3 text-lg font-semibold">Quick Actions</ThemedText>
@@ -106,7 +104,11 @@ export default function SettingsScreen() {
         </View>
 
         {/* Notifications */}
-        <Section title="Notifications" icon="Bell" titleSize="lg" className="mb-6">
+        <Section
+          title="Notifications"
+          icon="Bell"
+          titleSize="lg"
+          className="mb-6">
           <View className="rounded-2xl bg-secondary p-4">
             <Switch
               label="Workout Reminders"
@@ -159,7 +161,11 @@ export default function SettingsScreen() {
         </Section>
 
         {/* Privacy & Data */}
-        <Section title="Privacy & Data" icon="Shield" titleSize="lg" className="mb-6">
+        <Section
+          title="Privacy & Data"
+          icon="Shield"
+          titleSize="lg"
+          className="mb-6">
           <View className="rounded-2xl bg-secondary p-4">
             <Switch
               label="Share Progress"
@@ -188,7 +194,11 @@ export default function SettingsScreen() {
         </Section>
 
         {/* App Settings */}
-        <Section title="App Settings" icon="Settings" titleSize="lg" className="mb-6">
+        <Section
+          title="App Settings"
+          icon="Settings"
+          titleSize="lg"
+          className="mb-6">
           <View className="rounded-2xl bg-secondary p-4">
             <Switch
               label="Auto Sync"
@@ -217,7 +227,11 @@ export default function SettingsScreen() {
         </Section>
 
         {/* Connected Devices */}
-        <Section title="Connected Devices" icon="Watch" titleSize="lg" className="mb-6">
+        <Section
+          title="Connected Devices"
+          icon="Watch"
+          titleSize="lg"
+          className="mb-6">
           <View className="rounded-2xl bg-secondary">
             <ListLink
               className="px-5"
@@ -246,7 +260,11 @@ export default function SettingsScreen() {
         </Section>
 
         {/* Data Management */}
-        <Section title="Data Management" icon="Database" titleSize="lg" className="mb-6">
+        <Section
+          title="Data Management"
+          icon="Database"
+          titleSize="lg"
+          className="mb-6">
           <View className="rounded-2xl bg-secondary">
             <ListLink
               className="px-5"
@@ -277,7 +295,11 @@ export default function SettingsScreen() {
         </Section>
 
         {/* Support & Help */}
-        <Section title="Support & Help" icon="HelpCircle" titleSize="lg" className="mb-6">
+        <Section
+          title="Support & Help"
+          icon="HelpCircle"
+          titleSize="lg"
+          className="mb-6">
           <View className="rounded-2xl bg-secondary">
             <ListLink
               className="px-5"
@@ -323,7 +345,11 @@ export default function SettingsScreen() {
         </Section>
 
         {/* Account Actions */}
-        <Section title="Account" icon="User" titleSize="lg" className="mb-6">
+        <Section
+          title="Account"
+          icon="User"
+          titleSize="lg"
+          className="mb-6">
           <View className="rounded-2xl bg-secondary">
             <ListLink
               className="px-5"

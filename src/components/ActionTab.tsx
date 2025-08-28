@@ -21,7 +21,12 @@ const ActionTab = () => {
         <Pressable
           onPress={handlePress}
           className="flex h-16  w-16  -translate-y-2 items-center justify-center rounded-full bg-highlight">
-          <Icon name="Plus" size={20} strokeWidth={2} color="white" />
+          <Icon
+            name="Plus"
+            size={20}
+            strokeWidth={2}
+            color="white"
+          />
         </Pressable>
       </View>
       <ActionSheetThemed
@@ -33,7 +38,9 @@ const ActionTab = () => {
           paddingTop: 10,
         }}>
         <View className="p-global">
-          <Grid columns={2} spacing={10}>
+          <Grid
+            columns={2}
+            spacing={10}>
             <ActionItem
               onPress={() => actionSheetRef.current?.hide()}
               href="/(mobile)/(modals)/add-workout"
@@ -67,7 +74,9 @@ const ActionTab = () => {
 
 const ActionItem = (props: any) => {
   return (
-    <Link asChild href={props.href}>
+    <Link
+      asChild
+      href={props.href}>
       <Pressable
         onPress={props.onPress}
         className="flex flex-col items-center justify-start rounded-2xl bg-background py-10">

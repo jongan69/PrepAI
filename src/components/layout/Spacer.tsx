@@ -8,12 +8,7 @@ interface SpacerProps {
   style?: ViewStyle;
 }
 
-export const Spacer: React.FC<SpacerProps> = ({
-  size = 4,
-  orientation = 'vertical',
-  className = '',
-  style,
-}) => {
+export const Spacer: React.FC<SpacerProps> = ({ size = 4, orientation = 'vertical', className = '', style }) => {
   return (
     <View
       className={className}

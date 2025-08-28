@@ -83,13 +83,18 @@ export const Section: React.FC<SectionProps> = ({
   };
 
   return (
-    <View className={`w-full ${getPaddingClass()} ${className}`} style={style}>
+    <View
+      className={`w-full ${getPaddingClass()} ${className}`}
+      style={style}>
       {/* Header Section */}
       {(title || header) && (
         <View className="flex-row items-center">
           {icon && (
             <View className="mr-4">
-              <Icon name={icon} size={24} />
+              <Icon
+                name={icon}
+                size={24}
+              />
             </View>
           )}
           <View>

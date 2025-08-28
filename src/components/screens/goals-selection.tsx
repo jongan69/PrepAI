@@ -88,9 +88,7 @@ export default function GoalsSelection() {
   const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
 
   const toggleGoal = (goalId: string) => {
-    setSelectedGoals((prev) =>
-      prev.includes(goalId) ? prev.filter((id) => id !== goalId) : [...prev, goalId]
-    );
+    setSelectedGoals((prev) => (prev.includes(goalId) ? prev.filter((id) => id !== goalId) : [...prev, goalId]));
   };
 
   const handleContinue = async () => {
@@ -126,9 +124,7 @@ export default function GoalsSelection() {
       <ScrollView className="flex-1 px-global">
         {/* Header */}
         <View className="pb-8 pt-16">
-          <ThemedText className="mb-2 text-center text-3xl font-bold">
-            What are your goals?
-          </ThemedText>
+          <ThemedText className="mb-2 text-center text-3xl font-bold">What are your goals?</ThemedText>
           <ThemedText className="text-text/60 text-center text-base">
             Select all that apply. You can change these later.
           </ThemedText>
@@ -168,7 +164,12 @@ export default function GoalsSelection() {
           Platform.OS === 'ios' ? 'pb-global' : 'pb-24'
         }`}>
         <View className="flex-row gap-4">
-          <Button title="Skip" variant="outline" className="flex-1" onPress={handleSkip} />
+          <Button
+            title="Skip"
+            variant="outline"
+            className="flex-1"
+            onPress={handleSkip}
+          />
           <Button
             title="Continue"
             className="flex-1"

@@ -67,7 +67,10 @@ export const SmallCircleCard = ({
         <View
           className="relative items-center justify-center"
           style={{ width: size, height: size }}>
-          <Svg width={size} height={size} style={{ position: 'absolute' }}>
+          <Svg
+            width={size}
+            height={size}
+            style={{ position: 'absolute' }}>
             {/* Background circle */}
             <Circle
               cx={size / 2}
@@ -109,7 +112,11 @@ export const SmallCircleCard = ({
             <ThemedText className="text-xl font-bold">{value}</ThemedText>
             <ThemedText className="ml-1 -translate-y-1 text-sm opacity-50">{unit}</ThemedText>
           </View>
-          <Icon name="ChevronRight" size={20} color={colors.text} />
+          <Icon
+            name="ChevronRight"
+            size={20}
+            color={colors.text}
+          />
         </View>
       )}
     </View>

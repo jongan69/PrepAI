@@ -52,7 +52,9 @@ export default function Counter({
   };
 
   return (
-    <View className={`w-full ${className}`} style={style}>
+    <View
+      className={`w-full ${className}`}
+      style={style}>
       <View className="w-full flex-row items-center justify-between">
         <ThemedText className="flex-1 text-base">{label}</ThemedText>
         <View className="min-w-[140px] flex-row items-center justify-between overflow-hidden rounded-full bg-secondary  p-1">
@@ -63,9 +65,7 @@ export default function Counter({
           </Pressable>
 
           <View className="items-center justify-center px-4">
-            <ThemedText className="text-base font-medium">
-              {value === undefined ? 'Any' : value}
-            </ThemedText>
+            <ThemedText className="text-base font-medium">{value === undefined ? 'Any' : value}</ThemedText>
           </View>
 
           <Pressable

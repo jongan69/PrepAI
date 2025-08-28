@@ -245,9 +245,7 @@ export class KVStorage {
   /**
    * Batch operations for better performance
    */
-  static async batch(
-    operations: { type: 'get' | 'set' | 'remove'; key: string; value?: any }[]
-  ): Promise<any[]> {
+  static async batch(operations: { type: 'get' | 'set' | 'remove'; key: string; value?: any }[]): Promise<any[]> {
     try {
       const results = [];
 

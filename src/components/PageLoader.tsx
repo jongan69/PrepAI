@@ -14,10 +14,11 @@ export default function PageLoader({ text }: PageLoaderProps) {
 
   return (
     <View className="dark:bg-dark-primary flex-1 items-center justify-center bg-background">
-      <ActivityIndicator size="large" color={colors.highlight} />
-      {text && (
-        <ThemedText className="text-light-subtext dark:text-dark-subtext mt-4">{text}</ThemedText>
-      )}
+      <ActivityIndicator
+        size="large"
+        color={colors.highlight}
+      />
+      {text && <ThemedText className="text-light-subtext dark:text-dark-subtext mt-4">{text}</ThemedText>}
     </View>
   );
 }

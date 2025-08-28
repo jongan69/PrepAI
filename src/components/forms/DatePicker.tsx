@@ -180,7 +180,11 @@ export const DatePicker: React.FC<DatePickerProps> = ({
           </ThemedText>
         </TouchableOpacity>
         <Pressable className="absolute right-3 top-[18px] z-10">
-          <Icon name="Calendar" size={20} color={colors.text} />
+          <Icon
+            name="Calendar"
+            size={20}
+            color={colors.text}
+          />
         </Pressable>
         {error && <ThemedText className="mt-1 text-xs text-red-500">{error}</ThemedText>}
         {renderDatePicker()}
@@ -191,7 +195,9 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   // Classic variant (matching TimePicker.tsx exactly)
   if (variant === 'classic') {
     return (
-      <View className={`relative mb-global ${containerClassName}`} style={{ position: 'relative' }}>
+      <View
+        className={`relative mb-global ${containerClassName}`}
+        style={{ position: 'relative' }}>
         {label && <ThemedText className="mb-2 font-medium">{label}</ThemedText>}
         <View className="relative">
           <TouchableOpacity
@@ -208,7 +214,11 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             </View>
           </TouchableOpacity>
           <Pressable className="absolute right-3 top-[18px] z-10">
-            <Icon name="Calendar" size={20} color={colors.text} />
+            <Icon
+              name="Calendar"
+              size={20}
+              color={colors.text}
+            />
           </Pressable>
         </View>
         {error && <ThemedText className="mt-1 text-xs text-red-500">{error}</ThemedText>}
@@ -220,9 +230,13 @@ export const DatePicker: React.FC<DatePickerProps> = ({
   // Underlined variant (matching TimePicker.tsx exactly)
   if (variant === 'underlined') {
     return (
-      <View className={`relative mb-global ${containerClassName}`} style={{ position: 'relative' }}>
+      <View
+        className={`relative mb-global ${containerClassName}`}
+        style={{ position: 'relative' }}>
         <View className="relative">
-          <Pressable className="z-40 bg-secondary px-0" onPress={showDatePicker}>
+          <Pressable
+            className="z-40 bg-secondary px-0"
+            onPress={showDatePicker}>
             <Animated.Text
               style={[
                 {
@@ -265,7 +279,11 @@ export const DatePicker: React.FC<DatePickerProps> = ({
           </TouchableOpacity>
 
           <Pressable className="absolute right-0 top-[18px] z-10">
-            <Icon name="Calendar" size={20} color={colors.text} />
+            <Icon
+              name="Calendar"
+              size={20}
+              color={colors.text}
+            />
           </Pressable>
         </View>
 
@@ -282,7 +300,9 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         className="z-40 bg-background px-1"
         style={{ position: 'absolute', left: -6, top: 0 }}
         onPress={showDatePicker}>
-        <Animated.Text style={[labelStyle]} className="bg-background text-text">
+        <Animated.Text
+          style={[labelStyle]}
+          className="bg-background text-text">
           {label}
         </Animated.Text>
       </Pressable>
@@ -302,7 +322,11 @@ export const DatePicker: React.FC<DatePickerProps> = ({
       </TouchableOpacity>
 
       <Pressable className="absolute right-3 top-[18px] z-10">
-        <Icon name="Calendar" size={20} color={colors.text} />
+        <Icon
+          name="Calendar"
+          size={20}
+          color={colors.text}
+        />
       </Pressable>
 
       {error && <ThemedText className="mt-1 text-xs text-red-500">{error}</ThemedText>}

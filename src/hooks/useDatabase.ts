@@ -56,10 +56,7 @@ export function useDashboardData(userId: string) {
         const snackMeals = await database.getMealsByType(userIdStr, 'snack', today);
 
         const allTodayMeals = [...todayMeals, ...lunchMeals, ...dinnerMeals, ...snackMeals];
-        const todayCalories = allTodayMeals.reduce(
-          (total, meal) => total + (meal.calories || 0),
-          0
-        );
+        const todayCalories = allTodayMeals.reduce((total, meal) => total + (meal.calories || 0), 0);
 
         // Get today's workouts to calculate burned calories
         const todayWorkouts = await database.getWorkouts(userIdStr, 50);

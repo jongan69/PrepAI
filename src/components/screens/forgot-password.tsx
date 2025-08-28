@@ -64,9 +64,7 @@ export default function ForgotPasswordScreen() {
         } else {
           // Handle other statuses
           console.log('Sign in attempt status:', signInAttempt.status);
-          Alert.alert('Error', 'Unable to send password reset email. Please try again.', [
-            { text: 'OK' },
-          ]);
+          Alert.alert('Error', 'Unable to send password reset email. Please try again.', [{ text: 'OK' }]);
         }
       } catch (err: any) {
         console.error('Password reset error:', err);
@@ -83,16 +81,12 @@ export default function ForgotPasswordScreen() {
           } else if (error.code === 'form_identifier_invalid') {
             setEmailError('Please enter a valid email address');
           } else {
-            Alert.alert(
-              'Error',
-              error.message || 'Unable to send password reset email. Please try again.',
-              [{ text: 'OK' }]
-            );
+            Alert.alert('Error', error.message || 'Unable to send password reset email. Please try again.', [
+              { text: 'OK' },
+            ]);
           }
         } else {
-          Alert.alert('Error', 'Unable to send password reset email. Please try again.', [
-            { text: 'OK' },
-          ]);
+          Alert.alert('Error', 'Unable to send password reset email. Please try again.', [{ text: 'OK' }]);
         }
       } finally {
         setIsLoading(false);
@@ -101,7 +95,10 @@ export default function ForgotPasswordScreen() {
   };
 
   return (
-    <LinearGradient colors={['#000000', '#101010']} locations={[0, 0.5]} style={{ flex: 1 }}>
+    <LinearGradient
+      colors={['#000000', '#101010']}
+      locations={[0, 0.5]}
+      style={{ flex: 1 }}>
       <ScrollView
         contentContainerStyle={{ flex: 1 }}
         keyboardShouldPersistTaps="handled"
@@ -109,9 +106,16 @@ export default function ForgotPasswordScreen() {
         bounces={false}
         className="flex-1">
         <StatusBar style="light" />
-        <View className="flex-1" style={{ paddingTop: insets.top }}>
+        <View
+          className="flex-1"
+          style={{ paddingTop: insets.top }}>
           <View className="w-full flex-row items-center justify-between px-global">
-            <Icon name="ArrowLeft" onPress={() => router.back()} size={24} color="white" />
+            <Icon
+              name="ArrowLeft"
+              onPress={() => router.back()}
+              size={24}
+              color="white"
+            />
             <Link
               href="/(mobile)/(onboarding)/login"
               className="rounded-xl border border-white/60 px-3 py-2 text-white">
@@ -124,13 +128,15 @@ export default function ForgotPasswordScreen() {
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}>
-          <AnimatedView duration={500} delay={200} animation="slideInBottom" className="p-4">
+          <AnimatedView
+            duration={500}
+            delay={200}
+            animation="slideInBottom"
+            className="p-4">
             <View className="rounded-3xl border border-border bg-background p-6">
               <View className="mb-6 items-center justify-center">
                 <ThemedText className="font-outfit-bold text-3xl">Reset Password</ThemedText>
-                <ThemedText className="text-sm">
-                  Enter your email address to recover password
-                </ThemedText>
+                <ThemedText className="text-sm">Enter your email address to recover password</ThemedText>
               </View>
 
               <Input

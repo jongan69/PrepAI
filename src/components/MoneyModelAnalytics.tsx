@@ -49,24 +49,31 @@ const AnalyticsCard: React.FC<AnalyticsCardProps> = ({
   };
 
   return (
-    <Card className="bg-secondary" title="" image="">
+    <Card
+      className="bg-secondary"
+      title=""
+      image="">
       <View className="p-4">
         <View className="mb-2 flex-row items-center justify-between">
-          <Icon name={icon as IconName} size={20} className={`text-${color}`} />
+          <Icon
+            name={icon as IconName}
+            size={20}
+            className={`text-${color}`}
+          />
           {trend && (
             <View className="flex-row items-center">
-              <Icon name={getTrendIcon()} size={16} className={getTrendColor()} />
-              {trendValue && (
-                <ThemedText className={`ml-1 text-xs ${getTrendColor()}`}>{trendValue}</ThemedText>
-              )}
+              <Icon
+                name={getTrendIcon()}
+                size={16}
+                className={getTrendColor()}
+              />
+              {trendValue && <ThemedText className={`ml-1 text-xs ${getTrendColor()}`}>{trendValue}</ThemedText>}
             </View>
           )}
         </View>
         <ThemedText className="text-2xl font-bold">{value}</ThemedText>
         <ThemedText className="text-muted-foreground text-sm">{title}</ThemedText>
-        {subtitle && (
-          <ThemedText className="text-muted-foreground mt-1 text-xs">{subtitle}</ThemedText>
-        )}
+        {subtitle && <ThemedText className="text-muted-foreground mt-1 text-xs">{subtitle}</ThemedText>}
       </View>
     </Card>
   );
@@ -85,11 +92,12 @@ export default function MoneyModelAnalytics() {
 
   if (!userJourney) {
     return (
-      <Card className="bg-secondary" title="" image="">
+      <Card
+        className="bg-secondary"
+        title=""
+        image="">
         <View className="p-6">
-          <ThemedText className="text-muted-foreground text-center">
-            Loading analytics...
-          </ThemedText>
+          <ThemedText className="text-muted-foreground text-center">Loading analytics...</ThemedText>
         </View>
       </Card>
     );
@@ -146,13 +154,7 @@ export default function MoneyModelAnalytics() {
               value={churnRisk.toUpperCase()}
               subtitle="Customer retention risk"
               icon="AlertTriangle"
-              color={
-                churnRisk === 'high'
-                  ? 'red-500'
-                  : churnRisk === 'medium'
-                    ? 'yellow-500'
-                    : 'green-500'
-              }
+              color={churnRisk === 'high' ? 'red-500' : churnRisk === 'medium' ? 'yellow-500' : 'green-500'}
             />
             <AnalyticsCard
               title="Total Spent"
@@ -237,7 +239,10 @@ export default function MoneyModelAnalytics() {
         {/* User Journey Path */}
         <View className="mb-6">
           <ThemedText className="mb-4 text-lg font-semibold">User Journey</ThemedText>
-          <Card className="bg-secondary" title="" image="">
+          <Card
+            className="bg-secondary"
+            title=""
+            image="">
             <View className="p-4">
               <View className="mb-3 flex-row items-center justify-between">
                 <ThemedText className="text-sm font-medium">Progress</ThemedText>
@@ -247,7 +252,9 @@ export default function MoneyModelAnalytics() {
               </View>
               <View className="space-y-2">
                 {userJourney.conversionPath.map((step, index) => (
-                  <View key={index} className="flex-row items-center">
+                  <View
+                    key={index}
+                    className="flex-row items-center">
                     <View className="mr-3 h-6 w-6 items-center justify-center rounded-full bg-highlight">
                       <ThemedText className="text-xs font-bold text-white">{index + 1}</ThemedText>
                     </View>
@@ -267,12 +274,19 @@ export default function MoneyModelAnalytics() {
         {/* Optimization Recommendations */}
         <View className="mb-6">
           <ThemedText className="mb-4 text-lg font-semibold">Growth Opportunities</ThemedText>
-          <Card className="bg-secondary" title="" image="">
+          <Card
+            className="bg-secondary"
+            title=""
+            image="">
             <View className="p-4">
               <View className="space-y-3">
                 {conversionRates.attraction < 0.1 && (
                   <View className="flex-row items-start">
-                    <Icon name="AlertCircle" size={16} className="mr-2 mt-0.5 text-yellow-500" />
+                    <Icon
+                      name="AlertCircle"
+                      size={16}
+                      className="mr-2 mt-0.5 text-yellow-500"
+                    />
                     <View className="flex-1">
                       <ThemedText className="text-sm font-medium">Low Trial Signups</ThemedText>
                       <ThemedText className="text-muted-foreground text-xs">
@@ -284,11 +298,13 @@ export default function MoneyModelAnalytics() {
 
                 {conversionRates.upsell < 0.05 && (
                   <View className="flex-row items-start">
-                    <Icon name="TrendingDown" size={16} className="mr-2 mt-0.5 text-red-500" />
+                    <Icon
+                      name="TrendingDown"
+                      size={16}
+                      className="mr-2 mt-0.5 text-red-500"
+                    />
                     <View className="flex-1">
-                      <ThemedText className="text-sm font-medium">
-                        Premium Upgrade Opportunities
-                      </ThemedText>
+                      <ThemedText className="text-sm font-medium">Premium Upgrade Opportunities</ThemedText>
                       <ThemedText className="text-muted-foreground text-xs">
                         Focus on showcasing premium features and their benefits
                       </ThemedText>
@@ -298,7 +314,11 @@ export default function MoneyModelAnalytics() {
 
                 {churnRisk === 'high' && (
                   <View className="flex-row items-start">
-                    <Icon name="AlertTriangle" size={16} className="mr-2 mt-0.5 text-red-500" />
+                    <Icon
+                      name="AlertTriangle"
+                      size={16}
+                      className="mr-2 mt-0.5 text-red-500"
+                    />
                     <View className="flex-1">
                       <ThemedText className="text-sm font-medium">User Retention Alert</ThemedText>
                       <ThemedText className="text-muted-foreground text-xs">
@@ -310,11 +330,13 @@ export default function MoneyModelAnalytics() {
 
                 {lifetimeValue < 50 && (
                   <View className="flex-row items-start">
-                    <Icon name="Target" size={16} className="mr-2 mt-0.5 text-blue-500" />
+                    <Icon
+                      name="Target"
+                      size={16}
+                      className="mr-2 mt-0.5 text-blue-500"
+                    />
                     <View className="flex-1">
-                      <ThemedText className="text-sm font-medium">
-                        Premium Plan Opportunities
-                      </ThemedText>
+                      <ThemedText className="text-sm font-medium">Premium Plan Opportunities</ThemedText>
                       <ThemedText className="text-muted-foreground text-xs">
                         Focus on long-term value propositions and premium features
                       </ThemedText>
@@ -331,19 +353,19 @@ export default function MoneyModelAnalytics() {
           <ThemedText className="mb-4 text-lg font-semibold">Recommended Plans</ThemedText>
           <View className="space-y-3">
             {recommendedOffers.slice(0, 3).map((offer, index) => (
-              <Card key={offer.id} className="bg-secondary" title="" image="">
+              <Card
+                key={offer.id}
+                className="bg-secondary"
+                title=""
+                image="">
                 <View className="p-4">
                   <View className="flex-row items-center justify-between">
                     <View className="flex-1">
                       <ThemedText className="font-medium">{offer.title}</ThemedText>
-                      <ThemedText className="text-muted-foreground text-sm">
-                        {offer.description}
-                      </ThemedText>
+                      <ThemedText className="text-muted-foreground text-sm">{offer.description}</ThemedText>
                     </View>
                     <View className="items-end">
-                      <ThemedText className="font-bold">
-                        {offer.price === 0 ? 'FREE' : `$${offer.price}`}
-                      </ThemedText>
+                      <ThemedText className="font-bold">{offer.price === 0 ? 'FREE' : `$${offer.price}`}</ThemedText>
                       <ThemedText className="text-muted-foreground text-xs">
                         {offer.price === 0 ? 'Free' : 'Premium'} plan
                       </ThemedText>

@@ -67,14 +67,19 @@ const Selectable: React.FC<SelectableProps> = ({
           <View className="flex-1">
             <ThemedText className="text-base font-semibold">{title}</ThemedText>
             {description && (
-              <ThemedText className="text-light-subtext dark:text-dark-subtext mt-0 text-sm">
-                {description}
-              </ThemedText>
+              <ThemedText className="text-light-subtext dark:text-dark-subtext mt-0 text-sm">{description}</ThemedText>
             )}
           </View>
           {selected ? (
-            <AnimatedView className="ml-3" animation="bounceIn" duration={500}>
-              <Icon name="CheckCircle2" size={24} color={colors.text} />
+            <AnimatedView
+              className="ml-3"
+              animation="bounceIn"
+              duration={500}>
+              <Icon
+                name="CheckCircle2"
+                size={24}
+                color={colors.text}
+              />
             </AnimatedView>
           ) : (
             <></>

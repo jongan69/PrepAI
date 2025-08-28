@@ -25,11 +25,7 @@ export function DrawerProvider({ children }: { children: React.ReactNode }) {
     navigation.dispatch(DrawerActions.toggleDrawer());
   }, [navigation]);
 
-  return (
-    <DrawerContext.Provider value={{ openDrawer, closeDrawer, toggleDrawer }}>
-      {children}
-    </DrawerContext.Provider>
-  );
+  return <DrawerContext.Provider value={{ openDrawer, closeDrawer, toggleDrawer }}>{children}</DrawerContext.Provider>;
 }
 
 export function useDrawer() {

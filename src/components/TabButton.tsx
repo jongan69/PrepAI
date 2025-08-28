@@ -18,17 +18,7 @@ export type TabButtonProps = TabTriggerSlotProps & {
 
 export const TabButton = forwardRef<View, TabButtonProps>(
   (
-    {
-      icon,
-      avatar,
-      children,
-      isFocused,
-      onPress,
-      customContent,
-      labelAnimated = true,
-      hasBadge = false,
-      ...props
-    },
+    { icon, avatar, children, isFocused, onPress, customContent, labelAnimated = true, hasBadge = false, ...props },
     ref
   ) => {
     const colors = useThemeColors();
@@ -87,9 +77,11 @@ export const TabButton = forwardRef<View, TabButtonProps>(
       }
       if (avatar) {
         return (
-          <View
-            className={`rounded-full border-2 ${isFocused ? 'border-highlight' : 'border-transparent'}`}>
-            <Avatar src={avatar} size="xxs" />
+          <View className={`rounded-full border-2 ${isFocused ? 'border-highlight' : 'border-transparent'}`}>
+            <Avatar
+              src={avatar}
+              size="xxs"
+            />
           </View>
         );
       }

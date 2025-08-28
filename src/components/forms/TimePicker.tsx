@@ -182,7 +182,11 @@ export const TimePicker: React.FC<TimePickerProps> = ({
           </ThemedText>
         </TouchableOpacity>
         <Pressable className="absolute right-3 top-[18px] z-10">
-          <Icon name="Clock" size={20} color={colors.text} />
+          <Icon
+            name="Clock"
+            size={20}
+            color={colors.text}
+          />
         </Pressable>
         {error && <ThemedText className="mt-1 text-xs text-red-500">{error}</ThemedText>}
         {renderTimePicker()}
@@ -192,7 +196,9 @@ export const TimePicker: React.FC<TimePickerProps> = ({
 
   if (variant === 'classic') {
     return (
-      <View className={`relative mb-global ${containerClassName}`} style={{ position: 'relative' }}>
+      <View
+        className={`relative mb-global ${containerClassName}`}
+        style={{ position: 'relative' }}>
         {label && <ThemedText className="mb-2 font-medium">{label}</ThemedText>}
         <View className="relative">
           <TouchableOpacity
@@ -209,7 +215,11 @@ export const TimePicker: React.FC<TimePickerProps> = ({
             </View>
           </TouchableOpacity>
           <Pressable className="absolute right-3 top-[18px] z-10">
-            <Icon name="Clock" size={20} color={colors.text} />
+            <Icon
+              name="Clock"
+              size={20}
+              color={colors.text}
+            />
           </Pressable>
         </View>
         {error && <ThemedText className="mt-1 text-xs text-red-500">{error}</ThemedText>}
@@ -220,9 +230,13 @@ export const TimePicker: React.FC<TimePickerProps> = ({
 
   if (variant === 'underlined') {
     return (
-      <View className={`relative mb-global ${containerClassName}`} style={{ position: 'relative' }}>
+      <View
+        className={`relative mb-global ${containerClassName}`}
+        style={{ position: 'relative' }}>
         <View className="relative">
-          <Pressable className="z-40 bg-secondary px-0" onPress={showTimePicker}>
+          <Pressable
+            className="z-40 bg-secondary px-0"
+            onPress={showTimePicker}>
             <Animated.Text
               style={[
                 {
@@ -265,7 +279,11 @@ export const TimePicker: React.FC<TimePickerProps> = ({
           </TouchableOpacity>
 
           <Pressable className="absolute right-0 top-[18px] z-10">
-            <Icon name="Clock" size={20} color={colors.text} />
+            <Icon
+              name="Clock"
+              size={20}
+              color={colors.text}
+            />
           </Pressable>
         </View>
 
@@ -281,7 +299,9 @@ export const TimePicker: React.FC<TimePickerProps> = ({
         className="z-40 bg-background px-1"
         style={{ position: 'absolute', left: -6, top: 0 }}
         onPress={showTimePicker}>
-        <Animated.Text style={[labelStyle]} className="bg-background text-text">
+        <Animated.Text
+          style={[labelStyle]}
+          className="bg-background text-text">
           {label}
         </Animated.Text>
       </Pressable>
@@ -294,14 +314,16 @@ export const TimePicker: React.FC<TimePickerProps> = ({
           ${error ? 'border-red-500' : ''}
           ${disabled ? 'opacity-50' : ''}`}>
         <View className="flex-1 justify-center">
-          <ThemedText className={value ? 'text-text' : 'transparent'}>
-            {value ? formattedTime(value) : ''}
-          </ThemedText>
+          <ThemedText className={value ? 'text-text' : 'transparent'}>{value ? formattedTime(value) : ''}</ThemedText>
         </View>
       </TouchableOpacity>
 
       <Pressable className="absolute right-3 top-[18px] z-10">
-        <Icon name="Clock" size={20} color={colors.text} />
+        <Icon
+          name="Clock"
+          size={20}
+          color={colors.text}
+        />
       </Pressable>
 
       {error && <ThemedText className="mt-1 text-xs text-red-500">{error}</ThemedText>}

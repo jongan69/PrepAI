@@ -10,10 +10,7 @@ interface MultipleImagePickerProps {
   hasMainImage?: boolean;
 }
 
-export const MultipleImagePicker: React.FC<MultipleImagePickerProps> = ({
-  onImageSelect,
-  hasMainImage = true,
-}) => {
+export const MultipleImagePicker: React.FC<MultipleImagePickerProps> = ({ onImageSelect, hasMainImage = true }) => {
   const [mainImage, setMainImage] = useState<string | null>(null);
   const [additionalImages, setAdditionalImages] = useState<string[]>([]);
 
@@ -60,12 +57,18 @@ export const MultipleImagePicker: React.FC<MultipleImagePickerProps> = ({
               onPress={() => pickImage(true)}
               className="relative flex h-28 w-28 flex-col items-center justify-center overflow-hidden rounded-xl border border-black dark:border-white"
               android_ripple={{ color: 'rgba(0,0,0,0.3)', borderless: false }}>
-              <Image className="h-full w-full" source={{ uri: mainImage }} />
+              <Image
+                className="h-full w-full"
+                source={{ uri: mainImage }}
+              />
             </Pressable>
             <Pressable
               onPress={() => handleDelete()}
               className="dark:bg-dark-secondary absolute right-2 top-2 h-7 w-7 items-center justify-center rounded-lg bg-white">
-              <Icon name="Trash2" size={18} />
+              <Icon
+                name="Trash2"
+                size={18}
+              />
             </Pressable>
           </View>
         ) : (
@@ -74,7 +77,10 @@ export const MultipleImagePicker: React.FC<MultipleImagePickerProps> = ({
               onPress={() => pickImage(true)}
               className="relative flex h-28 w-28 flex-col items-center justify-center rounded-xl border border-black p-4 dark:border-white"
               android_ripple={{ color: 'rgba(0,0,0,0.3)', borderless: false }}>
-              <Icon name="Camera" size={24} />
+              <Icon
+                name="Camera"
+                size={24}
+              />
               <Text className="absolute bottom-4 w-full text-center text-xs text-black dark:text-white">
                 Main photo
               </Text>
@@ -84,19 +90,27 @@ export const MultipleImagePicker: React.FC<MultipleImagePickerProps> = ({
         {[...Array(4)].map((_, index) => {
           const image = additionalImages[index];
           return (
-            <View key={index} className="relative">
+            <View
+              key={index}
+              className="relative">
               {image ? (
                 <>
                   <Pressable
                     onPress={() => pickImage(false)}
                     className="relative flex h-28 w-28 flex-col items-center justify-center overflow-hidden rounded-xl border border-black dark:border-white"
                     android_ripple={{ color: 'rgba(0,0,0,0.3)', borderless: false }}>
-                    <Image className="h-full w-full" source={{ uri: image }} />
+                    <Image
+                      className="h-full w-full"
+                      source={{ uri: image }}
+                    />
                   </Pressable>
                   <Pressable
                     onPress={() => handleDelete(index)}
                     className="absolute right-2 top-2 h-7 w-7 items-center justify-center rounded-lg bg-white">
-                    <Icon name="Trash2" size={18} />
+                    <Icon
+                      name="Trash2"
+                      size={18}
+                    />
                   </Pressable>
                 </>
               ) : (
@@ -104,7 +118,10 @@ export const MultipleImagePicker: React.FC<MultipleImagePickerProps> = ({
                   onPress={() => pickImage(false)}
                   className="flex h-28 w-28 flex-col items-center justify-center rounded-xl border border-black p-4 opacity-40 dark:border-white"
                   android_ripple={{ color: 'rgba(0,0,0,0.3)', borderless: false }}>
-                  <Icon name="Plus" size={24} />
+                  <Icon
+                    name="Plus"
+                    size={24}
+                  />
                 </Pressable>
               )}
             </View>

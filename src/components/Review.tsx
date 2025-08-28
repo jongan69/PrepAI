@@ -17,15 +17,7 @@ interface ReviewProps {
   style?: ViewStyle;
 }
 
-const Review: React.FC<ReviewProps> = ({
-  rating,
-  description,
-  date,
-  username,
-  avatar,
-  className = '',
-  style,
-}) => {
+const Review: React.FC<ReviewProps> = ({ rating, description, date, username, avatar, className = '', style }) => {
   const colors = useThemeColors();
 
   const renderStars = () => {
@@ -54,16 +46,23 @@ const Review: React.FC<ReviewProps> = ({
   };
 
   return (
-    <View className={` ${className}`} style={style}>
+    <View
+      className={` ${className}`}
+      style={style}>
       <View className="flex-row">
-        {(avatar || username) && <Avatar src={avatar} name={username} size="xs" className="mr-3" />}
+        {(avatar || username) && (
+          <Avatar
+            src={avatar}
+            name={username}
+            size="xs"
+            className="mr-3"
+          />
+        )}
         <View className="flex-1">
           {username && <ThemedText className="mb-1 font-bold">{username}</ThemedText>}
           <View className="mb-2 flex-row items-center justify-between">
             {renderStars()}
-            <ThemedText className="text-light-subtext dark:text-dark-subtext text-sm">
-              {date}
-            </ThemedText>
+            <ThemedText className="text-light-subtext dark:text-dark-subtext text-sm">{date}</ThemedText>
           </View>
           <ThemedText className="text-sm">{description}</ThemedText>
         </View>

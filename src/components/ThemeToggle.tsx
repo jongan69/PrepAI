@@ -43,7 +43,11 @@ const Icon = (props: any) => {
 
   return (
     <View className="relative z-50 flex h-9 w-9 flex-row items-center justify-center rounded-full">
-      <Feather name={props.icon} size={16} color={`${isDark ? 'white' : 'black'}`} />
+      <Feather
+        name={props.icon}
+        size={16}
+        color={`${isDark ? 'white' : 'black'}`}
+      />
     </View>
   );
 };

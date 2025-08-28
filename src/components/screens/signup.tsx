@@ -177,14 +177,11 @@ export default function SignupScreen() {
             text2: 'An account with this email already exists. Please try logging in instead.',
           });
         } else if (err.errors?.[0]?.code === 'form_password_pwned') {
-          setPasswordError(
-            'This password has been compromised. Please choose a different password.'
-          );
+          setPasswordError('This password has been compromised. Please choose a different password.');
           Toast.show({
             type: 'error',
             text1: 'Password Compromised',
-            text2:
-              'This password has been found in a data breach. Please choose a stronger, unique password.',
+            text2: 'This password has been found in a data breach. Please choose a stronger, unique password.',
           });
         } else {
           setEmailError('Something went wrong. Please try again.');
@@ -226,10 +223,10 @@ export default function SignupScreen() {
       // and redirect the user
       if (signUpAttempt.status === 'complete') {
         await setActive({ session: signUpAttempt.createdSessionId });
-        
+
         // Mark that user has opened the app before (not first time user)
         await storageManager.setFirstTimeUserCompleted();
-        
+
         Toast.show({
           type: 'success',
           text1: 'Account Created!',
@@ -273,8 +270,12 @@ export default function SignupScreen() {
 
   if (pendingVerification) {
     return (
-      <ImageBackground source={require('@/assets/img/wallpaper-3.jpg')} style={{ flex: 1 }}>
-        <LinearGradient colors={['transparent', 'transparent']} style={{ flex: 1 }}>
+      <ImageBackground
+        source={require('@/assets/img/wallpaper-3.jpg')}
+        style={{ flex: 1 }}>
+        <LinearGradient
+          colors={['transparent', 'transparent']}
+          style={{ flex: 1 }}>
           <ScrollView
             contentContainerStyle={{ flex: 1 }}
             keyboardShouldPersistTaps="handled"
@@ -282,7 +283,9 @@ export default function SignupScreen() {
             bounces={false}
             className="flex-1">
             <StatusBar style="light" />
-            <View className="flex-1" style={{ paddingTop: insets.top }}>
+            <View
+              className="flex-1"
+              style={{ paddingTop: insets.top }}>
               <View className="w-full flex-row items-center justify-between px-global">
                 <Icon
                   name="ArrowLeft"
@@ -290,9 +293,7 @@ export default function SignupScreen() {
                   size={24}
                   color="white"
                 />
-                <ThemedText className="font-outfit-bold text-lg text-white">
-                  Verify Email
-                </ThemedText>
+                <ThemedText className="font-outfit-bold text-lg text-white">Verify Email</ThemedText>
                 <View style={{ width: 24 }} />
               </View>
             </View>
@@ -376,8 +377,12 @@ export default function SignupScreen() {
   }
 
   return (
-    <ImageBackground source={require('@/assets/img/wallpaper-3.jpg')} style={{ flex: 1 }}>
-      <LinearGradient colors={['transparent', 'transparent']} style={{ flex: 1 }}>
+    <ImageBackground
+      source={require('@/assets/img/wallpaper-3.jpg')}
+      style={{ flex: 1 }}>
+      <LinearGradient
+        colors={['transparent', 'transparent']}
+        style={{ flex: 1 }}>
         <ScrollView
           contentContainerStyle={{ flex: 1 }}
           keyboardShouldPersistTaps="handled"
@@ -385,9 +390,16 @@ export default function SignupScreen() {
           bounces={false}
           className="flex-1">
           <StatusBar style="light" />
-          <View className="flex-1" style={{ paddingTop: insets.top }}>
+          <View
+            className="flex-1"
+            style={{ paddingTop: insets.top }}>
             <View className="w-full flex-row items-center justify-between px-global">
-              <Icon name="ArrowLeft" onPress={() => router.back()} size={24} color="white" />
+              <Icon
+                name="ArrowLeft"
+                onPress={() => router.back()}
+                size={24}
+                color="white"
+              />
               <Link
                 href="/(mobile)/(onboarding)/login"
                 className="rounded-xl border border-white/60 px-3 py-2 text-white">
@@ -483,9 +495,7 @@ export default function SignupScreen() {
                 <View className="flex-row justify-center">
                   <ThemedText className="text-center text-sm opacity-50">
                     By signing up you agree to our{' '}
-                    <ThemedText className="font-outfit-bold text-primary">
-                      Terms & Conditions
-                    </ThemedText>
+                    <ThemedText className="font-outfit-bold text-primary">Terms & Conditions</ThemedText>
                   </ThemedText>
                 </View>
               </View>

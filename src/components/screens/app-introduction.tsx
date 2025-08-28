@@ -42,8 +42,7 @@ const introductionSlides: IntroductionSlide[] = [
   {
     id: '3',
     title: 'Smart Recommendations',
-    description:
-      'Get personalized meal suggestions, workout plans, and health tips based on your goals and progress.',
+    description: 'Get personalized meal suggestions, workout plans, and health tips based on your goals and progress.',
     image: require('@/assets/img/onboarding-3.png'),
     icon: 'Lightbulb',
     color: '#f59e0b',
@@ -91,8 +90,12 @@ export default function AppIntroduction() {
   };
 
   const renderSlide = ({ item }: { item: IntroductionSlide }) => (
-    <View style={{ width }} className="flex-1">
-      <ImageBackground source={item.image} className="absolute left-0 top-0 h-full w-full">
+    <View
+      style={{ width }}
+      className="flex-1">
+      <ImageBackground
+        source={item.image}
+        className="absolute left-0 top-0 h-full w-full">
         <LinearGradient
           colors={['transparent', 'rgba(0,0,0,0.8)']}
           style={{ width: '100%', height: '100%' }}>
@@ -100,16 +103,16 @@ export default function AppIntroduction() {
             <View
               className="mb-8 h-20 w-20 items-center justify-center rounded-full"
               style={{ backgroundColor: `${item.color}20` }}>
-              <Icon name={item.icon} size={32} color={item.color} />
+              <Icon
+                name={item.icon}
+                size={32}
+                color={item.color}
+              />
             </View>
 
-            <ThemedText className="mb-4 text-center text-3xl font-bold text-white">
-              {item.title}
-            </ThemedText>
+            <ThemedText className="mb-4 text-center text-3xl font-bold text-white">{item.title}</ThemedText>
 
-            <ThemedText className="text-center text-lg leading-6 text-white/80">
-              {item.description}
-            </ThemedText>
+            <ThemedText className="text-center text-lg leading-6 text-white/80">{item.description}</ThemedText>
           </View>
         </LinearGradient>
       </ImageBackground>
@@ -151,9 +154,7 @@ export default function AppIntroduction() {
           {introductionSlides.map((_, index) => (
             <View
               key={index}
-              className={`mx-1 h-2 rounded-full ${
-                index === currentIndex ? 'w-8 bg-white' : 'w-2 bg-white/50'
-              }`}
+              className={`mx-1 h-2 rounded-full ${index === currentIndex ? 'w-8 bg-white' : 'w-2 bg-white/50'}`}
             />
           ))}
         </View>
@@ -169,10 +170,18 @@ export default function AppIntroduction() {
                 textClassName="text-white"
                 onPress={handleSkip}
               />
-              <Button title="Next" className="flex-1" onPress={handleNext} />
+              <Button
+                title="Next"
+                className="flex-1"
+                onPress={handleNext}
+              />
             </>
           ) : (
-            <Button title="Get Started" className="flex-1" onPress={handleGetStarted} />
+            <Button
+              title="Get Started"
+              className="flex-1"
+              onPress={handleGetStarted}
+            />
           )}
         </View>
       </View>

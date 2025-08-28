@@ -40,24 +40,24 @@ interface MoneyModelContextType {
   // User Journey
   userJourney: UserJourney | null;
   currentStage: UserStage;
-  
+
   // Offers
   availableOffers: MoneyOffer[];
   recommendedOffers: MoneyOffer[];
   personalizedOffers: MoneyOffer[];
-  
+
   // Actions
   trackOfferView: (offerId: string) => void;
   trackOfferClick: (offerId: string) => void;
   trackOfferPurchase: (offerId: string, amount: number) => void;
   updateUserStage: (stage: UserStage) => void;
-  
+
   // Analytics
   getConversionRate: (offerType: OfferType) => number;
   getAverageOrderValue: (offerType: OfferType) => number;
   getLifetimeValue: () => number;
   getChurnRisk: () => 'low' | 'medium' | 'high';
-  
+
   // Money Model Logic
   getNextBestOffer: () => MoneyOffer | null;
   shouldShowUpsell: () => boolean;
@@ -76,17 +76,12 @@ const ALL_OFFERS: MoneyOffer[] = [
     title: '7-Day Free Trial',
     description: 'Try PrepAI Premium risk-free',
     price: 0,
-    features: [
-      'Unlimited meal planning',
-      'AI workout recommendations',
-      'Progress tracking',
-      'Cancel anytime'
-    ],
+    features: ['Unlimited meal planning', 'AI workout recommendations', 'Progress tracking', 'Cancel anytime'],
     icon: 'Gift',
     trialDays: 7,
     guarantee: '100% Money Back Guarantee',
     conversionRate: 0.15,
-    avgOrderValue: 0
+    avgOrderValue: 0,
   },
   {
     id: 'starter-pack',
@@ -96,16 +91,11 @@ const ALL_OFFERS: MoneyOffer[] = [
     price: 9.99,
     originalPrice: 29.99,
     discount: 67,
-    features: [
-      '30-day meal plans',
-      'Basic workout library',
-      'Weight tracking',
-      'Email support'
-    ],
+    features: ['30-day meal plans', 'Basic workout library', 'Weight tracking', 'Email support'],
     icon: 'Star',
     isLimited: true,
     conversionRate: 0.12,
-    avgOrderValue: 9.99
+    avgOrderValue: 9.99,
   },
 
   // STAGE 2: Upsell Offers - Increase order value
@@ -121,12 +111,12 @@ const ALL_OFFERS: MoneyOffer[] = [
       'Progress tracking',
       'Priority support',
       'Custom goals',
-      'Recipe database'
+      'Recipe database',
     ],
     icon: 'Trophy',
     isPopular: true,
     conversionRate: 0.08,
-    avgOrderValue: 29.99
+    avgOrderValue: 29.99,
   },
   {
     id: 'premium-yearly',
@@ -142,11 +132,11 @@ const ALL_OFFERS: MoneyOffer[] = [
       'Personal nutritionist chat',
       'Advanced analytics',
       'Family sharing (up to 5)',
-      'Early access to features'
+      'Early access to features',
     ],
     icon: 'Medal',
     conversionRate: 0.05,
-    avgOrderValue: 179.99
+    avgOrderValue: 179.99,
   },
 
   // STAGE 3: Downsell Offers - Capture the "no's"
@@ -156,15 +146,10 @@ const ALL_OFFERS: MoneyOffer[] = [
     title: 'Basic Monthly',
     description: 'Essential features only',
     price: 14.99,
-    features: [
-      'Basic meal planning',
-      'Simple workout tracking',
-      'Weight logging',
-      'Basic support'
-    ],
+    features: ['Basic meal planning', 'Simple workout tracking', 'Weight logging', 'Basic support'],
     icon: 'Check',
     conversionRate: 0.18,
-    avgOrderValue: 14.99
+    avgOrderValue: 14.99,
   },
   {
     id: 'pay-per-month',
@@ -172,15 +157,10 @@ const ALL_OFFERS: MoneyOffer[] = [
     title: 'Pay As You Go',
     description: 'No commitment required',
     price: 4.99,
-    features: [
-      'Single meal plan',
-      'One workout session',
-      'Basic tracking',
-      '7-day access'
-    ],
+    features: ['Single meal plan', 'One workout session', 'Basic tracking', '7-day access'],
     icon: 'Clock',
     conversionRate: 0.25,
-    avgOrderValue: 4.99
+    avgOrderValue: 4.99,
   },
 
   // STAGE 4: Continuity Offers - Keep users paying
@@ -196,13 +176,13 @@ const ALL_OFFERS: MoneyOffer[] = [
       'Premium support forever',
       'Family sharing unlimited',
       'Exclusive lifetime content',
-      'No recurring payments'
+      'No recurring payments',
     ],
     icon: 'Crown',
     guarantee: 'Lifetime Guarantee',
     conversionRate: 0.02,
-    avgOrderValue: 499.99
-  }
+    avgOrderValue: 499.99,
+  },
 ];
 
 export function MoneyModelProvider({ children }: { children: ReactNode }) {
@@ -224,7 +204,7 @@ export function MoneyModelProvider({ children }: { children: ReactNode }) {
         lastOfferDate: new Date(),
         conversionPath: [],
         lifetimeValue: 0,
-        churnRisk: 'low'
+        churnRisk: 'low',
       };
       setUserJourney(initialJourney);
       setCurrentStage(initialJourney.currentStage);
@@ -237,17 +217,17 @@ export function MoneyModelProvider({ children }: { children: ReactNode }) {
 
     switch (userJourney.currentStage) {
       case 'free':
-        return ALL_OFFERS.filter(offer => offer.type === 'attraction');
+        return ALL_OFFERS.filter((offer) => offer.type === 'attraction');
       case 'trial':
-        return ALL_OFFERS.filter(offer => offer.type === 'upsell');
+        return ALL_OFFERS.filter((offer) => offer.type === 'upsell');
       case 'basic':
-        return ALL_OFFERS.filter(offer => offer.type === 'upsell' || offer.type === 'continuity');
+        return ALL_OFFERS.filter((offer) => offer.type === 'upsell' || offer.type === 'continuity');
       case 'premium':
-        return ALL_OFFERS.filter(offer => offer.type === 'continuity');
+        return ALL_OFFERS.filter((offer) => offer.type === 'continuity');
       case 'lifetime':
         return []; // No more offers needed
       default:
-        return ALL_OFFERS.filter(offer => offer.type === 'attraction');
+        return ALL_OFFERS.filter((offer) => offer.type === 'attraction');
     }
   };
 
@@ -256,16 +236,16 @@ export function MoneyModelProvider({ children }: { children: ReactNode }) {
     if (!userJourney) return [];
 
     const available = getAvailableOffers();
-    
+
     // Sort by conversion rate and user behavior
     return available.sort((a, b) => {
       // Prioritize offers user hasn't seen
       const aSeen = userJourney.offersSeen.includes(a.id);
       const bSeen = userJourney.offersSeen.includes(b.id);
-      
+
       if (!aSeen && bSeen) return -1;
       if (aSeen && !bSeen) return 1;
-      
+
       // Then by conversion rate
       return (b.conversionRate || 0) - (a.conversionRate || 0);
     });
@@ -274,39 +254,39 @@ export function MoneyModelProvider({ children }: { children: ReactNode }) {
   // Track offer interactions
   const trackOfferView = (offerId: string) => {
     if (!userJourney) return;
-    
-    setUserJourney(prev => {
+
+    setUserJourney((prev) => {
       if (!prev) return prev;
       return {
         ...prev,
         offersSeen: [...new Set([...prev.offersSeen, offerId])],
-        lastOfferDate: new Date()
+        lastOfferDate: new Date(),
       };
     });
   };
 
   const trackOfferClick = (offerId: string) => {
     if (!userJourney) return;
-    
-    setUserJourney(prev => {
+
+    setUserJourney((prev) => {
       if (!prev) return prev;
       return {
         ...prev,
         offersClicked: [...new Set([...prev.offersClicked, offerId])],
-        lastOfferDate: new Date()
+        lastOfferDate: new Date(),
       };
     });
   };
 
   const trackOfferPurchase = (offerId: string, amount: number) => {
     if (!userJourney) return;
-    
-    const offer = ALL_OFFERS.find(o => o.id === offerId);
+
+    const offer = ALL_OFFERS.find((o) => o.id === offerId);
     if (!offer) return;
 
-    setUserJourney(prev => {
+    setUserJourney((prev) => {
       if (!prev) return prev;
-      
+
       // Update stage based on purchase
       let newStage = prev.currentStage;
       if (offer.type === 'attraction') {
@@ -324,7 +304,7 @@ export function MoneyModelProvider({ children }: { children: ReactNode }) {
         lifetimeValue: prev.lifetimeValue + (offer.avgOrderValue || amount),
         currentStage: newStage,
         conversionPath: [...prev.conversionPath, offerId],
-        lastOfferDate: new Date()
+        lastOfferDate: new Date(),
       };
     });
 
@@ -334,27 +314,23 @@ export function MoneyModelProvider({ children }: { children: ReactNode }) {
   const updateUserStage = (stage: UserStage) => {
     setCurrentStage(stage);
     if (userJourney) {
-      setUserJourney(prev => prev ? { ...prev, currentStage: stage } : null);
+      setUserJourney((prev) => (prev ? { ...prev, currentStage: stage } : null));
     }
   };
 
   // Analytics functions
   const getConversionRate = (offerType: OfferType): number => {
     if (!userJourney) return 0;
-    
-    const typeOffers = ALL_OFFERS.filter(o => o.type === offerType);
-    const seen = userJourney.offersSeen.filter(id => 
-      typeOffers.some(o => o.id === id)
-    ).length;
-    const purchased = userJourney.offersPurchased.filter(id => 
-      typeOffers.some(o => o.id === id)
-    ).length;
-    
+
+    const typeOffers = ALL_OFFERS.filter((o) => o.type === offerType);
+    const seen = userJourney.offersSeen.filter((id) => typeOffers.some((o) => o.id === id)).length;
+    const purchased = userJourney.offersPurchased.filter((id) => typeOffers.some((o) => o.id === id)).length;
+
     return seen > 0 ? purchased / seen : 0;
   };
 
   const getAverageOrderValue = (offerType: OfferType): number => {
-    const typeOffers = ALL_OFFERS.filter(o => o.type === offerType);
+    const typeOffers = ALL_OFFERS.filter((o) => o.type === offerType);
     const total = typeOffers.reduce((sum, offer) => sum + (offer.avgOrderValue || 0), 0);
     return typeOffers.length > 0 ? total / typeOffers.length : 0;
   };
@@ -365,9 +341,9 @@ export function MoneyModelProvider({ children }: { children: ReactNode }) {
 
   const getChurnRisk = (): 'low' | 'medium' | 'high' => {
     if (!userJourney) return 'low';
-    
+
     const daysSinceLastActivity = (Date.now() - userJourney.lastOfferDate.getTime()) / (1000 * 60 * 60 * 24);
-    
+
     if (daysSinceLastActivity > 30) return 'high';
     if (daysSinceLastActivity > 7) return 'medium';
     return 'low';
@@ -411,14 +387,10 @@ export function MoneyModelProvider({ children }: { children: ReactNode }) {
     getNextBestOffer,
     shouldShowUpsell,
     shouldShowDownsell,
-    shouldShowContinuity
+    shouldShowContinuity,
   };
 
-  return (
-    <MoneyModelContext.Provider value={value}>
-      {children}
-    </MoneyModelContext.Provider>
-  );
+  return <MoneyModelContext.Provider value={value}>{children}</MoneyModelContext.Provider>;
 }
 
 export function useMoneyModel() {

@@ -115,9 +115,7 @@ export const Chip = ({
     <>
       <View className="flex-row items-center">
         {renderLeftContent()}
-        <Text className={`text-${textSizeClass} ${isChipSelected ? 'text-white ' : 'text-text'}`}>
-          {label}
-        </Text>
+        <Text className={`text-${textSizeClass} ${isChipSelected ? 'text-white ' : 'text-text'}`}>{label}</Text>
       </View>
     </>
   );
@@ -134,14 +132,19 @@ export const Chip = ({
   // Return either a Link or TouchableOpacity based on props
   if (href) {
     return (
-      <Link href={href} asChild>
+      <Link
+        href={href}
+        asChild>
         <TouchableOpacity activeOpacity={0.7}>{chipWrapper(chipContent)}</TouchableOpacity>
       </Link>
     );
   }
 
   return (
-    <TouchableOpacity onPress={handlePress} activeOpacity={0.7} disabled={!onPress && !selectable}>
+    <TouchableOpacity
+      onPress={handlePress}
+      activeOpacity={0.7}
+      disabled={!onPress && !selectable}>
       {chipWrapper(chipContent)}
     </TouchableOpacity>
   );

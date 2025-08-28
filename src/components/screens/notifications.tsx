@@ -216,7 +216,10 @@ export default function NotificationsScreen() {
 
   return (
     <>
-      <Header showBackButton title="Notifications" />
+      <Header
+        showBackButton
+        title="Notifications"
+      />
       <View className="dark:bg-dark-primary flex-1 bg-background">
         <View className="flex-row gap-1 p-4">
           <Chip
@@ -254,7 +257,10 @@ export default function NotificationsScreen() {
         <ThemedScroller className="!px-0">
           {isLoading ? (
             <View className="p-4">
-              <SkeletonLoader variant="list" count={6} />
+              <SkeletonLoader
+                variant="list"
+                count={6}
+              />
             </View>
           ) : (
             <List variant="divided">
@@ -279,19 +285,23 @@ export const renderNotification = (notification: Notification) => (
   <ListItem
     leading={
       notification.user ? (
-        <Image source={{ uri: notification.user.avatar }} className="h-10 w-10 rounded-full" />
+        <Image
+          source={{ uri: notification.user.avatar }}
+          className="h-10 w-10 rounded-full"
+        />
       ) : (
         <View className="/30 dark:bg-dark-subtext/30 h-10 w-10 items-center justify-center rounded-full bg-secondary">
-          <Icon name={notification.icon} size={20} />
+          <Icon
+            name={notification.icon}
+            size={20}
+          />
         </View>
       )
     }
     title={<ThemedText className="font-bold">{notification.title}</ThemedText>}
     subtitle={notification.message}
     trailing={
-      <ThemedText className="text-light-subtext dark:text-dark-subtext text-xs">
-        {notification.time}
-      </ThemedText>
+      <ThemedText className="text-light-subtext dark:text-dark-subtext text-xs">{notification.time}</ThemedText>
     }
     className={`p-4 ${!notification.read ? '' : ''}`}
   />

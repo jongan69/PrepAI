@@ -9,7 +9,11 @@ import ThemedText from '@/components/ThemedText';
 export default function WorkoutDetailScreen() {
   return (
     <>
-      <Header showBackButton className="bg-secondary" rightComponents={[<Icon name="Share2" />]} />
+      <Header
+        showBackButton
+        className="bg-secondary"
+        rightComponents={[<Icon name="Share2" />]}
+      />
       <ThemedScroller className="!px-0">
         <View className="bg-secondary p-global pt-0">
           <Image
@@ -28,14 +32,20 @@ export default function WorkoutDetailScreen() {
           <View className="w-full flex-row items-center">
             <View className="flex-1">
               <View className="flex-row items-center">
-                <Icon name="Heart" size={15} />
+                <Icon
+                  name="Heart"
+                  size={15}
+                />
                 <ThemedText className="ml-2 text-xl font-bold">104 bpm</ThemedText>
               </View>
               <ThemedText className="text-sm opacity-50">Avg HR</ThemedText>
             </View>
             <View className="flex-1">
               <View className="flex-row items-center">
-                <Icon name="Flame" size={15} />
+                <Icon
+                  name="Flame"
+                  size={15}
+                />
                 <ThemedText className="ml-2 text-xl font-bold">241</ThemedText>
               </View>
               <ThemedText className="text-sm opacity-50">Total calories</ThemedText>
@@ -64,15 +74,9 @@ const WorkoutTable = () => {
       <View className="dark:bg-dark-primary flex-row bg-background px-4 py-3">
         <ThemedText className="w-10 text-xs font-semibold opacity-60">SET</ThemedText>
         <ThemedText className="flex-1 text-xs font-semibold opacity-60">EXERCISE</ThemedText>
-        <ThemedText className="flex-1 text-center text-xs font-semibold opacity-60">
-          TIME
-        </ThemedText>
-        <ThemedText className="flex-1 text-center text-xs font-semibold opacity-60">
-          REPS
-        </ThemedText>
-        <ThemedText className="flex-1 text-right text-xs font-semibold opacity-60">
-          WEIGHT
-        </ThemedText>
+        <ThemedText className="flex-1 text-center text-xs font-semibold opacity-60">TIME</ThemedText>
+        <ThemedText className="flex-1 text-center text-xs font-semibold opacity-60">REPS</ThemedText>
+        <ThemedText className="flex-1 text-right text-xs font-semibold opacity-60">WEIGHT</ThemedText>
       </View>
 
       {/* Rows */}

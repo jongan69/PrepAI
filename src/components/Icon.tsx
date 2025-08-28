@@ -83,10 +83,12 @@ const Icon: React.FC<IconProps> = ({
     .join(' ')
     .trim();
 
-  const IconComponent = LucideIcons[name] as React.ComponentType<LucideProps>;
+  const IconComponent = (LucideIcons as any)[name] as React.ComponentType<LucideProps>;
 
   const content = (
-    <View style={style} className={classes || undefined}>
+    <View
+      style={style}
+      className={classes || undefined}>
       <IconComponent
         size={icon}
         color={color || colors.text}
@@ -98,7 +100,9 @@ const Icon: React.FC<IconProps> = ({
 
   if (href) {
     return (
-      <Link href={href} asChild>
+      <Link
+        href={href as any}
+        asChild>
         <Pressable disabled={disabled}>{content}</Pressable>
       </Link>
     );

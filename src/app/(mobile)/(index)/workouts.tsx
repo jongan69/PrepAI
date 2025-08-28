@@ -106,9 +106,7 @@ export default function WorkoutsScreen() {
     }
   };
 
-  const renderWorkoutDay = ({ item }: { item: (typeof workoutDaysData)[0] }) => (
-    <WorkoutDayContent data={item} />
-  );
+  const renderWorkoutDay = ({ item }: { item: (typeof workoutDaysData)[0] }) => <WorkoutDayContent data={item} />;
 
   const onScrollEnd = (event: any) => {
     const contentOffset = event.nativeEvent.contentOffset.x;
@@ -123,7 +121,12 @@ export default function WorkoutsScreen() {
         title="Workouts"
         className="bg-secondary"
         leftComponent={
-          <Avatar src={imageUrl} name={displayName} size="sm" link="/(mobile)/(profile)" />
+          <Avatar
+            src={imageUrl}
+            name={displayName}
+            size="sm"
+            link="/(mobile)/(profile)"
+          />
         }
         rightComponents={[
           <Icon
@@ -135,7 +138,9 @@ export default function WorkoutsScreen() {
         ]}
       />
       <View className="w-full flex-row items-center justify-between border-b border-border bg-secondary px-global py-4">
-        <Pressable onPress={handlePrevDay} disabled={currentDayIndex === 0}>
+        <Pressable
+          onPress={handlePrevDay}
+          disabled={currentDayIndex === 0}>
           <Icon
             name="ChevronLeft"
             size={20}
@@ -180,19 +185,21 @@ export default function WorkoutsScreen() {
 
         <View className="mt-6 px-global">
           {/* Workout Program Quick Access */}
-          <Section title="Workout Program" className="mb-6">
+          <Section
+            title="Workout Program"
+            className="mb-6">
             <View className="mb-3 flex-row gap-3">
-              <Link asChild href="/(mobile)/(workout)/dashboard">
+              <Link
+                asChild
+                href="/(mobile)/(workout)/dashboard">
                 <Pressable className="flex-1 rounded-lg bg-highlight p-4">
-                  <ThemedText className="mb-1 text-base font-medium text-background">
-                    Dashboard
-                  </ThemedText>
-                  <ThemedText className="text-background/80 text-xs">
-                    View workouts & start training
-                  </ThemedText>
+                  <ThemedText className="mb-1 text-base font-medium text-background">Dashboard</ThemedText>
+                  <ThemedText className="text-background/80 text-xs">View workouts & start training</ThemedText>
                 </Pressable>
               </Link>
-              <Link asChild href="/(mobile)/(workout)/history">
+              <Link
+                asChild
+                href="/(mobile)/(workout)/history">
                 <Pressable className="flex-1 rounded-lg bg-secondary p-4">
                   <ThemedText className="mb-1 text-base font-medium text-text">History</ThemedText>
                   <ThemedText className="text-subtext text-xs">Calendar & workout logs</ThemedText>
@@ -200,27 +207,34 @@ export default function WorkoutsScreen() {
               </Link>
             </View>
             <View className="flex-row gap-3">
-              <Link asChild href="/(mobile)/(workout)/setup">
+              <Link
+                asChild
+                href="/(mobile)/(workout)/setup">
                 <Pressable className="flex-1 rounded-lg bg-secondary p-3">
-                  <ThemedText className="text-center text-sm font-medium text-text">
-                    Setup Program
-                  </ThemedText>
+                  <ThemedText className="text-center text-sm font-medium text-text">Setup Program</ThemedText>
                 </Pressable>
               </Link>
-              <Link asChild href="/(mobile)/(workout)/progress">
+              <Link
+                asChild
+                href="/(mobile)/(workout)/progress">
                 <Pressable className="flex-1 rounded-lg bg-secondary p-3">
-                  <ThemedText className="text-center text-sm font-medium text-text">
-                    Progress
-                  </ThemedText>
+                  <ThemedText className="text-center text-sm font-medium text-text">Progress</ThemedText>
                 </Pressable>
               </Link>
             </View>
           </Section>
 
-          <Section title="Recent Workouts" className="mb-6">
-            <CardScroller space={10} className="mt-2">
+          <Section
+            title="Recent Workouts"
+            className="mb-6">
+            <CardScroller
+              space={10}
+              className="mt-2">
               {workouts.slice(0, 3).map((workout, index) => (
-                <Link key={workout.id} asChild href="/(mobile)/(workout)/detail">
+                <Link
+                  key={workout.id}
+                  asChild
+                  href="/(mobile)/(workout)/detail">
                   <Pressable className="dark:bg-dark-secondary  mb-2 min-h-[150px] w-[150px] items-start justify-between rounded-lg bg-secondary p-4">
                     <ThemedText className="text-light-text dark:text-dark-text text-base font-medium">
                       {workout.title}
@@ -234,7 +248,9 @@ export default function WorkoutsScreen() {
             </CardScroller>
           </Section>
 
-          <Section title="Available Workouts" className="mb-6 mt-5">
+          <Section
+            title="Available Workouts"
+            className="mb-6 mt-5">
             <FlatList
               className="mt-4"
               data={mockWorkouts}
@@ -247,9 +263,9 @@ export default function WorkoutsScreen() {
 
           {/* Money Model Integration - Smart Offer Card for Workouts */}
           <Section className="mb-6">
-            <SmartOfferCard 
-              placement="workout" 
-              variant="banner" 
+            <SmartOfferCard
+              placement="workout"
+              variant="banner"
               className="mt-4"
             />
           </Section>
@@ -263,7 +279,9 @@ const WorkoutDayContent = ({ data }: { data: (typeof workoutDaysData)[0] }) => {
   const { width } = require('react-native').Dimensions.get('window');
 
   return (
-    <View style={{ width }} className="bg-secondary">
+    <View
+      style={{ width }}
+      className="bg-secondary">
       <View className="px-global">
         <Section
           title={data.title}
@@ -279,7 +297,9 @@ const WorkoutDayContent = ({ data }: { data: (typeof workoutDaysData)[0] }) => {
 
 const renderWorkoutCard = ({ item }: { item: Workout }) => {
   return (
-    <Link asChild href="/(mobile)/(workout)/tracker">
+    <Link
+      asChild
+      href="/(mobile)/(workout)/tracker">
       <Pressable className="dark:bg-dark-secondary  mb-4 flex-row items-center justify-between rounded-xl bg-secondary p-4">
         <View className="flex-1">
           <ThemedText className="text-light-text dark:text-dark-text mb-4 text-lg font-semibold">
@@ -293,9 +313,7 @@ const renderWorkoutCard = ({ item }: { item: Workout }) => {
                 size={14}
                 className="text-light-subtext dark:text-dark-subtext mr-1"
               />
-              <ThemedText className="text-light-subtext dark:text-dark-subtext text-sm">
-                {item.duration}
-              </ThemedText>
+              <ThemedText className="text-light-subtext dark:text-dark-subtext text-sm">{item.duration}</ThemedText>
             </View>
 
             <View className="flex-row items-center">

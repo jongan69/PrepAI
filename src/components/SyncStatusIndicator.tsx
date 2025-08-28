@@ -50,7 +50,11 @@ export const SyncStatusIndicator: React.FC = () => {
   if (!syncEnabled) {
     return (
       <View className="flex-row items-center rounded-lg bg-gray-100 p-2">
-        <Icon name="WifiOff" size={16} className="mr-2 text-gray-500" />
+        <Icon
+          name="WifiOff"
+          size={16}
+          className="mr-2 text-gray-500"
+        />
         <ThemedText className="text-sm text-gray-500">Sync disabled</ThemedText>
       </View>
     );

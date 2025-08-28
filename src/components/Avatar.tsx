@@ -74,7 +74,10 @@ const Avatar: React.FC<AvatarProps> = ({
       className={`flex-shrink-0 rounded-full ${bgColor} ${sizeMap[size]} ${borderStyle} items-center justify-center ${className}`}
       style={style}>
       {src ? (
-        <Image source={getImageSource()} className="h-full w-full rounded-full object-cover" />
+        <Image
+          source={getImageSource()}
+          className="h-full w-full rounded-full object-cover"
+        />
       ) : (
         renderInitials()
       )}

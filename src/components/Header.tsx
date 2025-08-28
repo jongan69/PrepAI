@@ -112,8 +112,14 @@ const Header: React.FC<HeaderProps> = ({
         <View className="flex-row justify-between">
           <View className="flex-row items-center">
             {showBackButton && (
-              <TouchableOpacity onPress={handleBackPress} className="relative z-50 mr-global">
-                <Icon name="ArrowLeft" size={24} color="white" />
+              <TouchableOpacity
+                onPress={handleBackPress}
+                className="relative z-50 mr-global">
+                <Icon
+                  name="ArrowLeft"
+                  size={24}
+                  color="white"
+                />
               </TouchableOpacity>
             )}
 
@@ -132,7 +138,9 @@ const Header: React.FC<HeaderProps> = ({
 
           <View className="relative z-50 flex-row items-center">
             {rightComponents.map((component, index) => (
-              <View key={index} className="ml-6">
+              <View
+                key={index}
+                className="ml-6">
                 {component}
               </View>
             ))}
@@ -154,8 +162,14 @@ const Header: React.FC<HeaderProps> = ({
         <View className="flex-row justify-between">
           <View className="flex-row items-center">
             {showBackButton && (
-              <TouchableOpacity onPress={handleBackPress} className="relative z-50 mr-global">
-                <Icon name="ArrowLeft" size={24} color="white" />
+              <TouchableOpacity
+                onPress={handleBackPress}
+                className="relative z-50 mr-global">
+                <Icon
+                  name="ArrowLeft"
+                  size={24}
+                  color="white"
+                />
               </TouchableOpacity>
             )}
 
@@ -174,7 +188,9 @@ const Header: React.FC<HeaderProps> = ({
 
           <View className="relative z-50 flex-row items-center">
             {rightComponents.map((component, index) => (
-              <View key={index} className="ml-6">
+              <View
+                key={index}
+                className="ml-6">
                 {component}
               </View>
             ))}
@@ -187,17 +203,19 @@ const Header: React.FC<HeaderProps> = ({
 
   return (
     <AnimatedView
-      style={[
-        collapsible ? { paddingTop: insets.top } : { paddingTop: insets.top + 0 },
-        style,
-        containerStyle,
-      ]}
+      style={[collapsible ? { paddingTop: insets.top } : { paddingTop: insets.top + 0 }, style, containerStyle]}
       className={`relative z-50 w-full flex-row justify-between bg-background px-global pb-2 ${className}`}>
       {(showBackButton || leftComponent || title) && (
         <View className="flex-1 flex-row items-center">
           {showBackButton && (
-            <TouchableOpacity onPress={handleBackPress} className="relative z-50 mr-global py-4">
-              <Icon name="ArrowLeft" size={24} color={isTransparent ? 'white' : colors.icon} />
+            <TouchableOpacity
+              onPress={handleBackPress}
+              className="relative z-50 mr-global py-4">
+              <Icon
+                name="ArrowLeft"
+                size={24}
+                color={isTransparent ? 'white' : colors.icon}
+              />
             </TouchableOpacity>
           )}
 
@@ -211,14 +229,14 @@ const Header: React.FC<HeaderProps> = ({
             ))}
         </View>
       )}
-      {middleComponent && (
-        <View className="flex-1 flex-row items-center justify-center py-4 ">{middleComponent}</View>
-      )}
+      {middleComponent && <View className="flex-1 flex-row items-center justify-center py-4 ">{middleComponent}</View>}
 
       {rightComponents.length > 0 && (
         <View className="relative z-50 flex-1 flex-row items-center justify-end ">
           {rightComponents.map((component, index) => (
-            <View key={index} className="ml-6">
+            <View
+              key={index}
+              className="ml-6">
               {component}
             </View>
           ))}
@@ -240,37 +258,50 @@ type HeaderItemProps = {
   isWhite?: boolean;
 };
 
-export const HeaderIcon = ({
-  href,
-  icon,
-  hasBadge,
-  onPress,
-  className = '',
-  isWhite = false,
-}: HeaderItemProps) => (
+export const HeaderIcon = ({ href, icon, hasBadge, onPress, className = '', isWhite = false }: HeaderItemProps) => (
   <>
     {onPress ? (
-      <TouchableOpacity onPress={onPress} className="overflow-visible">
-        <View
-          className={`relative h-7 w-7 flex-row items-center justify-center overflow-visible ${className}`}>
+      <TouchableOpacity
+        onPress={onPress}
+        className="overflow-visible">
+        <View className={`relative h-7 w-7 flex-row items-center justify-center overflow-visible ${className}`}>
           {hasBadge && (
             <View className="border-light-primary dark:border-dark-primary absolute -right-0 -top-0 z-30 h-4 w-4 rounded-full border-2 bg-red-500" />
           )}
-          {isWhite ? <Icon name={icon} size={25} color="white" /> : <Icon name={icon} size={25} />}
+          {isWhite ? (
+            <Icon
+              name={icon}
+              size={25}
+              color="white"
+            />
+          ) : (
+            <Icon
+              name={icon}
+              size={25}
+            />
+          )}
         </View>
       </TouchableOpacity>
     ) : (
-      <Link href={href as any} asChild>
+      <Link
+        href={href as any}
+        asChild>
         <TouchableOpacity className="overflow-visible">
-          <View
-            className={`relative h-7 w-7 flex-row items-center justify-center overflow-visible ${className}`}>
+          <View className={`relative h-7 w-7 flex-row items-center justify-center overflow-visible ${className}`}>
             {hasBadge && (
               <View className="absolute -right-[3px] -top-0 z-30 h-4 w-4 rounded-full border-2 border-background bg-red-500" />
             )}
             {isWhite ? (
-              <Icon name={icon} size={25} color="white" />
+              <Icon
+                name={icon}
+                size={25}
+                color="white"
+              />
             ) : (
-              <Icon name={icon} size={25} />
+              <Icon
+                name={icon}
+                size={25}
+              />
             )}
           </View>
         </TouchableOpacity>

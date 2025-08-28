@@ -7,10 +7,7 @@ export type ThemedFlatListProps<T> = FlatListProps<T> & {
 };
 
 // Use forwardRef to properly handle refs
-function ThemedFlatListInner<T>(
-  { className, ...props }: ThemedFlatListProps<T>,
-  ref: React.Ref<FlatList<T>>
-) {
+function ThemedFlatListInner<T>({ className, ...props }: ThemedFlatListProps<T>, ref: React.Ref<FlatList<T>>) {
   return (
     <FlatList
       bounces

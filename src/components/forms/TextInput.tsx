@@ -94,7 +94,11 @@ const TextInput: React.FC<CustomTextInputProps> = ({
         <Pressable
           onPress={togglePasswordVisibility}
           className={`absolute right-3 ${variant === 'classic' ? 'top-[18px]' : 'top-[18px]'} z-10`}>
-          <Icon name={showPassword ? 'EyeOff' : 'Eye'} size={20} color={colors.text} />
+          <Icon
+            name={showPassword ? 'EyeOff' : 'Eye'}
+            size={20}
+            color={colors.text}
+          />
         </Pressable>
       );
     }
@@ -104,7 +108,11 @@ const TextInput: React.FC<CustomTextInputProps> = ({
         <Pressable
           onPress={onRightIconPress}
           className={`absolute right-3 ${variant === 'classic' ? 'top-[18px]' : 'top-[18px]'} z-10`}>
-          <Icon name={rightIcon} size={20} color={colors.text} />
+          <Icon
+            name={rightIcon}
+            size={20}
+            color={colors.text}
+          />
         </Pressable>
       );
     }
@@ -151,7 +159,9 @@ const TextInput: React.FC<CustomTextInputProps> = ({
   // Classic non-animated input (matching Input.tsx exactly)
   if (variant === 'classic') {
     return (
-      <View className={`relative mb-global ${containerClassName}`} style={{ position: 'relative' }}>
+      <View
+        className={`relative mb-global ${containerClassName}`}
+        style={{ position: 'relative' }}>
         {label && <ThemedText className="mb-2 font-medium">{label}</ThemedText>}
         <View className="relative">
           <RNTextInput
@@ -184,9 +194,13 @@ const TextInput: React.FC<CustomTextInputProps> = ({
   // Underlined input with only bottom border (matching Input.tsx exactly)
   if (variant === 'underlined') {
     return (
-      <View className={`relative mb-global ${containerClassName}`} style={{ position: 'relative' }}>
+      <View
+        className={`relative mb-global ${containerClassName}`}
+        style={{ position: 'relative' }}>
         <View className="relative">
-          <Pressable className="z-40 bg-secondary px-0" onPress={() => inputRef.current?.focus()}>
+          <Pressable
+            className="z-40 bg-secondary px-0"
+            onPress={() => inputRef.current?.focus()}>
             <Animated.Text
               style={[
                 {
@@ -250,7 +264,9 @@ const TextInput: React.FC<CustomTextInputProps> = ({
         className="z-40 bg-background px-1"
         style={{ position: 'absolute', left: -6, top: 0 }}
         onPress={() => inputRef.current?.focus()}>
-        <Animated.Text style={[labelStyle]} className="bg-background text-text">
+        <Animated.Text
+          style={[labelStyle]}
+          className="bg-background text-text">
           {label}
         </Animated.Text>
       </Pressable>

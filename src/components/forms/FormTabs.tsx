@@ -14,8 +14,7 @@ export function FormTab({ title, isActive, onPress }: FormTabProps) {
     <Pressable
       onPress={onPress}
       className={`flex-1 rounded-xl px-4 py-2.5 ${isActive ? 'bg-text shadow-lg' : 'bg-transparent'}`}>
-      <ThemedText
-        className={`text-center text-sm font-medium ${isActive ? '!text-invert' : 'text-text'}`}>
+      <ThemedText className={`text-center text-sm font-medium ${isActive ? '!text-invert' : 'text-text'}`}>
         {title}
       </ThemedText>
     </Pressable>
@@ -31,13 +30,7 @@ interface FormTabsProps {
   style?: ViewStyle;
 }
 
-export default function FormTabs({
-  children,
-  defaultActiveTab,
-  style,
-  onChange,
-  className = '',
-}: FormTabsProps) {
+export default function FormTabs({ children, defaultActiveTab, style, onChange, className = '' }: FormTabsProps) {
   const [activeTab, setActiveTab] = useState(defaultActiveTab || children[0].props.title);
 
   return (

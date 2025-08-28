@@ -12,13 +12,7 @@ interface CheckboxProps {
   className?: string;
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({
-  label,
-  checked = false,
-  onChange,
-  error,
-  className = '',
-}) => {
+const Checkbox: React.FC<CheckboxProps> = ({ label, checked = false, onChange, error, className = '' }) => {
   // Internal state if no onChange provided (for mockups)
   const [internalChecked, setInternalChecked] = React.useState(checked);
 
@@ -35,7 +29,9 @@ const Checkbox: React.FC<CheckboxProps> = ({
 
   return (
     <View className={`mb-global ${className}`}>
-      <Pressable onPress={handlePress} className="flex-row items-center">
+      <Pressable
+        onPress={handlePress}
+        className="flex-row items-center">
         <View
           className={`
           flex h-6 w-6 items-center justify-center rounded border
@@ -44,7 +40,11 @@ const Checkbox: React.FC<CheckboxProps> = ({
         `}>
           {isChecked && (
             <View className="h-full w-full items-center justify-center rounded border-[2px] border-border bg-highlight">
-              <Icon name="Check" size={14} color="#fff" />
+              <Icon
+                name="Check"
+                size={14}
+                color="#fff"
+              />
             </View>
           )}
         </View>

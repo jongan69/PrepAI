@@ -74,9 +74,13 @@ export const SmallProgressBarCard = ({
 
       {/* Vertical Progress Bars */}
       <View className="mb-2 mt-4 items-center">
-        <View className="flex-row items-end justify-center gap-4" style={{ height: height + 20 }}>
+        <View
+          className="flex-row items-end justify-center gap-4"
+          style={{ height: height + 20 }}>
           {barsData.map((bar, index) => (
-            <View key={index} className="items-center">
+            <View
+              key={index}
+              className="items-center">
               {/* Progress Bar Container */}
               <View
                 className="relative overflow-hidden rounded-full bg-background"
@@ -100,12 +104,8 @@ export const SmallProgressBarCard = ({
 
               {/* Percentage Text Below Bar */}
               <View className="mt-2 min-h-6 justify-center">
-                <ThemedText className="text-center text-xs font-semibold">
-                  {Math.round(bar.percentage)}%
-                </ThemedText>
-                {bar.label && (
-                  <ThemedText className="text-center text-xs opacity-60">{bar.label}</ThemedText>
-                )}
+                <ThemedText className="text-center text-xs font-semibold">{Math.round(bar.percentage)}%</ThemedText>
+                {bar.label && <ThemedText className="text-center text-xs opacity-60">{bar.label}</ThemedText>}
               </View>
             </View>
           ))}
@@ -118,7 +118,11 @@ export const SmallProgressBarCard = ({
             <ThemedText className="text-xl font-bold">{value}</ThemedText>
             <ThemedText className="ml-1 -translate-y-1 text-sm opacity-50">{unit}</ThemedText>
           </View>
-          <Icon name="ChevronRight" size={20} color={colors.text} />
+          <Icon
+            name="ChevronRight"
+            size={20}
+            color={colors.text}
+          />
         </View>
       )}
     </View>

@@ -46,20 +46,24 @@ const SliderCard = ({
           className="rounded-2xl"
         />
       </View>
-      <Link href={href} asChild>
+      <Link
+        href={href}
+        asChild>
         <TouchableOpacity>
           <View className="mt-2 w-full flex-row items-center justify-between">
             <ThemedText className="text-base font-semibold">{title}</ThemedText>
             {rating && (
               <View className="flex-row items-center">
-                <MaterialIcons name="star" size={18} color={colors.text} />
+                <MaterialIcons
+                  name="star"
+                  size={18}
+                  color={colors.text}
+                />
                 <ThemedText className="ml-px text-base">{rating}</ThemedText>
               </View>
             )}
           </View>
-          <Text className="text-light-subtext dark:text-dark-subtext text-sm">
-            {distance} miles away
-          </Text>
+          <Text className="text-light-subtext dark:text-dark-subtext text-sm">{distance} miles away</Text>
           <ThemedText className="mt-2 text-base font-bold">
             {price} <ThemedText className="font-normal">night</ThemedText>
           </ThemedText>

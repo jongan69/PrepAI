@@ -17,12 +17,7 @@ interface CalorieTargetModalProps {
   actionSheetRef: React.RefObject<ActionSheetRef | null>;
 }
 
-const CalorieTargetModal: React.FC<CalorieTargetModalProps> = ({
-  currentTarget,
-  onClose,
-  onSave,
-  actionSheetRef,
-}) => {
+const CalorieTargetModal: React.FC<CalorieTargetModalProps> = ({ currentTarget, onClose, onSave, actionSheetRef }) => {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
   const colors = useThemeColors();
@@ -67,16 +62,16 @@ const CalorieTargetModal: React.FC<CalorieTargetModalProps> = ({
     }
 
     const newTarget = parseInt(targetCalories);
-    
+
     try {
       if (healthProfile) {
         await updateHealthProfile(healthProfile.id, {
           targetCalories: newTarget,
           userId: healthProfile.userId,
         });
-        
+
         console.log('Calorie target updated successfully:', newTarget);
-        
+
         // Call onSave with the new target
         onSave(newTarget);
         actionSheetRef.current?.hide();
@@ -114,7 +109,7 @@ const CalorieTargetModal: React.FC<CalorieTargetModalProps> = ({
       }}>
       <View className="p-8 pb-14">
         <ThemedText className="mb-6 text-xl font-bold">Update Calorie Target</ThemedText>
-        
+
         <View className="mb-6">
           <Input
             label="Daily Calorie Target"

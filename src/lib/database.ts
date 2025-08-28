@@ -487,10 +487,7 @@ class PrepAIDatabase {
   async getUserByClerkId(clerkId: string): Promise<User | null> {
     if (!this.db) throw new Error('Database not initialized');
 
-    const results = await this.db.getAllAsync<User>(
-      'SELECT * FROM users WHERE clerk_id = ?',
-      clerkId
-    );
+    const results = await this.db.getAllAsync<User>('SELECT * FROM users WHERE clerk_id = ?', clerkId);
     return results.length > 0 ? results[0] : null;
   }
 
@@ -502,11 +499,7 @@ class PrepAIDatabase {
       .join(', ');
     const values = Object.values(updates).map((val) => val ?? null);
 
-    await this.db.runAsync(
-      `UPDATE users SET ${fields}, updated_at = datetime('now') WHERE id = ?`,
-      ...values,
-      id
-    );
+    await this.db.runAsync(`UPDATE users SET ${fields}, updated_at = datetime('now') WHERE id = ?`, ...values, id);
 
     // Track sync operation
     const existingUser = await this.getUser(id);
@@ -531,9 +524,7 @@ class PrepAIDatabase {
   }
 
   // Health Profile operations
-  async createHealthProfile(
-    profile: Omit<HealthProfile, 'createdAt' | 'updatedAt'>
-  ): Promise<void> {
+  async createHealthProfile(profile: Omit<HealthProfile, 'createdAt' | 'updatedAt'>): Promise<void> {
     if (!this.db) throw new Error('Database not initialized');
 
     await this.db.runAsync(
@@ -679,11 +670,7 @@ class PrepAIDatabase {
       .join(', ');
     const values = Object.values(updates).map((val) => val ?? null);
 
-    await this.db.runAsync(
-      `UPDATE workouts SET ${fields}, updated_at = datetime('now') WHERE id = ?`,
-      ...values,
-      id
-    );
+    await this.db.runAsync(`UPDATE workouts SET ${fields}, updated_at = datetime('now') WHERE id = ?`, ...values, id);
 
     // Track sync operation
     const existingWorkouts = await this.getWorkouts(updates.userId || '');
@@ -707,11 +694,7 @@ class PrepAIDatabase {
       .join(', ');
     const values = Object.values(updates).map((val) => val ?? null);
 
-    await this.db.runAsync(
-      `UPDATE exercises SET ${fields}, updated_at = datetime('now') WHERE id = ?`,
-      ...values,
-      id
-    );
+    await this.db.runAsync(`UPDATE exercises SET ${fields}, updated_at = datetime('now') WHERE id = ?`, ...values, id);
 
     // Track sync operation
     const existingExercises = await this.getExercises(updates.workoutId || '');
@@ -823,11 +806,7 @@ class PrepAIDatabase {
       .join(', ');
     const values = Object.values(updates).map((val) => val ?? null);
 
-    await this.db.runAsync(
-      `UPDATE meals SET ${fields}, updated_at = datetime('now') WHERE id = ?`,
-      ...values,
-      id
-    );
+    await this.db.runAsync(`UPDATE meals SET ${fields}, updated_at = datetime('now') WHERE id = ?`, ...values, id);
   }
 
   async getMealsByType(userId: string, mealType: string, date: string): Promise<Meal[]> {
@@ -885,11 +864,7 @@ class PrepAIDatabase {
       .join(', ');
     const values = Object.values(updates).map((val) => val ?? null);
 
-    await this.db.runAsync(
-      `UPDATE meal_items SET ${fields}, updated_at = datetime('now') WHERE id = ?`,
-      ...values,
-      id
-    );
+    await this.db.runAsync(`UPDATE meal_items SET ${fields}, updated_at = datetime('now') WHERE id = ?`, ...values, id);
   }
 
   // Weight Entry operations
@@ -1142,11 +1117,7 @@ class PrepAIDatabase {
       .join(', ');
     const values = Object.values(updates).map((val) => val ?? null);
 
-    await this.db.runAsync(
-      `UPDATE goals SET ${fields}, updated_at = datetime('now') WHERE id = ?`,
-      ...values,
-      id
-    );
+    await this.db.runAsync(`UPDATE goals SET ${fields}, updated_at = datetime('now') WHERE id = ?`, ...values, id);
   }
 
   async getActiveGoals(userId: string): Promise<Goal[]> {

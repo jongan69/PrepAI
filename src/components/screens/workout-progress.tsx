@@ -75,21 +75,15 @@ export default function StrongLiftsProgressScreen() {
     <Pressable
       key={exercise.name}
       onPress={() => setSelectedExercise(exercise.name)}
-      className={`mb-3 rounded-lg p-4 ${
-        selectedExercise === exercise.name ? 'bg-highlight' : 'bg-secondary'
-      }`}>
+      className={`mb-3 rounded-lg p-4 ${selectedExercise === exercise.name ? 'bg-highlight' : 'bg-secondary'}`}>
       <View className="flex-row items-center justify-between">
         <View className="flex-1">
           <ThemedText
-            className={`text-lg font-semibold ${
-              selectedExercise === exercise.name ? 'text-background' : 'text-text'
-            }`}>
+            className={`text-lg font-semibold ${selectedExercise === exercise.name ? 'text-background' : 'text-text'}`}>
             {exercise.name}
           </ThemedText>
           <ThemedText
-            className={`text-sm ${
-              selectedExercise === exercise.name ? 'text-background/80' : 'text-subtext'
-            }`}>
+            className={`text-sm ${selectedExercise === exercise.name ? 'text-background/80' : 'text-subtext'}`}>
             {exercise.currentWeight}lb • +{exercise.totalIncrease}lb
           </ThemedText>
         </View>
@@ -101,9 +95,7 @@ export default function StrongLiftsProgressScreen() {
             {exercise.currentWeight}lb
           </ThemedText>
           <ThemedText
-            className={`text-xs ${
-              selectedExercise === exercise.name ? 'text-background/80' : 'text-subtext'
-            }`}>
+            className={`text-xs ${selectedExercise === exercise.name ? 'text-background/80' : 'text-subtext'}`}>
             Next: {exercise.nextTarget}lb
           </ThemedText>
         </View>
@@ -118,7 +110,9 @@ export default function StrongLiftsProgressScreen() {
       {/* Mock chart bars */}
       <View className="space-y-3">
         {[45, 65, 85, 105, 125, 145, 165, 185].map((weight, index) => (
-          <View key={weight} className="flex-row items-center">
+          <View
+            key={weight}
+            className="flex-row items-center">
             <ThemedText className="text-subtext w-12 text-sm">{weight}lb</ThemedText>
             <View className="mx-3 h-4 flex-1 overflow-hidden rounded-full bg-background">
               <View
@@ -135,7 +129,9 @@ export default function StrongLiftsProgressScreen() {
 
   const renderStats = () => (
     <View className="mb-6">
-      <Section title="Statistics" className="mb-4">
+      <Section
+        title="Statistics"
+        className="mb-4">
         <View className="flex-row gap-3">
           <Card
             className="flex-1 p-4"
@@ -147,14 +143,20 @@ export default function StrongLiftsProgressScreen() {
             <ThemedText className="text-subtext text-sm">Total Increase</ThemedText>
           </Card>
 
-          <Card className="flex-1 p-4" title="Progress" image={require('@/assets/img/muscles.png')}>
+          <Card
+            className="flex-1 p-4"
+            title="Progress"
+            image={require('@/assets/img/muscles.png')}>
             <ThemedText className="mb-1 text-2xl font-bold text-highlight">
               {selectedExerciseData?.percentageIncrease}%
             </ThemedText>
             <ThemedText className="text-subtext text-sm">Progress</ThemedText>
           </Card>
 
-          <Card className="flex-1 p-4" title="Workouts" image={require('@/assets/img/muscles.png')}>
+          <Card
+            className="flex-1 p-4"
+            title="Workouts"
+            image={require('@/assets/img/muscles.png')}>
             <ThemedText className="mb-1 text-2xl font-bold text-highlight">12</ThemedText>
             <ThemedText className="text-subtext text-sm">Workouts</ThemedText>
           </Card>
@@ -169,13 +171,21 @@ export default function StrongLiftsProgressScreen() {
         title="Progress"
         className="bg-secondary"
         showBackButton
-        rightComponents={[<Icon name="Share2" size={24} className="text-text" />]}
+        rightComponents={[
+          <Icon
+            name="Share2"
+            size={24}
+            className="text-text"
+          />,
+        ]}
       />
 
       <ThemedScroller className="flex-1">
         <View className="p-global">
           {/* Exercise Selection */}
-          <Section title="Exercises" className="mb-6">
+          <Section
+            title="Exercises"
+            className="mb-6">
             {exercises.map(renderExerciseCard)}
           </Section>
 
@@ -188,7 +198,9 @@ export default function StrongLiftsProgressScreen() {
           )}
 
           {/* Recent Performance */}
-          <Section title="Recent Performance" className="mb-6">
+          <Section
+            title="Recent Performance"
+            className="mb-6">
             <View className="rounded-lg bg-secondary p-4">
               <ThemedText className="mb-3 text-base font-medium">Last 5 Workouts</ThemedText>
               {[
@@ -210,7 +222,9 @@ export default function StrongLiftsProgressScreen() {
           </Section>
 
           {/* Goals */}
-          <Section title="Goals" className="mb-6">
+          <Section
+            title="Goals"
+            className="mb-6">
             <View className="rounded-lg bg-secondary p-4">
               <View className="mb-3 flex-row items-center justify-between">
                 <ThemedText className="text-base font-medium">Next Target</ThemedText>

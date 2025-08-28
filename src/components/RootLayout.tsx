@@ -19,7 +19,9 @@ const CLERK_PUBLISHABLE_KEY =
 export default function RootLayout() {
   const colors = useThemeColors();
   return (
-    <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY} tokenCache={tokenCache}>
+    <ClerkProvider
+      publishableKey={CLERK_PUBLISHABLE_KEY}
+      tokenCache={tokenCache}>
       <GestureHandlerRootView
         className={`bg-background  ${Platform.OS === 'ios' ? 'pb-0 ' : ''}`}
         style={{ flex: 1 }}>

@@ -1,13 +1,6 @@
 import { Link } from 'expo-router';
 import React, { ReactNode } from 'react';
-import {
-  View,
-  ViewStyle,
-  ImageBackground,
-  StyleSheet,
-  Platform,
-  TouchableOpacity,
-} from 'react-native';
+import { View, ViewStyle, ImageBackground, StyleSheet, Platform, TouchableOpacity } from 'react-native';
 
 interface CustomCardProps {
   children: ReactNode;
@@ -136,9 +129,7 @@ const CustomCard: React.FC<CustomCardProps> = ({
 
   const getBorderClass = () => {
     if (!border) return '';
-    return borderColor
-      ? `border border-[${borderColor}]`
-      : 'border border-black/10 dark:border-white/10';
+    return borderColor ? `border border-[${borderColor}]` : 'border border-black/10 dark:border-white/10';
   };
 
   const getBackgroundClass = () => {
@@ -197,7 +188,9 @@ const CustomCard: React.FC<CustomCardProps> = ({
 
     if (href) {
       return (
-        <Link href={href} asChild>
+        <Link
+          href={href}
+          asChild>
           <TouchableOpacity activeOpacity={1}>{content}</TouchableOpacity>
         </Link>
       );
@@ -205,7 +198,9 @@ const CustomCard: React.FC<CustomCardProps> = ({
 
     if (onPress) {
       return (
-        <TouchableOpacity onPress={onPress} activeOpacity={1}>
+        <TouchableOpacity
+          onPress={onPress}
+          activeOpacity={1}>
           {content}
         </TouchableOpacity>
       );

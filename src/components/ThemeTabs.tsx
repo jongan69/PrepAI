@@ -24,7 +24,9 @@ const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 export const ThemeTab: React.FC<ThemeTabProps> = ({ children }) => {
   return (
-    <View className="" style={{ width: SCREEN_WIDTH, height: '100%' }}>
+    <View
+      className=""
+      style={{ width: SCREEN_WIDTH, height: '100%' }}>
       {children}
     </View>
   );
@@ -95,13 +97,10 @@ const ThemeTabs: React.FC<ThemeTabsProps> = ({
                       activeOpacity={0.7}
                       className="relative h-full items-center justify-center px-4"
                       onPress={() => handleTabPress(index)}>
-                      <ThemedText
-                        className={`text-base ${activeTab === index ? 'text-highlight' : ''}`}>
+                      <ThemedText className={`text-base ${activeTab === index ? 'text-highlight' : ''}`}>
                         {tab.props.name}
                       </ThemedText>
-                      {activeTab === index && (
-                        <View className="absolute bottom-0 h-[2px] w-full bg-highlight" />
-                      )}
+                      {activeTab === index && <View className="absolute bottom-0 h-[2px] w-full bg-highlight" />}
                     </TouchableOpacity>
                   </Animated.View>
                 );
@@ -112,18 +111,17 @@ const ThemeTabs: React.FC<ThemeTabsProps> = ({
               {tabs.map((tab, index) => {
                 if (!React.isValidElement(tab)) return null;
                 return (
-                  <Animated.View key={index} className="flex-1">
+                  <Animated.View
+                    key={index}
+                    className="flex-1">
                     <TouchableOpacity
                       activeOpacity={0.7}
                       className="relative flex-1 items-center justify-center px-3"
                       onPress={() => handleTabPress(index)}>
-                      <ThemedText
-                        className={`text-base ${activeTab === index ? 'text-highlight' : ''}`}>
+                      <ThemedText className={`text-base ${activeTab === index ? 'text-highlight' : ''}`}>
                         {tab.props.name}
                       </ThemedText>
-                      {activeTab === index && (
-                        <View className="absolute bottom-0 h-[2px] w-full bg-highlight" />
-                      )}
+                      {activeTab === index && <View className="absolute bottom-0 h-[2px] w-full bg-highlight" />}
                     </TouchableOpacity>
                   </Animated.View>
                 );

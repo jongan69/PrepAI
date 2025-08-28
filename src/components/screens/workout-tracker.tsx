@@ -98,9 +98,7 @@ export default function WorkoutTrackerScreen() {
           showBackButton
           rightComponents={[
             <View className="flex-row items-center justify-center rounded-full border border-border bg-background px-3 py-1">
-              <ThemedText className="text-lg font-semibold">
-                {formatTime(totalWorkoutTime)}
-              </ThemedText>
+              <ThemedText className="text-lg font-semibold">{formatTime(totalWorkoutTime)}</ThemedText>
               <View className="ml-4 h-3 w-3 rounded-full bg-highlight" />
             </View>,
           ]}
@@ -138,15 +136,44 @@ export default function WorkoutTrackerScreen() {
               timer={formatTime(currentTimer)}
               isActive
             />
-            <SetCard title="Dumbbell press" description="3 sets" timer="0:00" isActive={false} />
-            <SetCard title="Push up" description="2 sets" timer="0:00" isActive={false} />
-            <SetCard title="Pull up" description="2 sets" timer="0:00" isActive={false} />
-            <SetCard title="Incline push up" description="2 sets" timer="0:00" isActive={false} />
-            <SetCard title="Incline pull up" description="2 sets" timer="0:00" isActive={false} />
+            <SetCard
+              title="Dumbbell press"
+              description="3 sets"
+              timer="0:00"
+              isActive={false}
+            />
+            <SetCard
+              title="Push up"
+              description="2 sets"
+              timer="0:00"
+              isActive={false}
+            />
+            <SetCard
+              title="Pull up"
+              description="2 sets"
+              timer="0:00"
+              isActive={false}
+            />
+            <SetCard
+              title="Incline push up"
+              description="2 sets"
+              timer="0:00"
+              isActive={false}
+            />
+            <SetCard
+              title="Incline pull up"
+              description="2 sets"
+              timer="0:00"
+              isActive={false}
+            />
           </View>
         </ThemedScroller>
         <ThemedFooter>
-          <Button title="Finish" size="large" rounded="full" />
+          <Button
+            title="Finish"
+            size="large"
+            rounded="full"
+          />
         </ThemedFooter>
       </View>
     </>
@@ -173,15 +200,7 @@ const SetCard = (props: any) => {
   );
 };
 
-const SetButton = ({
-  onPress,
-  text,
-  isActive,
-}: {
-  onPress: () => void;
-  text: string;
-  isActive: boolean;
-}) => {
+const SetButton = ({ onPress, text, isActive }: { onPress: () => void; text: string; isActive: boolean }) => {
   const pulseAnim = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
@@ -217,13 +236,8 @@ const SetButton = ({
         }}>
         <Pressable
           onPress={onPress}
-          className={`h-full w-full items-center justify-center rounded-full ${
-            isActive ? 'bg-text' : 'bg-text'
-          }`}>
-          <Text
-            className={`text-base font-semibold uppercase ${
-              isActive ? 'text-background' : 'text-background'
-            }`}>
+          className={`h-full w-full items-center justify-center rounded-full ${isActive ? 'bg-text' : 'bg-text'}`}>
+          <Text className={`text-base font-semibold uppercase ${isActive ? 'text-background' : 'text-background'}`}>
             {text}
           </Text>
         </Pressable>

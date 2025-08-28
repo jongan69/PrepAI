@@ -9,13 +9,7 @@ interface ListProps {
   style?: ViewStyle;
 }
 
-export const List: React.FC<ListProps> = ({
-  children,
-  spacing = 0,
-  variant = 'plain',
-  className = '',
-  style,
-}) => {
+export const List: React.FC<ListProps> = ({ children, spacing = 0, variant = 'plain', className = '', style }) => {
   // Convert children to array and filter out null/undefined
   const items = React.Children.toArray(children).filter(Boolean);
 
