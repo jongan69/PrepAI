@@ -7,6 +7,7 @@ export const useThemeColors = () => {
   return {
     icon: isDark ? 'white' : 'black',
     bg: isDark ? '#141414' : '#F4F4F5',
+    background: isDark ? '#141414' : '#F4F4F5',
     invert: isDark ? '#000000' : '#ffffff',
     secondary: isDark ? '#1F1E1F' : '#ffffff',
     state: isDark ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)',
@@ -18,6 +19,7 @@ export const useThemeColors = () => {
     placeholder: isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)',
     switch: isDark ? 'rgba(255,255,255,0.4)' : '#ccc',
     chatBg: isDark ? '#262626' : '#efefef',
+    subtext: isDark ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.6)',
     isDark,
   };
 };

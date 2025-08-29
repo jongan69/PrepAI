@@ -1,13 +1,21 @@
-import React from 'react';
-import { View, ScrollView, Image, TouchableOpacity } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { View, Image, TouchableOpacity, Platform } from 'react-native';
+import { ScrollView as GestureScrollView } from 'react-native-gesture-handler';
+import { ScrollView as RNScrollView } from 'react-native';
 
 import { Button } from '@/components/Button';
 import Icon, { IconName } from '@/components/Icon';
+import LandingMobileMenu from '@/components/LandingMobileMenu';
 import ThemedText from '@/components/ThemedText';
 import { useThemeColors } from '@/contexts/ThemeColors';
 
+// Use the appropriate ScrollView based on platform
+const ScrollView = Platform.OS === 'web' ? RNScrollView : GestureScrollView;
+
 const LandingPage = () => {
   const colors = useThemeColors();
+  const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
+  const scrollViewRef = useRef<any>(null);
 
   const features = [
     {
@@ -60,6 +68,33 @@ const LandingPage = () => {
     { number: '4.8', label: 'App Rating' },
   ];
 
+  const handleNavigateToSection = (sectionId: string) => {
+    console.log('Scrolling to section:', sectionId);
+    console.log('ScrollView ref:', scrollViewRef.current);
+
+    // Use a more reliable approach with scrollTo
+    const sectionOffsets = {
+      features: 800,
+      pricing: 2400,
+      about: 1600,
+    };
+
+    const yOffset = sectionOffsets[sectionId as keyof typeof sectionOffsets];
+    console.log('Y offset:', yOffset);
+    if (yOffset && scrollViewRef.current) {
+      console.log('Executing scroll...');
+      try {
+        // Use ScrollView method for both platforms
+        scrollViewRef.current.scrollTo({ x: 0, y: yOffset, animated: true });
+        console.log('Scroll executed successfully');
+      } catch (error) {
+        console.error('Scroll error:', error);
+      }
+    } else {
+      console.log('ScrollView ref not available or yOffset not found');
+    }
+  };
+
   return (
     <View className="flex-1">
       <Image
@@ -76,7 +111,12 @@ const LandingPage = () => {
         resizeMode="stretch"
       />
       <View className="absolute inset-0 bg-black bg-opacity-40" />
-      <ScrollView className="flex-1">
+      <ScrollView
+        ref={scrollViewRef}
+        className="flex-1"
+        showsVerticalScrollIndicator={false}
+        bounces={false}
+        scrollEventThrottle={16}>
         {/* Hero Section */}
         <View className="relative min-h-screen">
           {/* Navigation */}
@@ -110,7 +150,9 @@ const LandingPage = () => {
             </View>
 
             {/* Mobile menu button */}
-            <TouchableOpacity className="md:hidden">
+            <TouchableOpacity
+              className="md:hidden"
+              onPress={() => setIsMobileMenuVisible(true)}>
               <Icon
                 name="Menu"
                 size={24}
@@ -427,6 +469,13 @@ const LandingPage = () => {
           </View>
         </View>
       </ScrollView>
+
+      {/* Mobile Menu */}
+      <LandingMobileMenu
+        isVisible={isMobileMenuVisible}
+        onClose={() => setIsMobileMenuVisible(false)}
+        onNavigateToSection={handleNavigateToSection}
+      />
     </View>
   );
 };
