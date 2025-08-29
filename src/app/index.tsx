@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { View, Image, TouchableOpacity, Platform } from 'react-native';
+import { View, Image, TouchableOpacity, Platform, Linking } from 'react-native';
 import { ScrollView as GestureScrollView } from 'react-native-gesture-handler';
 import { ScrollView as RNScrollView } from 'react-native';
 
@@ -8,6 +8,8 @@ import Icon, { IconName } from '@/components/Icon';
 import LandingMobileMenu from '@/components/LandingMobileMenu';
 import ThemedText from '@/components/ThemedText';
 import { useThemeColors } from '@/contexts/ThemeColors';
+import { getAppInfo, getAppStats, getSocialMediaLinks } from '@/lib/app-config';
+import { useRouter } from 'expo-router';
 
 // Use the appropriate ScrollView based on platform
 const ScrollView = Platform.OS === 'web' ? RNScrollView : GestureScrollView;
@@ -16,6 +18,12 @@ const LandingPage = () => {
   const colors = useThemeColors();
   const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
   const scrollViewRef = useRef<any>(null);
+
+  // Get configurable values from app.json
+  const appInfo = getAppInfo();
+  const appStats = getAppStats();
+  const socialLinks = getSocialMediaLinks();
+  const router = useRouter();
 
   const features = [
     {
@@ -62,10 +70,10 @@ const LandingPage = () => {
   ];
 
   const stats = [
-    { number: '50K+', label: 'Active Users' },
-    { number: '1M+', label: 'Meals Planned' },
-    { number: '95%', label: 'Success Rate' },
-    { number: '4.8', label: 'App Rating' },
+    { number: appStats.activeUsers, label: 'Active Users' },
+    { number: appStats.mealsPlanned, label: 'Meals Planned' },
+    { number: appStats.successRate, label: 'Success Rate' },
+    { number: appStats.appRating, label: 'App Rating' },
   ];
 
   const handleNavigateToSection = (sectionId: string) => {
@@ -164,12 +172,9 @@ const LandingPage = () => {
           {/* Hero Content */}
           <View className="flex-1 items-center justify-center px-2 md:px-6">
             <View className="mx-auto w-full max-w-sm text-center md:max-w-4xl">
-              <ThemedText className="mb-6 text-6xl font-bold leading-tight text-white">
-                Transform Your Fitness Journey with AI
-              </ThemedText>
+              <ThemedText className="mb-6 text-6xl font-bold leading-tight text-white">{appInfo.tagline}</ThemedText>
               <ThemedText className="mb-8 text-base leading-relaxed text-white opacity-90 md:text-xl md:max-w-3xl">
-                PrepAI combines artificial intelligence with personalized nutrition and workout planning to help you
-                achieve your health goals faster and more effectively.
+                {appInfo.description}
               </ThemedText>
 
               <View className="mb-12 flex-col justify-center space-y-3 md:flex-row md:space-x-4 md:space-y-0">
@@ -400,13 +405,25 @@ const LandingPage = () => {
 
               <View>
                 <ThemedText className="mb-4 font-semibold text-white">Product</ThemedText>
-                <TouchableOpacity className="mb-2">
+                <TouchableOpacity
+                  className="mb-2"
+                  onPress={() => handleNavigateToSection('features')}>
                   <ThemedText className="text-white opacity-70">Features</ThemedText>
                 </TouchableOpacity>
-                <TouchableOpacity className="mb-2">
+                <TouchableOpacity
+                  className="mb-2"
+                  onPress={() => handleNavigateToSection('pricing')}>
                   <ThemedText className="text-white opacity-70">Pricing</ThemedText>
                 </TouchableOpacity>
-                <TouchableOpacity className="mb-2">
+                <TouchableOpacity
+                  className="mb-2"
+                  onPress={() => {
+                    if (Platform.OS === 'web') {
+                      window.location.href = '/api/docs';
+                    } else {
+                      Linking.openURL(`${appInfo.contact.website}/api/docs`);
+                    }
+                  }}>
                   <ThemedText className="text-white opacity-70">API</ThemedText>
                 </TouchableOpacity>
               </View>
@@ -443,21 +460,21 @@ const LandingPage = () => {
                 © {new Date().getFullYear()} PrepAI. All rights reserved.
               </ThemedText>
               <View className="flex-row space-x-4">
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => Linking.openURL(socialLinks.twitter)}>
                   <Icon
                     name="Twitter"
                     size={20}
                     color="white"
                   />
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => Linking.openURL(socialLinks.facebook)}>
                   <Icon
                     name="Facebook"
                     size={20}
                     color="white"
                   />
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => Linking.openURL(socialLinks.instagram)}>
                   <Icon
                     name="Instagram"
                     size={20}

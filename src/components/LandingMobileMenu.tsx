@@ -5,6 +5,7 @@ import { useRouter } from 'expo-router';
 import Icon from './Icon';
 import ThemedText from './ThemedText';
 import { useThemeColors } from '@/contexts/ThemeColors';
+import { getAppInfo } from '@/lib/app-config';
 
 interface LandingMobileMenuProps {
   isVisible: boolean;
@@ -16,6 +17,7 @@ export default function LandingMobileMenu({ isVisible, onClose, onNavigateToSect
   const colors = useThemeColors();
   const router = useRouter();
   const slideAnim = React.useRef(new Animated.Value(-300)).current;
+  const appInfo = getAppInfo();
 
   const menuItems = [
     { label: 'Features', href: '#features', sectionId: 'features' },
@@ -122,7 +124,7 @@ export default function LandingMobileMenu({ isVisible, onClose, onNavigateToSect
 
           {/* Footer */}
           <View className="absolute bottom-0 left-0 right-0 p-6 border-t border-border">
-            <ThemedText className="text-center text-subtext text-sm">Version 1.0.0</ThemedText>
+            <ThemedText className="text-center text-subtext text-sm">Version {appInfo.version}</ThemedText>
           </View>
         </Animated.View>
       </Pressable>
