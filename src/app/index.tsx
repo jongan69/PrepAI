@@ -9,7 +9,6 @@ import LandingMobileMenu from '@/components/LandingMobileMenu';
 import ThemedText from '@/components/ThemedText';
 import { useThemeColors } from '@/contexts/ThemeColors';
 import { getAppInfo, getAppStats, getSocialMediaLinks } from '@/lib/app-config';
-import { useRouter } from 'expo-router';
 
 // Use the appropriate ScrollView based on platform
 const ScrollView = Platform.OS === 'web' ? RNScrollView : GestureScrollView;
@@ -23,7 +22,6 @@ const LandingPage = () => {
   const appInfo = getAppInfo();
   const appStats = getAppStats();
   const socialLinks = getSocialMediaLinks();
-  const router = useRouter();
 
   const features = [
     {
