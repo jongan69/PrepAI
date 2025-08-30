@@ -31,7 +31,10 @@
     "doc-fix": "bunx expo install --check",
     "migrate": "bunx prisma migrate dev",
     "accelerate": "bunx prisma generate --no-engine",
-    "swagger:generate": "node scripts/generate-swagger.js"
+    "swagger:generate": "node scripts/generate-swagger.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@clerk/clerk-expo": "^2.14.25",
@@ -99,6 +102,8 @@
   "devDependencies": {
     "@babel/core": "^7.28.3",
     "@expo/ngrok": "^4.1.0",
+    "@testing-library/react-hooks": "^8.0.1",
+    "@testing-library/react-native": "^13.3.3",
     "@types/jest": "^29.5.14",
     "@types/react": "~19.0.14",
     "@types/sql.js": "^1.4.9",
