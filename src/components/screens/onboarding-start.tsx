@@ -129,7 +129,7 @@ export default function OnboardingStart() {
     <>
       <ImageBackground
         source={require('@/assets/img/welcome.jpg')}
-        style={{ flex: 1 }}>
+        style={{ flex: 1, backgroundColor: 'black' }}>
         <LinearGradient
           colors={['transparent', 'rgba(0,0,0,0.8)']}
           style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>

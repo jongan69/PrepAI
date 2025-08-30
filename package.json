@@ -63,6 +63,7 @@
     "expo-splash-screen": "^0.30.10",
     "expo-sqlite": "~15.2.14",
     "expo-status-bar": "~2.2.3",
+    "expo-updates": "~0.28.17",
     "expo-web-browser": "^14.2.0",
     "idb": "^8.0.3",
     "lucide-react-native": "^0.542.0",
@@ -94,6 +95,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.28.3",
+    "@expo/ngrok": "^4.1.0",
     "@types/jest": "^29.5.14",
     "@types/react": "~19.0.14",
     "@types/sql.js": "^1.4.9",

@@ -20,14 +20,13 @@ export default function ProfileScreen() {
   const { userId, isInitialized } = useDatabase();
   const { imageUrl, displayName, email } = useClerkUser();
   const { logout } = useLogout();
-  const [isBackingUp, setIsBackingUp] = useState(false);
   const [user, setUser] = useState<any>(null);
   const [latestWeight, setLatestWeight] = useState<any>(null);
   const [healthProfile, setHealthProfile] = useState<any>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   // Load user data
-  const loadUserData = async () => {
+  const loadUserData = useCallback(async () => {
     if (isInitialized && userId) {
       try {
         const userData = await syncDatabase.getUser(userId);
@@ -50,11 +49,11 @@ export default function ProfileScreen() {
         console.error('Error loading user data:', error);
       }
     }
-  };
+  }, [isInitialized, userId]);
 
   useEffect(() => {
     loadUserData();
-  }, [isInitialized, userId]);
+  }, [isInitialized, loadUserData, userId]);
 
   const handleRefresh = useCallback(async () => {
     setIsRefreshing(true);
@@ -65,7 +64,7 @@ export default function ProfileScreen() {
     } finally {
       setIsRefreshing(false);
     }
-  }, [isInitialized, userId]);
+  }, [loadUserData]);
 
   const handleLogout = () => {
     Alert.alert('Logout', 'Are you sure you want to logout? Your data will remain safely stored and synced.', [

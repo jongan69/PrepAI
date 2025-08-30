@@ -54,7 +54,7 @@ export default function OnboardingScreen() {
 
   return (
     <View
-      style={{}}
+      style={{ backgroundColor: 'black' }}
       className="flex-1 bg-background">
       <View className="relative flex-1 bg-background">
         <FlatList

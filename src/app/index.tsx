@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { View, Image, TouchableOpacity, Platform, Linking } from 'react-native';
 import { ScrollView as GestureScrollView } from 'react-native-gesture-handler';
 import { ScrollView as RNScrollView } from 'react-native';
+import { Redirect } from 'expo-router';
 
 import { Button } from '@/components/Button';
 import Icon, { IconName } from '@/components/Icon';
@@ -17,6 +18,11 @@ const LandingPage = () => {
   const colors = useThemeColors();
   const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
   const scrollViewRef = useRef<any>(null);
+
+  // Redirect mobile platforms to the mobile layout
+  if (Platform.OS !== 'web') {
+    return <Redirect href="/(mobile)/(index)" />;
+  }
 
   // Get configurable values from app.json
   const appInfo = getAppInfo();

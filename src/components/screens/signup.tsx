@@ -272,7 +272,7 @@ export default function SignupScreen() {
     return (
       <ImageBackground
         source={require('@/assets/img/wallpaper-3.jpg')}
-        style={{ flex: 1 }}>
+        style={{ flex: 1, backgroundColor: 'black' }}>
         <LinearGradient
           colors={['transparent', 'transparent']}
           style={{ flex: 1 }}>

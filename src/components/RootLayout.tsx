@@ -1,8 +1,8 @@
 import { ClerkProvider } from '@clerk/clerk-expo';
 import { tokenCache } from '@clerk/clerk-expo/token-cache';
-import { Stack } from 'expo-router';
+import { Slot, Stack } from 'expo-router';
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, SafeAreaView, StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Toast from 'react-native-toast-message';
 
@@ -18,6 +18,17 @@ const CLERK_PUBLISHABLE_KEY =
 
 export default function RootLayout() {
   const colors = useThemeColors();
+
+  // For web platform, render the web layout
+  if (Platform.OS === 'web') {
+    return (
+      <SafeAreaView style={styles.container}>
+        <Slot />
+      </SafeAreaView>
+    );
+  }
+
+  // For mobile platforms (iOS/Android), always render the mobile layout
   return (
     <ClerkProvider
       publishableKey={CLERK_PUBLISHABLE_KEY}
@@ -45,3 +56,13 @@ export default function RootLayout() {
     </ClerkProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f8f8f8',
+  },
+  keyboardView: {
+    flex: 1,
+  },
+});

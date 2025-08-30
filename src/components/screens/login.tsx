@@ -108,7 +108,7 @@ export default function LoginScreen() {
   return (
     <ImageBackground
       source={require('@/assets/img/onboarding-1.jpg')}
-      style={{ flex: 1 }}>
+      style={{ flex: 1, backgroundColor: 'black' }}>
       <LinearGradient
         colors={['transparent', 'transparent']}
         style={{ flex: 1 }}>

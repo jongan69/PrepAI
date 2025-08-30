@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { View, Pressable, ScrollView, Image } from 'react-native';
+import { View, Pressable, Image } from 'react-native';
 import { ActionSheetRef } from 'react-native-actions-sheet';
 
 import useThemeColors from '@/contexts/ThemeColors';
@@ -7,7 +7,6 @@ import useThemeColors from '@/contexts/ThemeColors';
 import ActionSheetThemed from '@/components/ActionSheetThemed';
 import { Button } from '@/components/Button';
 import Card from '@/components/Card';
-import { Chip } from '@/components/Chip';
 import Header from '@/components/Header';
 import Icon, { IconName } from '@/components/Icon';
 import ThemedFooter from '@/components/ThemeFooter';
@@ -37,7 +36,6 @@ export default function SubscriptionScreen() {
   const [selectedOffer, setSelectedOffer] = useState<string>('');
   const [currentStage, setCurrentStage] = useState<'attraction' | 'upsell' | 'downsell' | 'continuity'>('attraction');
   const actionSheetRef = useRef<ActionSheetRef>(null);
-  const colors = useThemeColors();
 
   // Money Model Offers - Following Hormozi's Framework
   const moneyOffers: MoneyOffer[] = [
