@@ -15,7 +15,7 @@ describe('lib utils', () => {
     });
 
     it('should handle objects with boolean values', () => {
-      expect(cn('base', { 'active': true, 'disabled': false })).toBe('base active');
+      expect(cn('base', { active: true, disabled: false })).toBe('base active');
     });
 
     it('should handle empty strings and falsy values', () => {
@@ -27,12 +27,9 @@ describe('lib utils', () => {
     });
 
     it('should handle complex combinations', () => {
-      expect(cn(
-        'base-class',
-        ['array-class1', 'array-class2'],
-        { 'object-class': true, 'hidden': false },
-        'string-class'
-      )).toBe('base-class array-class1 array-class2 object-class string-class');
+      expect(
+        cn('base-class', ['array-class1', 'array-class2'], { 'object-class': true, hidden: false }, 'string-class')
+      ).toBe('base-class array-class1 array-class2 object-class string-class');
     });
   });
 });

@@ -36,10 +36,12 @@ class ErrorBoundaryClass extends Component<Props & { colors: any }, State> {
     if (this.state.hasError) {
       return (
         <View className="flex-1 items-center justify-center bg-black p-6">
-          <Icon name="AlertTriangle" size={64} color={this.props.colors.highlight} />
-          <ThemedText className="mt-6 text-center text-2xl font-bold text-white">
-            Oops! Something went wrong
-          </ThemedText>
+          <Icon
+            name="AlertTriangle"
+            size={64}
+            color={this.props.colors.highlight}
+          />
+          <ThemedText className="mt-6 text-center text-2xl font-bold text-white">Oops! Something went wrong</ThemedText>
           <ThemedText className="mt-4 text-center text-white opacity-70">
             We're sorry, but something unexpected happened. Please try again.
           </ThemedText>

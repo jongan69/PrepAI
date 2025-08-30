@@ -78,6 +78,16 @@ jest.mock('react-native', () => ({
   SafeAreaView: 'div',
 }));
 
+// Mock nativewind
+jest.mock('nativewind', () => ({
+  vars: (styles: any) => styles,
+}));
+
+// Mock react-native-css-interop
+jest.mock('react-native-css-interop', () => ({
+  getColorScheme: () => 'light',
+}));
+
 // Mock console methods to reduce noise in tests
 const originalConsoleError = console.error;
 const originalConsoleWarn = console.warn;
