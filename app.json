@@ -39,7 +39,20 @@
     "web": {
       "bundler": "metro",
       "output": "server",
-      "favicon": "./src/assets/favicon.png"
+      "favicon": "./src/assets/favicon.png",
+      "meta": {
+        "title": "PrepAI - Transform Your Fitness Journey with AI",
+        "description": "PrepAI combines artificial intelligence with personalized nutrition and workout planning to help you achieve your health goals faster and more effectively.",
+        "keywords": "fitness, nutrition, AI, meal planning, workout, health, personal training, diet, exercise",
+        "og:title": "PrepAI - Transform Your Fitness Journey with AI",
+        "og:description": "PrepAI combines artificial intelligence with personalized nutrition and workout planning to help you achieve your health goals faster and more effectively.",
+        "og:type": "website",
+        "og:url": "https://prepai.com",
+        "twitter:card": "summary_large_image",
+        "twitter:title": "PrepAI - Transform Your Fitness Journey with AI",
+        "twitter:description": "PrepAI combines artificial intelligence with personalized nutrition and workout planning to help you achieve your health goals faster and more effectively.",
+        "canonical": "https://prepai.com"
+      }
     },
     "ios": {
       "supportsTablet": true,

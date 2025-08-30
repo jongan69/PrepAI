@@ -13,6 +13,7 @@
     "web": "expo start --web",
     "prebuild": "bunx expo prebuild",
     "build:all": "bunx eas build --platform all",
+    "build:update": "eas update",
     "export:web": "bunx expo export -p web",
     "deploy:web:dev": "bunx expo export -p web && bunx eas-cli@latest deploy",
     "deploy:web:prod": "bunx expo export -p web && bunx eas-cli@latest deploy --prod",
