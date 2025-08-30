@@ -18,5 +18,5 @@ jobs:
           cache-path: 'node_modules'
           cache-key: ${{ runner.os }}-bun-${{ hashFiles('bun.lockb') }}
       - run: bun install
-      - run: bun run lint
+      - run: bun run lint --fix
       - run: bun test
