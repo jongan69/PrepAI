@@ -38,7 +38,7 @@ const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({ variant, count = 1, cla
     return () => {
       animatedValue.stopAnimation();
     };
-  }, []);
+  }, [animatedValue]);
 
   const opacity = animatedValue.interpolate({
     inputRange: [0, 1],

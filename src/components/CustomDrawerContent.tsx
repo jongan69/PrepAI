@@ -11,7 +11,7 @@ import { useClerkUser } from '@/hooks/useClerkUser';
 
 export default function CustomDrawerContent() {
   const insets = useSafeAreaInsets();
-  const { imageUrl, displayName, initials } = useClerkUser();
+  const { imageUrl, displayName } = useClerkUser();
   return (
     <ThemedScroller
       className="flex-1 bg-secondary p-8 "

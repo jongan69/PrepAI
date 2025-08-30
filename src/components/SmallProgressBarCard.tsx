@@ -1,5 +1,5 @@
 import { useFocusEffect } from '@react-navigation/native';
-import { useRef, useCallback } from 'react';
+import { useRef, useCallback, useMemo } from 'react';
 import { View, Animated } from 'react-native';
 
 import Icon from './Icon';
@@ -39,7 +39,10 @@ export const SmallProgressBarCard = ({
   const colors = useThemeColors();
 
   // Normalize data to array format
-  const barsData = Array.isArray(data) ? data : [{ percentage: data, color: barColor }];
+  const barsData = useMemo(
+    () => (Array.isArray(data) ? data : [{ percentage: data, color: barColor }]),
+    [data, barColor]
+  );
 
   // Animation values for each bar
   const animatedValues = useRef(barsData.map(() => new Animated.Value(0))).current;

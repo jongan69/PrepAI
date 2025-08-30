@@ -4,8 +4,9 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 // Import storage with error handling
 let Storage: any;
 try {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   Storage = require('expo-sqlite/kv-store').default;
-} catch (error) {
+} catch {
   console.warn('SQLite storage not available, using memory storage');
   Storage = {
     getItem: () => Promise.resolve(null),

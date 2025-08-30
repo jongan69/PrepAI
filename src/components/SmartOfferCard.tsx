@@ -1,6 +1,6 @@
-import { useRouter, router } from 'expo-router';
-import React, { useEffect, useState } from 'react';
-import { View, Pressable, Image, TouchableOpacity, Alert } from 'react-native';
+import { useRouter } from 'expo-router';
+import React, { useEffect, useState, useCallback } from 'react';
+import { View, Image, TouchableOpacity } from 'react-native';
 
 import { Button } from '@/components/Button';
 import Card from '@/components/Card';
@@ -44,34 +44,37 @@ export default function SmartOfferCard({
     // Determine visibility based on placement and user stage
     const shouldShow = determineVisibility(placement, currentStage, showAlways);
     setIsVisible(shouldShow && !!nextOffer);
-  }, [getNextBestOffer, placement, currentStage, showAlways]);
+  }, [getNextBestOffer, placement, currentStage, showAlways, determineVisibility]);
 
-  const determineVisibility = (placement: string, stage: string, forceShow: boolean): boolean => {
-    if (forceShow) return true;
-    if (stage === 'lifetime') return false; // No offers for lifetime users
+  const determineVisibility = useCallback(
+    (placement: string, stage: string, forceShow: boolean): boolean => {
+      if (forceShow) return true;
+      if (stage === 'lifetime') return false; // No offers for lifetime users
 
-    // Strategic placement logic
-    switch (placement) {
-      case 'home':
-        return ['free', 'trial'].includes(stage);
-      case 'workout':
-        return shouldShowUpsell() || shouldShowDownsell();
-      case 'meal':
-        return shouldShowUpsell() || shouldShowDownsell();
-      case 'progress':
-        return shouldShowContinuity();
-      case 'profile':
-        return ['basic', 'premium'].includes(stage);
-      default:
-        return false;
-    }
-  };
+      // Strategic placement logic
+      switch (placement) {
+        case 'home':
+          return ['free', 'trial'].includes(stage);
+        case 'workout':
+          return shouldShowUpsell() || shouldShowDownsell();
+        case 'meal':
+          return shouldShowUpsell() || shouldShowDownsell();
+        case 'progress':
+          return shouldShowContinuity();
+        case 'profile':
+          return ['basic', 'premium'].includes(stage);
+        default:
+          return false;
+      }
+    },
+    [shouldShowUpsell, shouldShowDownsell, shouldShowContinuity]
+  );
 
-  const handleOfferView = () => {
+  const handleOfferView = useCallback(() => {
     if (offer) {
       trackOfferView(offer.id);
     }
-  };
+  }, [offer, trackOfferView]);
 
   const handleOfferClick = () => {
     console.log('handleOfferClick', offer);
@@ -106,14 +109,6 @@ export default function SmartOfferCard({
         console.error('Fallback navigation also failed:', fallbackError);
       }
     }
-  };
-
-  const handlePressIn = () => {
-    console.log('handlePressIn called');
-  };
-
-  const handlePressOut = () => {
-    console.log('handlePressOut called');
   };
 
   const getPlacementMessage = (): string => {
@@ -153,7 +148,7 @@ export default function SmartOfferCard({
     if (offer) {
       handleOfferView();
     }
-  }, [offer]);
+  }, [offer, handleOfferView]);
 
   if (!isVisible || !offer) return null;
 

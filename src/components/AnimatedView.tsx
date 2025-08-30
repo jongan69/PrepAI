@@ -1,5 +1,5 @@
 import { useIsFocused } from '@react-navigation/native';
-import React, { useEffect, memo, useRef, useState } from 'react';
+import React, { useEffect, memo, useRef, useState, useCallback } from 'react';
 import {
   Animated,
   ViewStyle,
@@ -122,10 +122,10 @@ function AnimatedViewComponent({
         clearInterval(measureInterval.current);
       }
     };
-  }, [triggerOnVisible]);
+  }, [triggerOnVisible, checkVisibility]);
 
   // Function to check visibility by measuring the component
-  const checkVisibility = () => {
+  const checkVisibility = useCallback(() => {
     if (!viewRef.current || hasAnimatedOnce.current) return;
 
     // Clear any existing interval
@@ -164,7 +164,7 @@ function AnimatedViewComponent({
         }
       });
     }, 0);
-  };
+  }, [windowHeight, visibilityThreshold]);
 
   // Handle layout to initialize position tracking
   const handleLayout = () => {
@@ -211,7 +211,7 @@ function AnimatedViewComponent({
     };
     // Restrict dependencies to only those that should trigger a re-animation
     // Specifically exclude anything related to parent component state like header visibility
-  }, [isFocused, isVisible, playOnlyOnce]);
+  }, [isFocused, isVisible, playOnlyOnce, animatedValue, duration, delay, easing]);
 
   const getAnimationStyle = (): any => {
     const baseStyle: ViewStyle = {};

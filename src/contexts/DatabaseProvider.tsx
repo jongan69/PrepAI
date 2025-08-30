@@ -278,7 +278,7 @@ export function DatabaseProvider({ children }: DatabaseProviderProps) {
     return () => {
       isMounted = false;
     };
-  }, []); // Empty dependency array - only run once
+  }, [userId, isInitialized]); // Empty dependency array - only run once
 
   // Update data store when user ID changes
   useEffect(() => {

@@ -8,15 +8,14 @@ import { Button } from '@/components/Button';
 import Icon from '@/components/Icon';
 import ThemedText from '@/components/ThemedText';
 import { useDatabase } from '@/contexts/DatabaseProvider';
-import { useDataStore } from '@/stores/data-store';
+
 import { storageManager } from '@/utils/storage';
 
-const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+const { width: screenWidth } = Dimensions.get('window');
 
 export default function OnboardingComplete() {
   const insets = useSafeAreaInsets();
   const { userId } = useDatabase();
-  const dataStore = useDataStore();
 
   const handleGetStarted = async () => {
     try {
@@ -34,7 +33,7 @@ export default function OnboardingComplete() {
 
   // Dynamic calculations
   const containerWidth = Math.min(screenWidth - 64, 400);
-  const availableHeight = screenHeight - insets.top - insets.bottom;
+
   const contentHeight = 600; // Approximate content height (icon + title + description + features + button)
   const verticalOffset = -(contentHeight / 2) - (Platform.OS === 'android' ? 50 : 0);
 

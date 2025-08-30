@@ -111,36 +111,40 @@ const Slider = ({
   });
 
   // Handle direct tap on track
-  const calculateValueFromTap = (x: number) => {
-    // Get real container width excluding thumb size
-    const usableWidth = containerWidth.value - currentSize.thumbSize;
-    if (usableWidth <= 0) return;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const calculateValueFromTap = useCallback(
+    (x: number) => {
+      // Get real container width excluding thumb size
+      const usableWidth = containerWidth.value - currentSize.thumbSize;
+      if (usableWidth <= 0) return;
 
-    // Calculate position relative to usable width, accounting for thumb radius offset
-    let newPercentage = Math.max(0, Math.min(1, (x - currentSize.thumbSize / 2) / usableWidth));
+      // Calculate position relative to usable width, accounting for thumb radius offset
+      let newPercentage = Math.max(0, Math.min(1, (x - currentSize.thumbSize / 2) / usableWidth));
 
-    // Calculate raw value
-    const rawValue = minValue + newPercentage * (maxValue - minValue);
+      // Calculate raw value
+      const rawValue = minValue + newPercentage * (maxValue - minValue);
 
-    // Apply stepping
-    let steppedValue;
-    if (step > 0) {
-      steppedValue = Math.round((rawValue - minValue) / step) * step + minValue;
-      steppedValue = Math.min(Math.max(steppedValue, minValue), maxValue);
+      // Apply stepping
+      let steppedValue;
+      if (step > 0) {
+        steppedValue = Math.round((rawValue - minValue) / step) * step + minValue;
+        steppedValue = Math.min(Math.max(steppedValue, minValue), maxValue);
 
-      // Recalculate percentage from stepped value
-      newPercentage = (steppedValue - minValue) / (maxValue - minValue);
-    } else {
-      steppedValue = rawValue;
-    }
+        // Recalculate percentage from stepped value
+        newPercentage = (steppedValue - minValue) / (maxValue - minValue);
+      } else {
+        steppedValue = rawValue;
+      }
 
-    // Update percentage and notify
-    percentage.value = withTiming(newPercentage, { duration: 150 });
+      // Update percentage and notify
+      percentage.value = withTiming(newPercentage, { duration: 150 });
 
-    if (onValueChange) {
-      onValueChange(steppedValue);
-    }
-  };
+      if (onValueChange) {
+        onValueChange(steppedValue);
+      }
+    },
+    [containerWidth, currentSize.thumbSize, minValue, maxValue, step, percentage, onValueChange]
+  );
 
   // Handle pan gesture
   const panHandler = useAnimatedGestureHandler<PanGestureHandlerGestureEvent, AnimatedGestureContext>({
@@ -189,6 +193,7 @@ const Slider = ({
   }));
 
   // Handle layout changes
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const onLayout = useCallback(
     (event: LayoutChangeEvent) => {
       const { width } = event.nativeEvent.layout;
@@ -203,7 +208,7 @@ const Slider = ({
         percentage.value = validPercentage;
       }
     },
-    [containerWidth, value, initialValue, minValue, maxValue]
+    [containerWidth, maxValue, minValue, value, initialValue, percentage]
   );
 
   // Format display value with appropriate decimal points

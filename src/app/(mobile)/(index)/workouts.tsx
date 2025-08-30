@@ -1,6 +1,6 @@
 import { Link } from 'expo-router';
 import React, { useState, useRef } from 'react';
-import { View, Pressable, FlatList } from 'react-native';
+import { View, Pressable, FlatList, Dimensions } from 'react-native';
 
 import Avatar from '@/components/Avatar';
 import { CardScroller } from '@/components/CardScroller';
@@ -77,16 +77,11 @@ const mockWorkouts: Workout[] = [
   },
 ];
 
-const recentWorkouts = [
-  { name: 'Upper Body Strength', date: 'Today', duration: '45 min' },
-  { name: 'HIIT Cardio', date: 'Yesterday', duration: '30 min' },
-  { name: 'Yoga Flow', date: '2 days ago', duration: '60 min' },
-];
-
 export default function WorkoutsScreen() {
+  const { width } = Dimensions.get('window');
   const { userId } = useDatabase();
   const { imageUrl, displayName } = useClerkUser();
-  const { workouts, todayWorkouts, weeklyWorkouts, isLoading } = useWorkouts(userId?.toString() || '');
+  const { workouts } = useWorkouts(userId?.toString() || '');
   const [currentDayIndex, setCurrentDayIndex] = useState(2); // Start with TODAY
   const flatListRef = useRef<FlatList>(null);
 
@@ -172,7 +167,6 @@ export default function WorkoutsScreen() {
           onMomentumScrollEnd={onScrollEnd}
           initialScrollIndex={2}
           getItemLayout={(data, index) => {
-            const { width } = require('react-native').Dimensions.get('window');
             return {
               length: width,
               offset: width * index,
@@ -230,7 +224,7 @@ export default function WorkoutsScreen() {
             <CardScroller
               space={10}
               className="mt-2">
-              {workouts.slice(0, 3).map((workout, index) => (
+              {workouts.slice(0, 3).map((workout) => (
                 <Link
                   key={workout.id}
                   asChild
@@ -276,7 +270,7 @@ export default function WorkoutsScreen() {
 }
 
 const WorkoutDayContent = ({ data }: { data: (typeof workoutDaysData)[0] }) => {
-  const { width } = require('react-native').Dimensions.get('window');
+  const { width } = Dimensions.get('window');
 
   return (
     <View

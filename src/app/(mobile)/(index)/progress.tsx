@@ -120,7 +120,7 @@ const WeightLossChart: React.FC<WeightLossChartProps> = ({ className = '' }) => 
         duration: 2000,
         easing: Easing.bezier(0.25, 0.1, 0.25, 1.0),
       });
-    }, [])
+    }, [animatedWidth])
   );
 
   const animatedStyle = useAnimatedStyle(() => ({

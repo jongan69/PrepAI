@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 
 import { syncService } from '@/services/sync-service';
 import { useSyncStore } from '@/stores/sync-store';
@@ -15,7 +15,7 @@ export const SyncInitializer: React.FC<SyncInitializerProps> = ({ children }) =>
   const syncEnabled = storeState?.syncEnabled ?? false;
   const isSyncing = storeState?.isSyncing ?? false;
   const lastSyncTime = storeState?.lastSyncTime;
-  const getSyncStats = storeState?.getSyncStats ?? (() => ({}));
+  const getSyncStats = useMemo(() => storeState?.getSyncStats ?? (() => ({})), [storeState?.getSyncStats]);
 
   useEffect(() => {
     // Initialize sync service

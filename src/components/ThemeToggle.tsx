@@ -15,7 +15,7 @@ const ThemeToggle = () => {
       damping: 15,
       stiffness: 150,
     });
-  }, [isDark]);
+  }, [isDark, translateX]);
 
   const animatedStyle = useAnimatedStyle(() => {
     return {

@@ -1,6 +1,6 @@
 import { Link } from 'expo-router';
 import React, { useState, useRef } from 'react';
-import { View, Pressable, FlatList } from 'react-native';
+import { View, Pressable, FlatList, Dimensions } from 'react-native';
 
 import Avatar from '@/components/Avatar';
 import Header from '@/components/Header';
@@ -12,9 +12,7 @@ import Section from '@/components/layout/Section';
 import SmartOfferCard from '@/components/SmartOfferCard';
 import useThemeColors from '@/contexts/ThemeColors';
 import { shadowPresets } from '@/utils/useShadow';
-import { useDatabase } from '@/contexts/DatabaseProvider';
 import { useClerkUser } from '@/hooks/useClerkUser';
-import { useMeals } from '@/hooks/useLiveData';
 
 // Sample data for different days
 const daysData = [
@@ -129,9 +127,8 @@ const daysData = [
 ];
 
 export default function MealsScreen() {
-  const { userId } = useDatabase();
+  const { width } = Dimensions.get('window');
   const { imageUrl, displayName } = useClerkUser();
-  const { meals, totalCalories, macros, isLoading } = useMeals(userId?.toString() || '');
   const [currentDayIndex, setCurrentDayIndex] = useState(1); // Start with TODAY
   const flatListRef = useRef<FlatList>(null);
 
@@ -214,7 +211,6 @@ export default function MealsScreen() {
           onMomentumScrollEnd={onScrollEnd}
           initialScrollIndex={1}
           getItemLayout={(data, index) => {
-            const { width } = require('react-native').Dimensions.get('window');
             return {
               length: width,
               offset: width * index,
@@ -228,7 +224,7 @@ export default function MealsScreen() {
 }
 
 const DayContent = ({ data }: { data: (typeof daysData)[0] }) => {
-  const { width } = require('react-native').Dimensions.get('window');
+  const { width } = Dimensions.get('window');
 
   return (
     <ThemedScroller

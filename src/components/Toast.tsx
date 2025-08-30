@@ -50,7 +50,7 @@ const Toast: React.FC<ToastProps> = ({ message, type = 'info', duration = 3000, 
         }
       });
     }
-  }, [isVisible]);
+  }, [isVisible, translateY, duration, onHide]);
 
   if (!isVisible) return null;
 

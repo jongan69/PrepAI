@@ -1,4 +1,4 @@
-import * as Location from 'expo-location';
+// import * as Location from 'expo-location';
 import { router } from 'expo-router';
 import React from 'react';
 import { View } from 'react-native';
@@ -9,14 +9,13 @@ import ThemedText from '@/components/ThemedText';
 
 export default function LocationPermissionScreen() {
   const handleAllowLocation = async () => {
-    const { status } = await Location.requestForegroundPermissionsAsync();
-    if (status === 'granted') {
-      router.push('/(drawer)/(tabs)/');
-    }
+    // Location permission logic would go here
+    // For now, just navigate to main app
+    router.push('/(mobile)/(index)');
   };
 
   const handleSkip = () => {
-    router.push('/(drawer)/(tabs)/');
+    router.push('/(mobile)/(index)');
   };
 
   return (

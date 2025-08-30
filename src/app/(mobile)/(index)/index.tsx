@@ -302,7 +302,7 @@ const CaloriesOverview: React.FC<CaloriesOverviewProps> = ({
         duration: 1000,
         useNativeDriver: false,
       }).start();
-    }, [percentage])
+    }, [animatedValue, percentage])
   );
 
   const remaining = targetCalories - currentCalories + caloriesBurned;

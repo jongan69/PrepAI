@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { View, Image } from 'react-native';
 
 import { Chip } from '@/components/Chip';
@@ -35,149 +35,152 @@ export default function NotificationsScreen() {
   const [notificationsData, setNotificationsData] = useState<Notification[]>([]);
 
   // Define notifications data outside useEffect to avoid re-creation
-  const notifications: Notification[] = [
-    {
-      id: 1,
-      type: 'workout',
-      title: 'Workout Completed!',
-      message: 'Great job! You completed your Upper Body Strength workout',
-      time: '2 min ago',
-      read: false,
-      icon: 'CheckCircle',
-    },
-    {
-      id: 2,
-      type: 'achievement',
-      title: 'New Achievement Unlocked!',
-      message: "Congratulations! You've reached your 7-day workout streak",
-      time: '1 hour ago',
-      read: false,
-      icon: 'Award',
-    },
-    {
-      id: 3,
-      type: 'social',
-      title: 'Friend Activity',
-      message: 'Sarah completed a 5K run and burned 320 calories',
-      time: '2 hours ago',
-      read: true,
-      icon: 'Users',
-      user: {
-        id: 102,
-        name: 'Sarah Miller',
-        avatar: 'https://randomuser.me/api/portraits/women/44.jpg',
+  const notifications: Notification[] = useMemo(
+    () => [
+      {
+        id: 1,
+        type: 'workout',
+        title: 'Workout Completed!',
+        message: 'Great job! You completed your Upper Body Strength workout',
+        time: '2 min ago',
+        read: false,
+        icon: 'CheckCircle',
       },
-    },
-    {
-      id: 4,
-      type: 'reminder',
-      title: 'Workout Reminder',
-      message: 'Time for your scheduled HIIT Cardio workout',
-      time: '3 hours ago',
-      read: false,
-      icon: 'Clock',
-    },
-    {
-      id: 5,
-      type: 'health',
-      title: 'Hydration Goal Reached',
-      message: "You've reached your daily water intake goal of 2.5L",
-      time: '4 hours ago',
-      read: true,
-      icon: 'Droplets',
-    },
-    {
-      id: 6,
-      type: 'workout',
-      title: 'Rest Day Scheduled',
-      message: 'Tomorrow is your scheduled rest day. Great work this week!',
-      time: '1 day ago',
-      read: true,
-      icon: 'Moon',
-    },
-    {
-      id: 7,
-      type: 'social',
-      title: 'Challenge Invitation',
-      message: 'Alex invited you to join the 30-Day Push-up Challenge',
-      time: '1 day ago',
-      read: false,
-      icon: 'Target',
-      user: {
-        id: 101,
-        name: 'Alex Thompson',
-        avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
+      {
+        id: 2,
+        type: 'achievement',
+        title: 'New Achievement Unlocked!',
+        message: "Congratulations! You've reached your 7-day workout streak",
+        time: '1 hour ago',
+        read: false,
+        icon: 'Award',
       },
-    },
-    {
-      id: 8,
-      type: 'achievement',
-      title: 'Personal Record!',
-      message: "New PR! You lifted 25% more weight in today's session",
-      time: '2 days ago',
-      read: true,
-      icon: 'TrendingUp',
-    },
-    {
-      id: 9,
-      type: 'health',
-      title: 'Sleep Goal Achieved',
-      message: 'You got 8 hours of quality sleep last night',
-      time: '2 days ago',
-      read: true,
-      icon: 'Moon',
-    },
-    {
-      id: 10,
-      type: 'reminder',
-      title: 'Meal Prep Reminder',
-      message: "Don't forget to log your lunch calories",
-      time: '3 days ago',
-      read: false,
-      icon: 'Utensils',
-    },
-    {
-      id: 11,
-      type: 'social',
-      title: 'Workout Buddy',
-      message: 'Michael wants to be your workout partner for tomorrow',
-      time: '4 days ago',
-      read: true,
-      icon: 'UserPlus',
-      user: {
-        id: 103,
-        name: 'Michael Chen',
-        avatar: 'https://randomuser.me/api/portraits/men/45.jpg',
+      {
+        id: 3,
+        type: 'social',
+        title: 'Friend Activity',
+        message: 'Sarah completed a 5K run and burned 320 calories',
+        time: '2 hours ago',
+        read: true,
+        icon: 'Users',
+        user: {
+          id: 102,
+          name: 'Sarah Miller',
+          avatar: 'https://randomuser.me/api/portraits/women/44.jpg',
+        },
       },
-    },
-    {
-      id: 12,
-      type: 'achievement',
-      title: 'Weekly Goal Completed',
-      message: "You've completed all 5 workouts this week!",
-      time: '5 days ago',
-      read: true,
-      icon: 'Trophy',
-    },
-    {
-      id: 13,
-      type: 'health',
-      title: 'Heart Rate Zone',
-      message: 'You spent 45 minutes in your target heart rate zone',
-      time: '6 days ago',
-      read: true,
-      icon: 'Heart',
-    },
-    {
-      id: 14,
-      type: 'reminder',
-      title: 'Recovery Day',
-      message: 'Consider taking a recovery day after 6 consecutive workouts',
-      time: '1 week ago',
-      read: false,
-      icon: 'AlertCircle',
-    },
-  ];
+      {
+        id: 4,
+        type: 'reminder',
+        title: 'Workout Reminder',
+        message: 'Time for your scheduled HIIT Cardio workout',
+        time: '3 hours ago',
+        read: false,
+        icon: 'Clock',
+      },
+      {
+        id: 5,
+        type: 'health',
+        title: 'Hydration Goal Reached',
+        message: "You've reached your daily water intake goal of 2.5L",
+        time: '4 hours ago',
+        read: true,
+        icon: 'Droplets',
+      },
+      {
+        id: 6,
+        type: 'workout',
+        title: 'Rest Day Scheduled',
+        message: 'Tomorrow is your scheduled rest day. Great work this week!',
+        time: '1 day ago',
+        read: true,
+        icon: 'Moon',
+      },
+      {
+        id: 7,
+        type: 'social',
+        title: 'Challenge Invitation',
+        message: 'Alex invited you to join the 30-Day Push-up Challenge',
+        time: '1 day ago',
+        read: false,
+        icon: 'Target',
+        user: {
+          id: 101,
+          name: 'Alex Thompson',
+          avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
+        },
+      },
+      {
+        id: 8,
+        type: 'achievement',
+        title: 'Personal Record!',
+        message: "New PR! You lifted 25% more weight in today's session",
+        time: '2 days ago',
+        read: true,
+        icon: 'TrendingUp',
+      },
+      {
+        id: 9,
+        type: 'health',
+        title: 'Sleep Goal Achieved',
+        message: 'You got 8 hours of quality sleep last night',
+        time: '2 days ago',
+        read: true,
+        icon: 'Moon',
+      },
+      {
+        id: 10,
+        type: 'reminder',
+        title: 'Meal Prep Reminder',
+        message: "Don't forget to log your lunch calories",
+        time: '3 days ago',
+        read: false,
+        icon: 'Utensils',
+      },
+      {
+        id: 11,
+        type: 'social',
+        title: 'Workout Buddy',
+        message: 'Michael wants to be your workout partner for tomorrow',
+        time: '4 days ago',
+        read: true,
+        icon: 'UserPlus',
+        user: {
+          id: 103,
+          name: 'Michael Chen',
+          avatar: 'https://randomuser.me/api/portraits/men/45.jpg',
+        },
+      },
+      {
+        id: 12,
+        type: 'achievement',
+        title: 'Weekly Goal Completed',
+        message: "You've completed all 5 workouts this week!",
+        time: '5 days ago',
+        read: true,
+        icon: 'Trophy',
+      },
+      {
+        id: 13,
+        type: 'health',
+        title: 'Heart Rate Zone',
+        message: 'You spent 45 minutes in your target heart rate zone',
+        time: '6 days ago',
+        read: true,
+        icon: 'Heart',
+      },
+      {
+        id: 14,
+        type: 'reminder',
+        title: 'Recovery Day',
+        message: 'Consider taking a recovery day after 6 consecutive workouts',
+        time: '1 week ago',
+        read: false,
+        icon: 'AlertCircle',
+      },
+    ],
+    []
+  );
 
   // Load notifications data with proper useEffect
   useEffect(() => {
@@ -207,7 +210,7 @@ export default function NotificationsScreen() {
     return () => {
       console.log('Notifications component unmounted');
     };
-  }, []); // Empty dependency array means this runs once on mount
+  }, [notifications]); // Empty dependency array means this runs once on mount
 
   // Filter notifications based on selected type
   const filteredNotifications = notificationsData.filter((notification) =>

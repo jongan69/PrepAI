@@ -20,7 +20,7 @@ export default function ProfileScreen() {
   const { userId, isInitialized } = useDatabase();
   const { imageUrl, displayName, email } = useClerkUser();
   const { logout } = useLogout();
-  const [user, setUser] = useState<any>(null);
+  const [, setUser] = useState<any>(null);
   const [latestWeight, setLatestWeight] = useState<any>(null);
   const [healthProfile, setHealthProfile] = useState<any>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);

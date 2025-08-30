@@ -115,7 +115,7 @@ export default function MultiStep({
         useNativeDriver: false,
       }).start();
     });
-  }, [currentStepIndex]);
+  }, [currentStepIndex, fadeAnim, progressAnims, slideAnim, steps]);
 
   const handleNext = () => {
     if (isLastStep) {

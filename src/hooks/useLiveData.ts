@@ -9,7 +9,7 @@ export function useUser(userId: string) {
     if (userId) {
       fetchUserData(userId);
     }
-  }, [userId]);
+  }, [userId, fetchUserData]);
 
   return {
     user,
@@ -27,7 +27,7 @@ export function useWorkouts(userId: string) {
     if (userId) {
       fetchWorkouts(userId);
     }
-  }, [userId]);
+  }, [userId, fetchWorkouts]);
 
   // Get today's workouts
   const todayWorkouts = useMemo(() => {
@@ -69,7 +69,7 @@ export function useMeals(userId: string, date?: string) {
     if (userId) {
       fetchMeals(userId);
     }
-  }, [userId]);
+  }, [userId, fetchMeals]);
 
   const targetDate = date || new Date().toISOString().split('T')[0];
 
@@ -119,7 +119,7 @@ export function useWeightEntries(userId: string) {
     if (userId) {
       fetchWeightEntries(userId);
     }
-  }, [userId]);
+  }, [userId, fetchWeightEntries]);
 
   // Get latest weight
   const latestWeight = useMemo(() => {
@@ -164,9 +164,7 @@ export function useWaterIntake(userId: string, date?: string) {
     if (userId) {
       fetchWaterIntake(userId, date);
     }
-  }, [userId, date]);
-
-  const targetDate = date || new Date().toISOString().split('T')[0];
+  }, [userId, date, fetchWaterIntake]);
 
   // Get total water intake for the date
   const totalWaterIntake = useMemo(() => {
@@ -221,7 +219,7 @@ export function useSleepEntries(userId: string, date?: string) {
     if (userId) {
       fetchSleepEntries(userId);
     }
-  }, [userId]);
+  }, [userId, fetchSleepEntries]);
 
   const targetDate = date || new Date().toISOString().split('T')[0];
 
@@ -267,7 +265,7 @@ export function useProgressLogs(userId: string) {
     if (userId) {
       fetchProgressLogs(userId);
     }
-  }, [userId]);
+  }, [userId, fetchProgressLogs]);
 
   // Get today's progress log
   const todayProgress = useMemo(() => {
@@ -304,7 +302,7 @@ export function useGoals(userId: string) {
     if (userId) {
       fetchGoals(userId);
     }
-  }, [userId]);
+  }, [userId, fetchGoals]);
 
   // Get active goals
   const activeGoals = useMemo(() => {

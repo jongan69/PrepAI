@@ -498,9 +498,7 @@ export async function GET(request: Request) {
     const query = InputSanitizer.sanitizeString(searchParams.get('query') || '', 100);
     const diet = InputSanitizer.sanitizeString(searchParams.get('diet') || '', 50);
     const health = InputSanitizer.sanitizeArray(searchParams.getAll('health'), 10);
-    const cuisineType = InputSanitizer.sanitizeString(searchParams.get('cuisineType') || '', 50);
     const mealType = InputSanitizer.sanitizeString(searchParams.get('mealType') || '', 50);
-    const dishType = InputSanitizer.sanitizeString(searchParams.get('dishType') || '', 50);
     const userId = InputSanitizer.sanitizeString(searchParams.get('userId') || '', 50);
     const from = InputSanitizer.sanitizeNumber(searchParams.get('from') || '0');
     const to = InputSanitizer.sanitizeNumber(searchParams.get('to') || '20');

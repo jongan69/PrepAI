@@ -4,9 +4,12 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import useThemeColors from '@/contexts/ThemeColors';
 
-interface ActionSheetThemedProps extends ActionSheetProps {}
+type ActionSheetThemedProps = ActionSheetProps;
 
-const ActionSheetThemed = forwardRef<ActionSheetRef, ActionSheetThemedProps>(({ containerStyle, ...props }, ref) => {
+const ActionSheetThemed = forwardRef<ActionSheetRef, ActionSheetThemedProps>(function ActionSheetThemed(
+  { containerStyle, ...props },
+  ref
+) {
   const colors = useThemeColors();
   const insets = useSafeAreaInsets();
   return (

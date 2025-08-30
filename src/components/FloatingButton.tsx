@@ -49,7 +49,7 @@ const FloatingButton: React.FC<FloatingButtonProps> = ({
         useNativeDriver: true,
       }),
     ]).start();
-  }, [visible, isAnimated]);
+  }, [visible, isAnimated, translateY, opacity]);
 
   const containerStyle = isAnimated
     ? {
