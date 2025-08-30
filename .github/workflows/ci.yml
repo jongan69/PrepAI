@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: '20'
           cache-path: 'node_modules'
-          cache-key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-      - run: npm ci
-      - run: npm run lint
-      - run: npm test
+          cache-key: ${{ runner.os }}-bun-${{ hashFiles('bun.lockb') }}
+      - run: bun install
+      - run: bun run lint
+      - run: bun test

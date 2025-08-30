@@ -12,14 +12,14 @@ jobs:
         with:
           node-version: '20'
           cache-path: 'node_modules'
-          cache-key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          cache-key: ${{ runner.os }}-bun-${{ hashFiles('bun.lockb') }}
       - uses: ./.github/actions/setup-expo
         with:
           expo-token: ${{ secrets.EXPO_TOKEN }}
       - name: Install dependencies
-        run: npm i
+        run: bun install
       - name: Build development
-        run: npm run build:android-dev
+        run: bun run build:android-dev
         env:
           EXPO_PROJECT_ID: ${{ secrets.EXPO_PROJECT_ID }}
       - name: Create GitHub Release

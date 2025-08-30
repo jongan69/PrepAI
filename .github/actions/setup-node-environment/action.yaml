@@ -1,5 +1,5 @@
 name: "Setup Node environment"
-description: "Checkout, cache and npm install"
+description: "Checkout, cache and bun install"
 
 inputs:
   node-version:
@@ -20,6 +20,11 @@ runs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ inputs.node-version }}
+    - name: Install Bun
+      shell: bash
+      run: |
+        curl -fsSL https://bun.sh/install | bash
+        echo "$HOME/.bun/bin" >> $GITHUB_PATH
     - name: Cache Node modules
       uses: actions/cache@v4
       with:
